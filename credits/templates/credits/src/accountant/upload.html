@@ -1,0 +1,27 @@
+{% extends 'credits/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Загрузка данных' %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="card mb-4">
+        <div class="card-body demo-vertical-spacing demo-only-element">
+            <h5 class="card-title text-center">{% trans 'Загрузка данных' %}</h5>
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">{% trans 'Выберите файл' %}</label>
+                    <input class="form-control" type="file" id="file" name="file" required>
+                </div>
+
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-primary">{% trans 'Загрузить' %}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

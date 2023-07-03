@@ -1,0 +1,273 @@
+{% load static %}
+{% load i18n %}
+
+{% load credits_tags %}
+
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
+	data-template="vertical-menu-template-free">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+	<title>{% block title %}{% endblock %}</title>
+
+	<meta name="description" content="" />
+
+	<!-- Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+		rel="stylesheet" />
+
+	<!-- Icons. Uncomment required icon fonts -->
+	<link rel="stylesheet" href="{% static 'vendor/fonts/boxicons.css' %}" />
+
+	<!-- Core CSS -->
+	<link rel="stylesheet" href="{% static 'vendor/css/core.css' %}" class="template-customizer-core-css" />
+	<link rel="stylesheet" href="{% static 'vendor/css/theme-default.css' %}" class="template-customizer-theme-css" />
+	<link rel="stylesheet" href="{% static 'css/demo.css' %}" />
+
+	<!-- Vendors CSS -->
+	<link rel="stylesheet" href="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}" />
+
+	<link rel="stylesheet" href="{% static 'vendor/libs/apex-charts/apex-charts.css' %}" />
+
+	<script src="{% url 'javascript-catalog' %}"></script>
+	<!-- Helpers -->
+	<script src="{% static 'vendor/js/helpers.js' %}"></script>
+
+	<script src="{% static 'js/config.js' %}"></script>
+
+	<script src="{% static 'js/js.cookie.min.js' %}"></script>
+	<script src="{% static 'js/jquery/dist/jquery.min.js'%}"></script>
+
+	<script src="{% static 'js/popper.js' %}"></script>
+	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+	<!-- Layout wrapper -->
+	<div class="layout-wrapper layout-content-navbar">
+		<div class="layout-container">
+			<!-- Menu -->
+
+			<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+				<div class="app-brand demo">
+					<a href="/" class="app-brand-link">
+						<p class="app-brand-text menu-text fw-bolder"><h5>{% trans 'СамГУ Кредиты' %} | {{ request.user.get_role_display }}</h5></p>
+					</a>
+				</div>
+
+				<div class="menu-inner-shadow"></div>
+
+				<ul class="menu-inner py-1">
+					{% check_deadline as is_deadline %}
+					
+					{% url 'credits:home' as home_url %}
+					<li class="menu-item {% if request.path == home_url %}active{% endif %}">
+						<a href="{{ home_url }}" class="menu-link">
+							<i class="menu-icon tf-icons bx bx-home-circle"></i>
+							<div>{% trans 'Главная' %}</div>
+						</a>
+					</li>
+
+					<li class="menu-header small text-uppercase">
+						<span class="menu-header-text">Университет</span>
+					</li>
+
+					{% if request.user.role == 'DEKAN' %}
+						{% url 'credits:deanery-overview' as deanery_overview_url %}
+						<li class="menu-item {% if deanery_overview_url in request.path %}active{% endif %}">
+							<a href="{{ deanery_overview_url }}" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-table"></i>
+								<div>{% trans 'Обзор' %}</div>
+							</a>
+						</li>
+
+						{% url 'credits:deanery-search' as deanery_search_url %}
+						<li class="menu-item {% if request.path == deanery_search_url %}active{% endif %}">
+							<a href="{{ deanery_search_url }}" class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-search-alt-2"></i>
+								<div>{% trans 'Поиск студента' %}</div>
+							</a>
+						</li>
+
+						{% url 'credits:deanery-upload' as deanery_upload_url %}
+						<li class="menu-item {% if request.path == deanery_upload_url %}active{% endif %} {% if is_deadline %}disabled{% endif %}">
+							<a {% if is_deadline %}disabled{% else %}href="{{ deanery_upload_url }}"{% endif %} class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-cloud-upload"></i>
+								<div>{% trans 'Загрузка данных' %}</div>
+							</a>
+						</li>
+					{% endif %}
+
+					{% if request.user.role == 'ACCOUNTANT' %}
+						{% url 'credits:accountant-overview' as accountant_overview_url %}
+						<li class="menu-item {% if accountant_overview_url in request.path %}active{% endif %}">
+							<a href="{{ accountant_overview_url }}" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-table"></i>
+								<div>{% trans 'Обзор' %}</div>
+							</a>
+						</li>
+
+						{% url 'credits:accountant-search' as accountant_search_url %}
+						<li class="menu-item {% if request.path == accountant_search_url %}active{% endif %}">
+							<a href="{{ accountant_search_url }}" class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-search-alt-2"></i>
+								<div>{% trans 'Поиск студента' %}</div>
+							</a>
+						</li>
+					{% endif %}
+
+					{% if request.user.role == 'EDUPART' %}
+						{% url 'credits:edu-part-overview' as edupart_overview_url %}
+						<li class="menu-item {% if edupart_overview_url in request.path %}active{% endif %}">
+							<a href="{{ edupart_overview_url }}" class="menu-link">
+								<i class="menu-icon tf-icons bx bx-table"></i>
+								<div>{% trans 'Обзор' %}</div>
+							</a>
+						</li>
+
+						{% url 'credits:edu-part-search' as edupart_search_url %}
+						<li class="menu-item {% if request.path == edupart_search_url %}active{% endif %}">
+							<a href="{{ edupart_search_url }}" class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-search-alt-2"></i>
+								<div>{% trans 'Поиск студента' %}</div>
+							</a>
+						</li>
+
+						{% url 'credits:edu-part-deadline' as deadline_search_url %}
+						<li class="menu-item {% if request.path == deadline_search_url %}active{% endif %}">
+							<a href="{{ deadline_search_url }}" class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-timer"></i>
+								<div>{% trans 'Дедлайн' %}</div>
+							</a>
+						</li>
+					{% endif %}
+				</ul>
+			</aside>
+			<!-- / Menu -->
+
+			<!-- Layout container -->
+			<div class="layout-page">
+				<!-- Navbar -->
+				<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+					<div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+					  <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+						<i class="bx bx-menu bx-sm"></i>
+					  </a>
+					</div>
+		
+					<div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+						{% get_deadline as deadline %}
+
+						<div class="navbar-nav align-items-center">
+							<div class="nav-item d-flex align-items-center">
+								{% if request.user.role == 'DEKAN' %}<span>{{ request.user.faculty.name }}</span>{% endif %} {% if deadline %}<span class="badge bg-label-{% if is_deadline %}danger{% else %}primary{% endif %}">{% trans 'Текущий Дедлайн' %}: {{ deadline.date }}</span>{% endif %}</h5>
+							</div>
+						</div>
+
+		
+					  <ul class="navbar-nav flex-row align-items-center ms-auto">
+						<!-- Place this tag where you want the button to render. -->
+						<li class="nav-item lh-1 me-3">
+						  <span></span>
+						</li>
+
+						<li class="nav-item dropdown no-arrow">
+							{% get_current_language as LANGUAGE_CODE %}
+							{% get_available_languages as LANGUAGES %}
+							{% get_language_info_list for LANGUAGES as languages %}
+							<div class="select">
+								{% get_language_info_list for LANGUAGES as languages %}
+								<form action="{% url 'set_language' %}" method="post" class="navbar-form navbar-right">
+									{% csrf_token %}
+									<div class="form-group">
+										<select name="language" class="form-select" onchange="this.form.submit()">
+											{% for language in languages %}
+												<option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %}selected="selected" {% endif %}>
+													{{ language.name_translated }}
+												</option>
+											{% endfor %}
+										</select>
+									</div>
+								</form>
+							</div>
+						</li>
+						
+						<li class="nav-item lh-1 me-3">
+							<form action="{% url 'users:logout' %}" method="post">
+								{% csrf_token %}
+								<button class="btn" type="submit">{% trans 'Выйти' %}</button>
+							</form>
+						</li>
+					  </ul>
+					</div>
+				  </nav>
+
+				<!-- / Navbar -->
+
+				<!-- Content wrapper -->
+				<div class="content-wrapper">
+					<div class="container-xxl flex-grow-1 container-p-y">
+						
+						{% if is_deadline %}
+							<div class="row">
+								<div class="alert alert-danger alert-dismissible" role="alert">
+									{% trans 'Время обработки кредитов вышло' %}
+								</div>
+							</div>
+						{% endif %}
+						
+						{% if messages %}
+							<div class="row">
+								{% for message in messages %}
+									<div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible" role="alert">
+										{{ message.message }}
+										<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+									</div>
+								{% endfor %}
+							</div>
+						{% endif %}
+						
+						<div class="row">
+							{% block content %}{% endblock %}
+						</div>
+					</div>
+
+					<div class="content-backdrop fade"></div>
+				</div>
+				<!-- Content wrapper -->
+			</div>
+			<!-- / Layout page -->
+		</div>
+
+		<!-- Overlay -->
+		<div class="layout-overlay layout-menu-toggle"></div>
+	</div>
+	<!-- / Layout wrapper -->
+
+	<script src="{% static 'vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+
+	<script src="{% static 'vendor/js/menu.js' %}"></script>
+	<!-- endbuild -->
+
+	<!-- Vendors JS -->
+	<script src="{% static 'vendor/libs/apex-charts/apexcharts.js' %}"></script>
+
+	<!-- Main JS -->
+	<script src="{% static 'js/main.js' %}"></script>
+
+	<!-- Page JS -->
+	<script src="{% static 'js/dashboards-analytics.js' %}"></script>
+
+	<!-- Place this tag in your head or just before your close body tag. -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>

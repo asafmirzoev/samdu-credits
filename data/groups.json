@@ -1,0 +1,1834 @@
+{
+    "Matematika fakulteti": {
+        "1": {
+            "MAT_60540100_MAT_2022": {
+                "MAT_2022_01-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_2022_02-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_2022_03-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_2022_04-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_2022_05-guruh(RUS)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "MAT_60540300_MATINJ_2022": {
+                "MATINJ_2022_09-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "MAT_60540100_MAT_2022(KECHKI)": {
+                "MAT_2022_10-guruh(KECHKI)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "MAT_60540200 _AmaliyMat_2022": {
+                "AmaliyMat_2022_06-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "AmaliyMat_2022_07-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "AmaliyMat_2022_08-guruh(RUS)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "MAT_60540200 _AmaliyMat_2022(kechgi)": {
+                "AmaliyMat_2022_11-guruh(KECHGI)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "2": {
+            "MAT_60540100_MAT_2021": {
+                "MAT_2021_02-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_2021_01-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_2021_03-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_2021_04-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "MAT_60540300_MATINJ_2021": {
+                "MAT_IN_2021_08-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "RTF_60540200_Amaliy matematika(kechki)-2021": {
+                "MAT_A_2021_09-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_A_2021_10-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_A_2021_11-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "MAT_60540200_Amaliy mat_2021": {
+                "MAT_A_2021_05-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_A_2021_06-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_A_2021_07-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            }
+        },
+        "3": {
+            "MAT_5130200_Amaliy mat_2020": {
+                "MAT_A_2020_19-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_A_2020_20-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_A_2020_27-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_A_2020_28-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "MAT_5130100_MAT_2020": {
+                "MAT_M_2020_01-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_M_2020_02-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_M_2020_03-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_M_2020_04-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_M_2020_05-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "MAT_M_2020_18-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "MAT_5110100_MATINF_2020": {
+                "M_INF_2020_06-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_07-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_08-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_09-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_10-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_11-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_12-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "M_INF_2020_13-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "M_INF_2020_14-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "Tojik"
+                },
+                "M_INF_2020_16-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_15-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_20-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "MAT_510300_MATINJ_2020": {
+                "M_INJ_2020_17-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "MAT_5110100_MATINF_2020(KECHKI)": {
+                "M_INF_2020_21-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_22-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_23-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_24-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_25-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "M_INF_2020_26-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "RT_5130200_Amaliy matematika(kechki)-2020": {
+                "MAT_A_2020_29-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_A_2020_30-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_A_2020_31-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "MAT_A_2020_32-guruh(kech)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            }
+        }
+    },
+    "Filologiya fakulteti": {
+        "1": {
+            "RUS_FIL_60230100_YEVRO_2022_1-KURS": {
+                "RUS_FIL_YEVRO_2022_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2022_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "RUS_FIL_60230100_YEVRO_2022_1-KURS_KECHKI": {
+                "RUS_FIL_YEVRO_2022_KECHKI_03": {
+                    "education_form": "Kechki",
+                    "language": "Rus"
+                }
+            },
+            "FIL_60230100-FILOLOGIYA VA TILLARNI O'QITISH: O'ZBEK TILI_2022_1-KURS": {
+                "FIL_O'ZBEK_2022_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "FIL_O'ZBEK_2022_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "FIL_O'ZBEK_2022_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "FIL_O'ZBEK_2022_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "FIL_O'ZBEK_2022_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "FIL_60230100-FILOLOGIYA VA TILLARNI O'QITISH: O'ZBEK TILI_KECHKI_2022_1-KURS": {
+                "FIL_O'ZBEK_KECHKI_2022_01": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "FIL_60230100-FILOLOGIYA VA TILLARNI O'QITISH: TOJIK TILI_2022_1-KURS": {
+                "FIL_TOJIK_2022_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "Tojik"
+                }
+            },
+            "FIL_60230100-FILOLOGIYA VA TILLARNI O'QITISH: TOJIK TILI_KECHKI_2022_1-KURS": {
+                "FIL_TOJIK_KECHKI_2022_02": {
+                    "education_form": "Kechki",
+                    "language": "Tojik"
+                }
+            },
+            "FIL_60230600-NOSHIRLIK ISHI_2022_1-KURS": {
+                "FIL_NOSHIRLIK ISHI_2022_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "2": {
+            "Fil_60230100-Filologiya va tillarni o'qitish:o'zbek tili_2021_2-kurs": {
+                "FIl_o'zbek_2021_01-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "FIl_o'zbek_2021_02-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "FIl_o'zbek_2021_03-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "FIl_o'zbek_2021_04-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "FIl_o'zbek_2021_05-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fil_o'zbek_2021_06-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fil_o'zbek_2021_10-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "FIl_o'zbek_2021_11-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fil_60230600 - Noshirlik ishi_2021_2-kurs": {
+                "Noshirlik_2021_07-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fil_60230100-Filologiya va tillarni o'qitish:tojik tili_2021_2-kurs": {
+                "Fil_tojik_2021_08-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "Tojik"
+                },
+                "Fil. tojik_2021_09-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "Tojik"
+                }
+            },
+            "US_FIL_60230100_YEVRO_2021_2-KURS": {
+                "RUS_FIL_YEVRO_2021_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2021_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2021_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2021_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2021_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2021_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            }
+        },
+        "3": {
+            "il_5120100-Filologiya va tillarni o'qitish:o'zbek tili_2020_3-kurs": {
+                "Fil_o'zbek_2020_01-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fil_o'zbek_2020_02-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fil_o'zbek_2020_03-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fil_o'zbek_2020_04-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fil_o'zbek_2020_05-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fil_o'zbek_2020_06-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fil_o'zbek_2020_07-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fil_5611600-Noshirlik ishi_2020_3-kurs": {
+                "Fil_noshirlik_2020_08-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "RUS_FIL_5120100_YEVRO_2020_3-KURS": {
+                "RUS_FIL_YEVRO_2020_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2020_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2020_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2020_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2020_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2020_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2020_17": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_YEVRO_2020_20": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "RUS_FIL_5112500_NATS_2020_3-KURS": {
+                "RUS_FIL_NATS_2020_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_NATS_2020_08": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_NATS_2020_09": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_NATS_2020_10": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_NATS_2020_11": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_NATS_2020_12": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_NATS_2020_18": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "RUS_FIL_NATS_2020_19": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "Fil_5111400-Xorijiy til va adabiyoti_(ingliz tili)_2020_3-kurs": {
+                "XORIJIY_TIL_2020_13": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "XORIJIY_TIL_2020_14": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "XORIJIY_TIL_2020_15": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "XORIJIY_TIL_2020_16": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fil_5120100-Filologiya va tillarni o'qitish(o'zbek tili)_2020_kechki_3-kurs": {
+                "Fil_o'zbek_kechki_2020_01": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "Fil_o'zbek_kechki_2020_02": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "Fil_o'zbek_kechki_2021_03": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            }
+        }
+    },
+    "Intellektual tizimlar va kompyuter texnologiyalari fakulteti": {
+        "1": {
+            "RTF_60610600_DI_2022": {
+                "DI_2022_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "DI_2022_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "DI_2022_05 R": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "RTF_60610100_KIDT_2022": {
+                "KIDT_2022_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "RTF_60610700_SI_2022": {
+                "SI_2022_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "2": {
+            "RTF_60610100_KIDT_2021": {
+                "RT_2021_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "RT_2021_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "RT_2021_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "RTF_60610600_DI_2021": {
+                "RT_2021_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "RT_2021_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "RT_2021_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "3": {
+            "RTF_5330600_DI_2020": {
+                "RT_2020_05-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "RT_2020_06-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "RTF_5330100_KDIT_2020": {
+                "RT_2020_KIDT_01-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "RT_2020_KIDT_02-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "RT_2020_KIDT_03-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "RT_2020_KIDT_04-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            }
+        }
+    },
+    "Kimyo fakulteti": {
+        "1": {
+            "KIM_60720600-MYMI_(2022)": {
+                "KIM_2022_06(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "KIM_60530100-K_(turlari bo'yicha)_(2022)": {
+                "KIM_2022_01(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2022_02(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2022_03(RU)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "KIM_60710100_KTICH_(2022)": {
+                "KIM_2022_04(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2022_05(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "KIM_60530100-K_(turlari bo'yicha kechki)(2022)": {
+                "KIM_2022_07(UZ)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "2": {
+            "KIM_60530100-Kimyo (turlari bo'yicha 2021)": {
+                "KIM_2021_01(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2021_02(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2021_03(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2021_04(RU)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "KIM_60710100_Kimyoviy_texnologiya_(ICHTB)_(2021)": {
+                "KIM_2021_05(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2021_06(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2021_07(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2021_08(RU)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            }
+        },
+        "3": {
+            "Kim_5140500-K(tb)_2020": {
+                "KIM_2020_01(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2020_02(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2020_03(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2020_04(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "KIM_5110300-K_2020": {
+                "KIM_2020_05(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2020_06(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2020_07(RU)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "KIM_2020_08(TJ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Tojik"
+                }
+            },
+            "KIM_5320400-KT(ichtb)_2020": {
+                "KIM_2020_10(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2020_11(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2020_09(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2020_12(RU)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "KIM_2020_11a(UZ)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "KIM_5110300-K(kechki 2020)": {
+                "KIM_2020_13(UZ)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2020_15(UZ)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2020_16(UZ)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "KIM_2020_14(UZ)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            }
+        }
+    },
+    "Agrobiotexnologiyalar va oziq-ovqat xavfsizligi instituti": {
+        "1": {
+            "AGRO_60811500_Zooinjeneriya_2022": {
+                "Agro2022_10": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_60812100_Dorivor o'simlik_2022": {
+                "Agro2022_09": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_60811200_Q_x_ekinlari_ seleksiyasi_2022": {
+                "Agro2022_08": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_60810700_Agrokimyo_2022": {
+                "Agro2022_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Agro2022_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_60811000_O\u2018sim_him_2022": {
+                "Agro2022_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Agro2022_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_60811800_Mevachilik_2022": {
+                "Agro2022_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_60811900_Sabzavotchilik_2022": {
+                "Agro2022_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_60812000_Issiqxona_2022": {
+                "Agro2022_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_ST_6811500- Zooinjeneriya (baliqchilik)_2022": {
+                "Agro2022_14_ST": {
+                    "education_form": "Sirtqi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_ST_60811800 - Mevachilik va uzumchilik_2022": {
+                "Agro2022_11_ST": {
+                    "education_form": "Sirtqi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_ST_60811900 - Sabzavotchilik, polizchilik va kartoshkachilik_2022": {
+                "Agro2022_12_ST": {
+                    "education_form": "Sirtqi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "2": {
+            "AGRO_60811800_Mevachilik_2021": {
+                "Agro2021_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_60810700_Agrokimyo_2021": {
+                "Agro2021_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Agro2021_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_60811000_O\u2018sim_him_2021": {
+                "Agro2021_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Agro2021_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_60812000_Issiqxona_2021": {
+                "Agro2021_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "AGRO_60811900_Sabzavotchilik_2021": {
+                "Agro2021_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "3": {
+            "AGRO_5410100_Agrokimyo_2020": {
+                "Agro2020_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Agro2020_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        }
+    },
+    "Muxandislik fizikasi instituti": {
+        "1": {
+            "Fiz_60530900-Fizika (kechki-2022)": {
+                "MFI-2022-01K": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fiz_60720800-Mashinasozlik texnologiyasi, mashinasozlik ishlab chiqarishni jihozlash va avtomatlashtirish(2022)": {
+                "MFI-2022-MT08": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fiz_60711600-Intellektual muhandislik tizimlari (tarmoqlar va sohalar bo'yicha) (2022)": {
+                "MFI-2022-I07": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fiz_60531200-Tibbiyot fizikasi (2022)": {
+                "MFI-2022-T04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fiz_60530900-Fizika (2022)": {
+                "MFI-2022-F01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MFI-2022-F02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MFI-2022-F03R": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "Fiz_60711200-Elektronika va asbobsozlik(tar.buyicha)-2022": {
+                "MFI-2022-EA06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fiz_60712000-Elektron apparatlarni ishlab chiqarish texnologiyasi(2022)": {
+                "MFI-2022-ET05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fiz_60531000-Mexanika va matematik modellashtirish (tarmoqlar bo'yicha)-2022": {
+                "MFI-2022-MM09": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "2": {
+            "Fiz_60530900_Fizika (2021-2022)": {
+                "Fiz-2021-01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fiz-2021-02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fiz-2021-04": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "Fiz-2021-03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fiz_60531000_Mexanika va matematik modellashtirish bakalavr kunduzgi (2021-2022)": {
+                "MEX_2021_05-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MEX_2021_06-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "3": {
+            "Mexanika va matematik modellashtirish bakalavr kunduzgi (2020-2021)": {
+                "MEX_2020_15-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "MEX_2020_16-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Fiz_5140200_Fizika-(2020-2021)": {
+                "Fiz-2020-01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fiz-2020-02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fiz-2020-03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fiz-2020-04": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "Fiz_5110200_Fizika va Astronomiya (2020-2021)": {
+                "Fiz-2020-05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fiz-2020-06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Fiz-2020-08": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "Fiz-2020-07": {
+                    "education_form": "Kunduzgi",
+                    "language": "Tojik"
+                }
+            },
+            "iz_5110200_Fizika va Astronomiya (2020-2021) (kechki)": {
+                "Fiz-2020-01K": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "Fiz-2020-02K": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "Fiz-2020-03K": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "Fiz-2020-04K": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            }
+        }
+    },
+    "Psixologiya va ijtimoiy-siyosiy fanlar fakulteti": {
+        "1": {
+            "PIMF_60311000-Sot_2022": {
+                "Sot_2022_107": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "PIMF_60310900-Psi_(ftb)_2022": {
+                "Psi_2022_101": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Psi_2022_102": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Psi_2022_103": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Psi_2022_104 (rus)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "psi_2022-109": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "PIMF_60920100_Ij ish (ftsb)_2022": {
+                "Ijt_2022_105": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Ijt_2022_106": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "PIMF_60220500-Fal_2022": {
+                "Fal_2022_110": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "2": {
+            "PIMF_60920100 \u2013 II_(ftsb)_2021": {
+                "IJT_2021_205": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "IJT_2021_206": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "PIMF_60310900 \u2013 Psi(ftb)_2021": {
+                "PSI_2021_201": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "PSI_2021_202": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "PSI_2021_203": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "PSI_2021_204": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "PIMF_60311000 \u2013 Sot_ 2021": {
+                "SOT_2021_207": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "SOT_2021_208": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "3": {
+            "PIMF_5210200_Psi(ftb)_2020": {
+                "PSI_2020_303": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "PSI_2020_301": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "PSI_2020_302": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "PSI_2020_304_rus": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "PIMF_5520100_II(ftsb) _2020": {
+                "IJT_2020_305": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "IJT_2020_306": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "IJT_2020_307_rus": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "IJT_2020_310": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "PIMF_5210100 _Sot_(2020)": {
+                "SOT_2020_309": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "SOT_2020_308": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        }
+    },
+    "Tarix fakulteti": {
+        "1": {
+            "TAR_60220300_Tarix_2022": {
+                "TAR_2022_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2022_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2022_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2022_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2022_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2022_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "TAR_6020400_ARX_2022": {
+                "TAR_2022_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "2": {
+            "TAR_60220300-_Tarix_2021": {
+                "TAR_2021_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2021_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2021_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "TAR_2021_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2021_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2021_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2021_08": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2021_09": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "TAR_60220400_Arxeologiya_2021": {
+                "TAR_2021_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "3": {
+            "TAR_5120400_ARX_2020": {
+                "TAR_2020_09": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2020_10": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "TAR_5120300-TAR_2020": {
+                "TAR_2020_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2020_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2020_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2020_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "TAR_2020_11": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2020_14": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2020_16": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "TAR_5110600_Tarix_2020": {
+                "TAR_2020_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2020_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2020_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2020_08": {
+                    "education_form": "Kunduzgi",
+                    "language": "Tojik"
+                },
+                "TAR_2020_12": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2020_13": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TAR_2020_15": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        }
+    },
+    "Yuridik fakulteti": {
+        "1": {
+            "Yuf-60420100 \u2013 Yuris-ya(f.t.b.) - 2022- 2023 (kunduzgi)": {
+                "Yu-2022-01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2022-02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2022-03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2022-04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "Yuf-60420100 \u2013 Yuris-ya (f.t.b.)- 2022-2023 (kechki)": {
+                "Yu-2022-05 (kechki)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "2": {
+            "YuF-60420100 \u2013 Yuris-ya (f.t.b.) 2021-2022": {
+                "Yu-2021-01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2021-02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2021-03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2021-04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2021-05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2021-06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "3": {
+            "Yuf-5240100 - Yuris-ya (f.t.b) 2020-2021": {
+                "Yu-2020-101 (o'zb)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2020-102 (o'zb)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2020-103 (o'zb)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2020-104 (o'zb)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2020-105 (o'zb)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "Yu-2020-106 (rus)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "Yu-2020-107 (rus)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            }
+        }
+    },
+    "Sport faoliyati va san'at fakulteti": {
+        "2": {
+            "SF va San_5151200_AMALIY SAN'AT (badiiy kulolchilik) _2021": {
+                "SF va San_2021_05 Guruh-205, (Amaliy san'at ), o`zbek, 1-potok": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "SF va San_60211400_ VOKAL IJROCHILIGI (turlari bo'yicha)_2021": {
+                "SF va San_2021_07 Guruh-207, (Vokal ijrochiligi), o`zbek, 1-potok": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "SF va San_60211500_ CHOLG`U IJROCHILIGI (turlar bo`yicha)_2021": {
+                "SF va San_2021_06 Guruh-206, (Cholg` ijrochiligi), o`zbek, 1-potok": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "SF va San_60210500_RANGTASVIR (tular bo'ycha) _2021": {
+                "SF va San_2021_04 Guruh-204, (Rangtasvir ), o`zbek, 1-potok": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "SF va San_61010300_ Sport faoliyati (xotin-qizlar sport)_2021": {
+                "SF va San_2021_02 Guruh-202, (Sport faoliyati ), o`zbek, 1-potok": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "SF va San_2021_03 Guruh-203, (Sport faoliyati ), o`zbek, 2-potok": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "SF va San_61010300_Sport faoliyati (kurash)_2021": {
+                "SF va San_2021_01 Guruh-201, (Sport faoliyati (KURASH)), o`zbek, 1-potok": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "3": {
+            "SF va San_60210800_AMALIY SAN'AT (badiiy kulolchilik) _2020": {
+                "SF va San_2020_26 Guruh-326, (Amaliy san'at), o`zbek, 1-potok": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "SF va San_5150800_RANGTASVIR (tular bo'ycha) _2020": {
+                "SF va San_2020_25 Guruh-325, (Rangtasvir), o`zbek, 1-potok": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "SF va San_5150700_ CHOLG`U IJROCHILIGI (turlar bo`yicha)_2020": {
+                "SF va San_2020_32 Guruh-332,(Cholg`u ijrochiligi ), o`zbek, 1-potok": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "SF va San_5151600_ VOKAL IJROCHILIGI (turlari bo'yicha)_2020": {
+                "SF va San_2020_31 Guruh-331, (Vokal ijrochiligi), o`zbek, 1-potok": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        }
+    },
+    "Maktabgacha va boshlang'ich ta'lim fakulteti": {
+        "3": {
+            "MBT_5111700_BT_2020": {
+                "BTSI_2020_301": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_302": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_303": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_304A": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "BTSI_2020_305": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_306": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_307": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_308": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_309": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_310": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_311": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_312": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_313": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_314": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BTSI_2020_304B": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "MTB_5111800_MT _2020 kechki": {
+                "MTK_2020_309_(uz)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "MTK_2020_310_(uz)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "MTK_2020_311_(uz)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                },
+                "MTK_2020_312_(uz)": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            }
+        }
+    },
+    "Inson resurslarini boshqarish fakulteti": {
+        "1": {
+            "IRB_60310100_iqtisod_2022": {
+                "IRB_60310100_iqtisod_2022_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "IRB_60411400_irb_2022": {
+                "IRB_60411400_irb_2022_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "IRB_60412400_agrobiznes_2022": {
+                "IRB_60412400_agrobiznes_2022_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "IRB_60410500_bank_ishi_2022": {
+                "IRB_60410500_bank_ishi_2022_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "IRB_60412400_agrobiznes_2022_kechki": {
+                "IRB_60412400_agrobiznes_2022_kechki_01": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "IRB_60310500_raqamli_iqtisod_2022": {
+                "IRB_60310500_raqamli_iqtisod_2022_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "2": {
+            "IRB_60310100_iqtisod_2021": {
+                "IRB_60310100_iqtisod_2021_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "IRB_60310100_iqtisod_2021_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "IRB_60310100_iqtisod_2021_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "3": {
+            "IRB_5230100_iqtisod_2020": {
+                "IRB_60310100_iqtisod_2020_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "IRB_60310100_iqtisod_2020_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "IRB_60310100_iqtisod_2020_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "IRB_60310100_iqtisod_2020_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        }
+    },
+    "Biologiya fakulteti": {
+        "1": {
+            "BIO_60510100_Biologiya (turlar bo'yicha) 2022-2023": {
+                "BIO_2022_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2022_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2022_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2022_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2022_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2022_06 r": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "BIO_60710200_Biotexnologiya (tarmoqlar bo'yicha) 2022-2023": {
+                "BIOTEX_2022_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIOTEX_2022_08": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "BIO_60510100_Biologiya (turlar bo'yicha) ta\u02bclim shakli \u2013kechki 2022-2023": {
+                "BIO_2022_09 k": {
+                    "education_form": "Kechki",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "2": {
+            "BIO_60510100_Biologiya (turlar bo'yicha) 2021-2022": {
+                "BIO_2021_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2021_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2021_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "BIO_2021_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2021_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2021_08": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "BIO_60710200_Biotexnologiya 2021-2022": {
+                "BIOTEX_2021_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIOTEX_2021_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        },
+        "3": {
+            "BIO_5110400_Biologiya 2020-2021": {
+                "BIO_2020_12": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "BIO_2020_13": {
+                    "education_form": "Kunduzgi",
+                    "language": "Tojik"
+                },
+                "BIO_2020_08": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2020_09": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2020_10": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2020_11": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "BIO_5140100_Biologiya (turlar bo'yicha) 2020-2021": {
+                "BIO_2020_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                },
+                "BIO_2020_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2020_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2020_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2020_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2020_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIO_2020_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "BIO_5320500_Biotexnologiya (tarmoqlar bo`yicha) 2020-2021": {
+                "BIOTEX_2020_15": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIOTEX_2020_14": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "BIOTEX_2020_16": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{% extends 'credits/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Обзор' %}{% endblock %}
+
+{% block content %}
+
+    <div class="card">
+        <h5 class="card-header">Таблица</h5>
+        {% include 'credits/src/edupart/table.html' %}
+    </div>
+
+{% endblock %}

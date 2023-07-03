@@ -1,0 +1,32 @@
+{% extends 'credits/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Обзор' %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="card mb-4">
+        <div class="card-body demo-vertical-spacing demo-only-element">
+            <h4 class="card-title text-center">{{ request.user.faculty }}</h4>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'credits:deanery-overview' %}" style="text-decoration: none; color: #697a8d;">{% trans 'Курсы' %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'credits:deanery-course' group.direction.course.pk %}" style="text-decoration: none; color: #697a8d;">{% trans 'Курс' %}: {{ group.direction.course.course }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'credits:deanery-direction' group.direction.course.pk group.direction.pk %}" style="text-decoration: none; color: #697a8d;">{{ group.direction.name }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'credits:deanery-group' group.direction.course.pk group.pk %}" style="text-decoration: none; color: #697a8d;">{{ group.name }}</a></li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="card">
+        <h5 class="card-header">Таблица</h5>
+        {% include 'credits/src/accountant/table.html' %}
+    </div>
+</div>
+{% endblock %}

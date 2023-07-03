@@ -1,0 +1,38 @@
+{% extends 'credits/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Обзор' %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'credits:deanery-overview' %}" style="text-decoration: none; color: #697a8d;">{% trans 'Курсы' %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'credits:deanery-course' course.pk %}" style="text-decoration: none; color: #697a8d;">{% trans 'Курс' %}: {{ course.course }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'credits:deanery-direction' course.pk group.direction.pk %}" style="text-decoration: none; color: #697a8d;">{{ group.direction.name }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'credits:deanery-group' course.pk group.pk %}" style="text-decoration: none; color: #697a8d;">{{ group.name }}</a></li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="card mb-4">
+        <div class="card-body demo-only-element">
+            <h5 class="card-title text-center">
+                {% trans 'Семестры' %}
+                <button class="btn btn-info" onclick="location.href=`{% url 'credits:deanery-group-credits' course.pk group.pk %}`">{% trans 'Кредиты группы' %}</button>
+            </h5>
+
+            <div class="row">
+                {% for semestr in semestrs %}
+                    <div class="col-6">
+                        <button type="button" class="btn btn-primary btn-lg w-100 m-1" onclick="location.href=`{% url 'credits:deanery-semestr' group.pk semestr.pk %}`">{% trans 'Семемтр' %}: {{ semestr.semestr }}</button>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{
+    "1": {
+        "name_ru": "Институт агробиотехнологий и безопасности пищевых продуктов",
+        "name_uz": "Agrobiotexnologiyalar va oziq-ovqat xavfsizligi instituti",
+        "name_en": "Institute of Agricultural Biotechnology and Food Safety"
+    },
+    "2": {
+        "name_ru": "Институт инженерной физики",
+        "name_uz": "Muxandislik fizikasi instituti",
+        "name_en": "Institute of Engineering Physics"
+    },
+    "3": {
+        "name_ru": "Факультет биологии",
+        "name_uz": "Biologiya fakulteti",
+        "name_en": "Faculty of Biology"
+    },
+    "4": {
+        "name_ru": "Факультет математики",
+        "name_uz": "Matematika fakulteti",
+        "name_en": "Faculty of Mathematics"
+    },
+    "5": {
+        "name_ru": "Факультет географии и экологии",
+        "name_uz": "Geografiya va ekologiya fakulteti",
+        "name_en": "Faculty of Geography and Ecology"
+    },
+    "6": {
+        "name_ru": "Факультет истории",
+        "name_uz": "Tarix fakulteti",
+        "name_en": "Faculty of History"
+    },
+    "7": {
+        "name_ru": "Факультет психологии и социальных отношений",
+        "name_uz": "Psixologiya va ijtimoiy-siyosiy fanlar fakulteti",
+        "name_en": "Faculty of Psychology and Social Relations"
+    },
+    "8": {
+        "name_ru": "Факультет химии",
+        "name_uz": "Kimyo fakulteti",
+        "name_en": "Faculty of Chemistry"
+    },
+    "9": {
+        "name_ru": "Факультет интеллектуальных систем и компьютерных технологий",
+        "name_uz": "Intellektual tizimlar va kompyuter texnologiyalari fakulteti",
+        "name_en": "Faculty of Intelligent Systems and Computer Technologies"
+    },
+    "10": {
+        "name_ru": "Юридический факультет",
+        "name_uz": "Yuridik fakulteti",
+        "name_en": "Faculty of Law"
+    },
+    "11": {
+        "name_ru": "Факультет филологии",
+        "name_uz": "Filologiya fakulteti",
+        "name_en": "Faculty of Philology"
+    },
+    "12": {
+        "name_ru": "Дошкольное и начальное образование",
+        "name_uz": "Maktabgacha va boshlang'ich ta'lim fakulteti",
+        "name_en": "Preschool and Primary Education"
+    },
+    "13": {
+        "name_ru": "Факультет спорта и искусств",
+        "name_uz": "Sport faoliyati va san'at fakulteti",
+        "name_en": "Faculty of Sports and Arts"
+    },
+    "14": {
+        "name_ru": "Факультет управления человеческими ресурсами",
+        "name_uz": "Inson resurslarini boshqarish fakulteti",
+        "name_en": "Faculty of Human Resource Management"
+    },
+    "15": {
+        "name_ru": "Центр международных образовательных программ",
+        "name_uz": "Xalqaro ta’lim dasturlari markazi",
+        "name_en": "Center for International Educational Programs"
+    }
+}

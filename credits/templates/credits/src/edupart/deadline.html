@@ -1,0 +1,25 @@
+{% extends 'credits/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Дедлайн' %}{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <h5 class="card-header">Дедлайн {% if deadline %}<span class="badge bg-label-primary">{% trans 'Текущий Дедлайн' %}: {{ deadline.date }}</span>{% endif %}</h5>
+
+        <div class="row mb-4">
+            <form method="post">
+                <div class="row">
+                    {% csrf_token %}
+                    <div class="col-6">
+                        <input type="datetime-local" class="form-control" name="date">
+                    </div>
+
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-primary w-100">{% trans 'Сохранить' %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

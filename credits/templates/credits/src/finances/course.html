@@ -1,0 +1,78 @@
+{% extends 'credits/base.html' %}
+{% load i18n %}
+{% load l10n %}
+
+{% load credits_tags %}
+
+{% block title %}{% trans 'Обзор' %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="card mb-4">
+        <div class="card-body demo-vertical-spacing demo-only-element">
+            <h4 class="card-title text-center">{% trans 'Финансы' %}</h4>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'credits:finances-overview' %}" style="text-decoration: none; color: #697a8d;">{% trans 'Факультеты' %}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'credits:finances-faculty' faculty.pk %}" style="text-decoration: none; color: #697a8d;">{{ faculty.name }}</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'credits:finances-course' faculty.pk course.pk %}" style="text-decoration: none; color: #697a8d;">{% trans 'Курс' %}: {{ course.course }}</a></li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="card mb-4">
+        <div class="card-body demo-only-element">
+            <h5 class="card-title text-center">{% trans 'Курс' %}: {{ course.course }}</h5>
+
+            {% check_deadline as is_deadline %}
+
+            <div class="row">
+                {% for direction in directions %}
+                    <div class="col-6">
+                        <button type="button" class="btn btn-{% if direction.kontraktamount.amount %}success{% else %}primary{% endif %} btn-lg w-100 m-1" {% if not is_deadline %} data-bs-toggle="modal" data-bs-target="#modalCenter{{ direction.pk }}" {% endif %}>{{ direction.name }}</button>
+                    </div>
+
+                    {% if not is_deadline %}
+                        <div class="modal fade" id="modalCenter{{ direction.pk }}" tabindex="-1" style="display: none;" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="modalCenterTitle">{% trans 'Направление' %}: {{ direction.name }}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'credits:finances-direction' course.pk direction.pk %}" method="post">
+                                        {% csrf_token %}
+
+                                        <div class="row">
+                                            <div class="col mb-3">
+                                                <label for="amount" class="form-label">{% trans 'Стоимость контракта направления' %}</label>
+                                                <input type="number" min="1" step="0.01" id="amount" name="amount" class="form-control" value="{{ direction.kontraktamount.amount|unlocalize }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                            {% trans 'Закрыть' %}
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Сохранить' %}</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% load i18n %}
+{% load static %}
+
+
+<script src="{% static 'js/accountant.js' %}"></script>
+
+<div class="table-responsive text-nowrap mb-4">
+    <table class="table table-striped table-bordered mb-2">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Hemis ID</th>
+                <th>F.I.SH</th>
+                <th>Ta'lim yo'nalishi</th>
+                <th>Akademik guruhi</th>
+                <th>Akademik qarzdor bo'lgan fan</th>
+                <th>Ta'lim bosqichi</th>
+                <th>Ta'lim tili</th>
+                <th>Ta'lim shakli</th>
+                <th>Akademik qarizdor bo'lgan fan o'quv yili</th>
+                <th>Semestr</th>
+                <th>Fan krediti</th>
+                <th>Bir yillik shartnoma miqdori</th>
+                <th>To'lanadigan kredit miqdor</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+            {% for credit in credits %}
+                <tr id="credit-{{ credit.pk }}">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ credit.student.hemis_id }}</td>
+                    <td>{{ credit.student.name }}</td>
+                    <td>{{ credit.student.group.direction.name }}</td>
+                    <td>{{ credit.student.group.name }}</td>
+                    <td>{{ credit.subject.name }}</td>
+                    <td>{{ credit.semestr.course.course }}</td>
+                    <td>{{ credit.student.group.language }}</td>
+                    <td>{{ credit.student.group.education_form }}</td>
+                    <td>{{ credit.edu_year.year }}</td>
+                    <td>{{ credit.semestr.semestr }}</td>
+                    <td>{{ credit.subject.credits }}</td>
+
+                    <td>
+                        {% if credit.status != 'DEANERY_UPLOADED' %}{{ credit.student.group.direction.kontraktamount.amount }} сум{% endif %}
+                    </td>
+                    <td>
+                        {% if credit.status != 'DEANERY_UPLOADED' %}{{ credit.amount }} сум{% endif %}
+                    </td>
+
+                    <td id="status"><span class="badge bg-label-info">{{ credit.get_status_display }}</span></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="15" class="text-center">{% trans 'Ничего не найдено' %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
