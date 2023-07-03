@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-t!onn57n7-(nr2&+o_5jk@e##advy-ed$3_b_=6)@xwo)8wnk4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['credits.samdu.uz']
 
 
 # Application definition
@@ -66,6 +66,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'samdu_credits.wsgi.application'
+
+
+CSRF_TRUSTED_ORIGINS = ['https://*.samdu.uz']
 
 
 # Database
