@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-t!onn57n7-(nr2&+o_5jk@e##advy-ed$3_b_=6)@xwo)8wnk4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['credits.medow.uz', '127.0.0.1']
+ALLOWED_HOSTS = ['credits.samdu.uz']
 
 
 # Application definition
@@ -68,6 +68,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'samdu_credits.wsgi.application'
 
 
+CSRF_TRUSTED_ORIGINS = ['https://*.samdu.uz']
+
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -80,15 +83,12 @@ WSGI_APPLICATION = 'samdu_credits.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'medowuz_credits',
-        'USER': 'medowuz_medowuz',
-        'PASSWORD': 'ON;w;4Du+zwm',
+        'ENGINE': 'django.db.backends.postgresql', 
+        'NAME': 'creditsdb',
+        'USER': 'gold',
+        'PASSWORD': 'SuperGold_7',
         'HOST': 'localhost',
-        'PORT': 3306,
-        'OPTIONS': {
-            'sql_mode': 'traditional',
-        }
+        'PORT': 5432,
     }
 }
 
