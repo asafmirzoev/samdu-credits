@@ -15,7 +15,6 @@ class InitData:
         self.facs_file: dict = json.load(open('data/faculties.json', 'r', encoding='utf-8'))
         self.deps_file: dict = json.load(open('data/data.json', 'r', encoding='utf-8'))
         self.groups_file: dict = json.load(open('data/groups.json', 'r', encoding='utf-8'))
-        self.subjects_file: dict = json.load(open('data/subjects.json', 'r', encoding='utf-8'))
     
     def run(self):
         with transaction.atomic():
@@ -24,7 +23,6 @@ class InitData:
             self.init_faculties()
             self.init_departments_and_teachers()
             self.init_directs_and_groups()
-            # self.init_subjects()
     
     def init_courses(self):
         for i in range(1, 5):
@@ -86,21 +84,12 @@ class InitData:
         Direction.objects.bulk_create(directs)
         Group.objects.bulk_create(groups)
     
-    # def init_subjects(self):
-    #     subjects = []
-
-    #     for direction_name, _semestrs in self.subjects_file.items():
-    #         direction = Direction.objects.get(name=direction_name)
-    #         for semestr, _subjects in _semestrs.items():
-    #             semestr = Semestr.objects.get(semestr=int(semestr))
-
-    #             for group in Group.objects.filter(direction=direction):
-                    
-    #                 group_semestr, _ = GroupSemestr.objects.get_or_create(semestr=semestr, group=group, defaults={'edu_year': EducationYear.objects.get_or_create(year='2022/2023')[0]})
-    #                 for subjects_data in _subjects:
-    #                     if not Subject.objects.filter(semestr=group_semestr, name=subjects_data['subject_name']).exists(): subjects.append(Subject(semestr=group_semestr, name=subjects_data['subject_name'], hours=subjects_data['hours'], credits=subjects_data['credits'], type=subjects_data['subject_type']))
-        
-        # Subject.objects.bulk_create(subjects)
+def init_deadline():
+    for faculty in Faculty.objects.all():
+        DeadLine.objects.get_or_create(faculty=faculty)
+    
+    DeadLine.objects.get_or_create(for_accountant=True)
+    DeadLine.objects.get_or_create(for_finances=True)
 
 
 def parse_deanery_file(file):
@@ -140,9 +129,11 @@ def parse_deanery_file(file):
     return data
 
 
-def is_deadline():
-    deadline = deadlines.first() if (deadlines := DeadLine.objects.all()).exists() else None
-    if not deadline: return True
+def is_deadline(faculty_id: int = None, for_accountant: bool = None, for_finances: bool = None):
+    if not all([faculty_id, for_accountant, for_finances]): return False
+    if faculty_id: deadline = DeadLine.objects.get(faculty_id=faculty_id)
+    if for_accountant: deadline = DeadLine.objects.get(for_accountant=True)
+    if for_finances: deadline = DeadLine.objects.get(for_finances=True)
     return deadline.date < timezone.now()
 
 

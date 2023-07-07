@@ -401,7 +401,7 @@
             }
         },
         "3": {
-            "il_5120100-Filologiya va tillarni o'qitish:o'zbek tili_2020_3-kurs": {
+            "Fil_5120100-Filologiya va tillarni o'qitish:o'zbek tili_2020_3-kurs": {
                 "Fil_o'zbek_2020_01-guruh": {
                     "education_form": "Kunduzgi",
                     "language": "O\u2018zbek"
@@ -1595,6 +1595,24 @@
                 "MTK_2020_312_(uz)": {
                     "education_form": "Kechki",
                     "language": "O\u2018zbek"
+                }
+            },
+            "MTB_5112100_TEX_TA'L_2020": {
+                "TEX_T_2020_313 (uz)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TEX_T_2020_314 (uz)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TEX_T_2020_315 (uz)": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "TEX_T_2020_316 (Tojik)": {
+                    "education_form": "Kunduzgi",
+                    "language": "Tojik"
                 }
             }
         }

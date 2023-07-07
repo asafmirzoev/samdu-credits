@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 from .choices import EducationForms, EducationLanguages, CreditStatuses
 
@@ -168,4 +169,7 @@ class Credit(models.Model):
 
 class DeadLine(models.Model):
 
-    date = models.DateTimeField()
+    date = models.DateTimeField(default=timezone.now)
+    faculty = models.ForeignKey(Faculty, verbose_name='Факультет', on_delete=models.CASCADE, null=True, default=None, blank=True)
+    for_accountant = models.BooleanField(default=False)
+    for_finances = models.BooleanField(default=False)

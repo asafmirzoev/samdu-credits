@@ -7,13 +7,6 @@
 {% block title %}{% trans 'Обзор' %}{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="card mb-4">
-        <div class="card-body demo-vertical-spacing demo-only-element">
-            <h4 class="card-title text-center">{% trans 'Финансы' %}</h4>
-        </div>
-    </div>
-</div>
 
 <div class="row">
     <nav aria-label="breadcrumb">
@@ -30,7 +23,7 @@
         <div class="card-body demo-only-element">
             <h5 class="card-title text-center">{% trans 'Курс' %}: {{ course.course }}</h5>
 
-            {% check_deadline as is_deadline %}
+            {% check_deadline request.user as is_deadline %}
 
             <div class="row">
                 {% for direction in directions %}

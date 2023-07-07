@@ -86,6 +86,8 @@ urlpatterns = [
         ])),
         
         path('search/', EduPartSearchView.as_view(), name='edu-part-search'),
+
         path('deadline/', EduPartDeadlineView.as_view(), name='edu-part-deadline'),
+        path('deadline/<int:deadline_id>/', EduPartDeadlineView.as_view(), name='edu-part-deadline'),
     ])),
 ]

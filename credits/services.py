@@ -169,10 +169,11 @@ def deanery_upload(request: HttpRequest) -> HttpResponse:
     if not items: return redirect('upload')
 
     with transaction.atomic():
-        for item in items:
+        for i, item in enumerate(items):
             course = Course.objects.get(course=item['course'])
             semestr = Semestr.objects.get(semestr=item['semestr'])
 
+            print(item['hemis_id'])
             direction = Direction.objects.get(name=item['direction'], faculty=user.faculty)
             group = Group.objects.get(name=item['group'], direction=direction)
             student, _ = Student.objects.get_or_create(group=group, name=item['name'].upper(), hemis_id=item['hemis_id'])
@@ -490,11 +491,10 @@ def get_edupart_semestr_page(request: HttpRequest, group_id: int, semestr_id: in
 
 
 def get_edupart_deadline_page(request: HttpRequest) -> HttpResponse:
-    deadline = deadlines.first() if (deadlines := DeadLine.objects.all()).exists() else None
-    return render(request, 'credits/src/edupart/deadline.html', {'deadline': deadline})
+    deadlines = DeadLine.objects.all()
+    return render(request, 'credits/src/edupart/deadline.html', {'deadlines': deadlines})
 
 
-def set_edupart_deadline_page(request: HttpRequest) -> HttpResponse:
-    deadline = request.POST.get('date')
-    deadlines.update(date=deadline) if (deadlines := DeadLine.objects.all()).exists() else DeadLine.objects.create(date=deadline)
+def set_edupart_deadline_page(request: HttpRequest, deadline_id: int) -> HttpResponse:
+    DeadLine.objects.filter(pk=deadline_id).update(date=request.POST.get(f'date-{deadline_id}'))
     return redirect('credits:edu-part-deadline')

@@ -244,5 +244,5 @@ class EduPartDeadlineView(View):
     def get(self, request: HttpRequest) -> HttpResponse:
         return svc.get_edupart_deadline_page(request)
     
-    def post(self, request: HttpRequest) -> HttpResponse:
-        return svc.set_edupart_deadline_page(request)
+    def post(self, request: HttpRequest, deadline_id: int) -> HttpResponse:
+        return svc.set_edupart_deadline_page(request, deadline_id)
