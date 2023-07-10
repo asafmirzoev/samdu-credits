@@ -180,8 +180,10 @@ def deanery_upload(request: HttpRequest) -> HttpResponse:
 
     user: User = request.user; files: dict = request.FILES
 
-    items = parse_deanery_file(files.get('file'))
-    if not items: return redirect('upload')
+    items, line = parse_deanery_file(files.get('file'))
+    if not items:
+        messages.error(request, _('Ошибка в строке: ') + str(line + 1))
+        return redirect('credits:deanery-upload')
 
     with transaction.atomic():
         for i, item in enumerate(items):
@@ -189,8 +191,22 @@ def deanery_upload(request: HttpRequest) -> HttpResponse:
             course = Course.objects.get(course=item['course'])
             semestr = Semestr.objects.get(semestr=item['semestr'])
 
-            direction = Direction.objects.get(name=item['direction'], faculty=user.faculty)
-            group = Group.objects.get(name=item['group'], direction=direction)
+            if not (directions := Direction.objects.filter(name=item['direction'], faculty=user.faculty)).exists():
+                messages.error(request, _('Направление не существует. Строка: ') + str(i + 1))
+                return redirect('credits:deanery-upload')
+            
+            direction = directions.first()
+
+            if not (groups := Group.objects.filter(name=item['group'], direction=direction)).exists():
+                messages.error(request, _('Группа не существует. Строка: ') + str(i + 1))
+                return redirect('credits:deanery-upload')
+            
+            group = groups.first()
+
+            if (students := Student.objects.filter(hemis_id=item['hemis_id'])).exists() and not students.filter(name=item['name'].upper(), group=group):
+                messages.error(request, _('Ошибка в студенте. Строка: ') + str(i + 1))
+                return redirect('credits:deanery-upload')
+            
             student, _ = Student.objects.get_or_create(group=group, name=item['name'].upper(), hemis_id=item['hemis_id'])
 
             edu_year, _ = EducationYear.objects.get_or_create(year=item['year'])

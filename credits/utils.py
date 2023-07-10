@@ -106,27 +106,30 @@ def parse_deanery_file(file):
         index, hemis_id, name, direction, group, subject, course, lang, education_form,
         year, semestr, edu_hours, hours, lecture, practice, seminar, laboratory, mt, kredit
     ) in df.iterrows():
-        data.append({
-            'hemis_id': hemis_id,
-            'name': name.strip(),
-            'direction': direction.strip(),
-            'group': group,
-            'subject': subject.strip(),
-            'course': int(course),
-            'lang': lang.strip(),
-            'education_form': education_form.strip(),
-            'year': year.strip(),
-            'semestr': int(semestr),
-            'edu_hours': int(edu_hours),
-            'hours': int(hours),
-            'lecture': int(lecture) if lecture else None,
-            'practice': int(practice) if practice else None,
-            'seminar': int(seminar) if seminar else None,
-            'laboratory': int(laboratory) if laboratory else None,
-            'mt': int(mt) if mt else None,
-            'kredit': int(kredit),
-        })
-    return data
+        try:
+            data.append({
+                'hemis_id': hemis_id,
+                'name': name.strip(),
+                'direction': direction.strip(),
+                'group': group,
+                'subject': subject.strip(),
+                'course': int(course),
+                'lang': lang.strip(),
+                'education_form': education_form.strip(),
+                'year': year.strip(),
+                'semestr': int(semestr),
+                'edu_hours': int(edu_hours),
+                'hours': int(hours),
+                'lecture': int(lecture) if lecture else None,
+                'practice': int(practice) if practice else None,
+                'seminar': int(seminar) if seminar else None,
+                'laboratory': int(laboratory) if laboratory else None,
+                'mt': int(mt) if mt else None,
+                'kredit': int(kredit),
+            })
+        except:
+            return None, i
+    return data, None
 
 
 def is_deadline(faculty_id: int = None, for_accountant: bool = None, for_finances: bool = None):
