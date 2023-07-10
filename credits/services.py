@@ -192,7 +192,8 @@ def deanery_upload(request: HttpRequest) -> HttpResponse:
             semestr = Semestr.objects.get(semestr=item['semestr'])
 
             if not (directions := Direction.objects.filter(name=item['direction'], faculty=user.faculty)).exists():
-                messages.error(request, _('Направление не существует. Строка: ') + str(i + 1))
+                # messages.error(request, _('Направление не существует. Строка: ') + str(i + 1))
+                messages.error(request, str(i + 1))
                 return redirect('credits:deanery-upload')
             
             direction = directions.first()
