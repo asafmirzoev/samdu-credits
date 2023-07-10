@@ -17,52 +17,41 @@
                 <th>F.I.SH</th>
                 <th>Ta'lim yo'nalishi</th>
                 <th>Akademik guruhi</th>
-                <th>Akademik qarzdor bo'lgan fan</th>
-                <th>Ta'lim bosqichi</th>
-                <th>Ta'lim tili</th>
-                <th>Ta'lim shakli</th>
-                <th>Akademik qarizdor bo'lgan fan o'quv yili</th>
-                <th>Semestr</th>
-                <th>Fan krediti</th>
-                <th>Bir yillik shartnoma miqdori</th>
-                <th>To'lanadigan kredit miqdor</th>
-                <th>Status</th>
+                <th>Fanlar</th>
+                <th>Summa</th>
+                <th>To'lov vaqti</th>
             </tr>
         </thead>
         <tbody class="table-border-bottom-0">
-            {% for credit in credits %}
-                <tr id="credit-{{ credit.pk }}">
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ credit.student.hemis_id }}</td>
-                    <td>{{ credit.student.name }}</td>
-                    <td>{{ credit.student.group.direction.name }}</td>
-                    <td>{{ credit.student.group.name }}</td>
-                    <td>{{ credit.subject.name }}</td>
-                    <td>{{ credit.semestr.course.course }}</td>
-                    <td>{{ credit.student.group.language }}</td>
-                    <td>{{ credit.student.group.education_form }}</td>
-                    <td>{{ credit.edu_year.year }}</td>
-                    <td>{{ credit.semestr.semestr }}</td>
-                    <td>{{ credit.subject.credits }}</td>
-
-                    <td>
-                        {% if credit.status != 'DEANERY_UPLOADED' %}{{ credit.student.group.direction.kontraktamount.amount }} сум{% endif %}
-                    </td>
-                    <td>
-                        {% if credit.status != 'DEANERY_UPLOADED' %}{{ credit.amount }} сум{% endif %}
-                    </td>
-
-                    <td id="status"><span class="badge bg-label-info">{{ credit.get_status_display }}</span></td>
-                    
-                    {% if credit.status == 'DEANERY_SETPAID' and not is_deadline %}
-                        <td id="pay-submit">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#PayModal{{ credit.pk }}">{% trans 'Подтвердить оплату' %}</button>
-                        </td>
-                    {% endif %}
+            {% for student in students %}
+                <tr id="student{{ student.pk }}">
+                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ forloop.counter }}</td>
+                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.hemis_id }}</td>
+                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.name }}</td>
+                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.direction.name }}</td>
+                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.name }}</td>
                 </tr>
+
+                {% if not is_deadline %}
+                    {% for payset in student.payset_set.all %}
+                        <tr>
+                            <td>{% for credit in payset.credits.all %}{{ credit.subject.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+                            <td>{{ payset.amount }}</td>
+                            <td>{{ payset.pay_time }}</td>
+                            <td>
+                                {% if payset.submited %}
+                                    <span class="badge bg-label-info">{% trans 'Оплата подтверждена' %}</span>
+                                {% else %}
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#PayModal{{ payset.pk }}">{% trans 'Подтвердить оплату' %}</button>
+                                {% endif %}
+                            </td>
+                        </tr>    
+                    {% endfor %}
+                {% endif %}
+
             {% empty %}
                 <tr>
-                    <td colspan="15" class="text-center">{% trans 'Ничего не найдено' %}</td>
+                    <td colspan="22" class="text-center">{% trans 'Ничего не найдено' %}</td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -70,35 +59,33 @@
 </div>
 
 {% if not is_deadline %}
-    {% for credit in credits %}
-        <div class="modal fade" id="PayModal{{ credit.pk }}" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalCenterTitle">Оплата</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{% url 'credits:accountant-pay-submit' credit.pk %}" id="accountant-pay-submit{{ credit.pk }}" data-id="{{ credit.pk }}">
-                            {% csrf_token %}
+    {% for student in students %}
+        {% for payset in student.payset_set.all %}
+            <div class="modal fade" id="PayModal{{ payset.pk }}" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalCenterTitle">Оплата</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{% url 'credits:accountant-pay-submit' payset.pk %}?redirect_url={{ redirect_url }}" method="post">
+                                {% csrf_token %}
 
-                            <p>{% trans 'Вы уверены что хотите подтвердить оплату студента' %} <b>{{ credit.student.name }}</b>?</p>
-                            <p>{% trans 'Семестр' %}: <b>{{ credit.semestr.semestr }}</b></p>
-                            <p>{% trans 'Предмет' %}: <b>{{ credit.subject.name }}</b></p>
-                            <p>{% trans 'Количество кредитов' %}: <b>{{ credit.subject.credits }}</b></p>
-                            <p>{% trans 'Оплачиваемая сумма' %}: <b>{{ credit.amount }} сум</b></p>
+                                {% trans 'Вы уверены что хотите подтвердить оплату студента' %} <b>{{ payset.student.name }}</b>?
 
-                            <div class="modal-footer">
-                                <button id="PayModal-close-button{{ credit.pk }}" type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                    {% trans 'Закрыть' %}
-                                </button>
-                                <button type="submit" class="btn btn-success">{% trans 'Подтвердить' %}</button>
-                            </div>
+                                <div class="modal-footer">
+                                    <button id="PayModal-close-button{{ credit.pk }}" type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                        {% trans 'Закрыть' %}
+                                    </button>
+                                    <button type="submit" class="btn btn-success">{% trans 'Подтвердить' %}</button>
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
     {% endfor %}
 {% endif %}

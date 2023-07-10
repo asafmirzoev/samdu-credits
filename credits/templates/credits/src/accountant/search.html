@@ -22,7 +22,7 @@
         </div>
 
         <div class="row">
-            {% include 'credits/src/accountant/table.html' with credits=paginator.queryset %}
+            {% include 'credits/src/accountant/table.html' with students=paginator.queryset %}
 
             {% if paginator.visible %}
                 <nav aria-label="Page navigation">

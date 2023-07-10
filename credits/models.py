@@ -79,9 +79,10 @@ class Direction(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+        super(Direction, self).save(*args, **kwargs)
         if not hasattr(self, 'kontraktamount'):
             KontraktAmount.objects.create(direction=self)
-        super(Direction, self).save(*args, **kwargs)
+            
 
 
     class Meta:
@@ -145,6 +146,10 @@ class Student(models.Model):
     def __str__(self):
         return self.name
     
+    @property
+    def has_payed_credit(self):
+        return self.credit_set.filter(status=CreditStatuses.FINANCE_SETTED).exists()
+    
     class Meta:
         verbose_name = 'Студент'
         verbose_name_plural = 'Студенты'
@@ -165,6 +170,21 @@ class Credit(models.Model):
     edu_hours = models.PositiveSmallIntegerField('Часы за год')
     amount = models.DecimalField(max_digits=12, decimal_places=2, null=True, default=None, blank=True)
     status = models.CharField(max_length=64, choices=CreditStatuses.choices, default=CreditStatuses.DEANERY_UPLOADED)
+
+    class Meta:
+        ordering = ['id']
+
+
+class PaySet(models.Model):
+
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    credits = models.ManyToManyField(Credit)
+    pay_time = models.DateField()
+    submited = models.BooleanField(default=False)
+
+    @property
+    def amount(self):
+        return sum(self.credits.values_list('amount', flat=True))
 
 
 class DeadLine(models.Model):

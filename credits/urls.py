@@ -34,7 +34,7 @@ urlpatterns = [
         ])),
         
         path('search/', DeanerySearchView.as_view(), name='deanery-search'),
-        path('pay-submit/<int:credit_id>/', DeaneryPaySubmitView.as_view(), name='deanery-pay-submit'),
+        path('pay-submit/<int:student_id>/', DeaneryPaySubmitView.as_view(), name='deanery-pay-submit'),
         path('upload/', DeaneryUploadView.as_view(), name='deanery-upload')
     ])),
 
@@ -54,7 +54,7 @@ urlpatterns = [
         ])),
         
         path('search/', AccountantSearchView.as_view(), name='accountant-search'),
-        path('pay-submit/<int:credit_id>/', AccountantPaySubmitView.as_view(), name='accountant-pay-submit'),
+        path('pay-submit/<int:payset_id>/', AccountantPaySubmitView.as_view(), name='accountant-pay-submit'),
     ])),
 
     path('finances/', include([

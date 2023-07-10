@@ -76,8 +76,8 @@ class DeanerySemestrView(View):
 
 class DeaneryPaySubmitView(View):
 
-    def post(self, request: HttpRequest, credit_id: int) -> HttpResponse:
-        return svc.deanery_pay_submit(request, credit_id)
+    def post(self, request: HttpRequest, student_id: int) -> HttpResponse:
+        return svc.deanery_pay_submit(request, student_id)
 
 
 class DeaneryUploadView(View):
@@ -145,8 +145,8 @@ class AccountantSemestrView(View):
 
 class AccountantPaySubmitView(View):
 
-    def post(self, request: HttpRequest, credit_id: int) -> HttpResponse:
-        return svc.accountant_pay_submit(request, credit_id)
+    def post(self, request: HttpRequest, payset_id: int) -> HttpResponse:
+        return svc.accountant_pay_submit(request, payset_id)
 
 
 class FinancesOverviewView(View):

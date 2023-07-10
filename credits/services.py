@@ -1,7 +1,9 @@
 import json
+from urllib.parse import quote, unquote
 
 from django.http import HttpRequest, HttpResponse, JsonResponse, Http404
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.db import transaction
 from django.db.models import Q, F
 from django.contrib import messages
@@ -12,7 +14,7 @@ from users.choices import UserRoles
 
 from .models import (
     Faculty, Department, Teacher, Course, Direction, Group, EducationYear,
-    Semestr, Subject, Student, Credit, DeadLine
+    Semestr, Subject, Student, Credit, PaySet, DeadLine
 )
 from .choices import CreditStatuses
 from .paginator import paginated_queryset
@@ -52,11 +54,15 @@ def get_deanery_overview_page(request: HttpRequest) -> HttpResponse:
 
 def get_deanery_search_page(request: HttpRequest) -> HttpResponse:
     name = request.GET.get('name'); page: int = request.GET.get('page', 1)
-    credits = Credit.objects.filter(Q(student__name__icontains=name, student__group__direction__faculty=request.user.faculty) | Q(student__hemis_id=name, student__group__direction__faculty=request.user.faculty)) if name else Credit.objects.none()
-    paginator = paginated_queryset(credits, page)
+    students = Student.objects.filter(Q(name__icontains=name, group__direction__faculty=request.user.faculty) | Q(hemis_id=name, group__direction__faculty=request.user.faculty)) if name else Student.objects.none()
+    paginator = paginated_queryset(students, page)
+
+    redirect_url = quote(f"{reverse('credits:deanery-search')}?name={name}&page={page}")
+
     context = {
         'name': name,
-        'paginator': paginator
+        'paginator': paginator,
+        'redirect_url': redirect_url
     }
     
     return render(request, 'credits/src/deanery/search.html', context=context)
@@ -75,11 +81,11 @@ def get_deanery_course_page(request: HttpRequest, course_id: int) -> HttpRespons
 
 def get_deanery_course_credits_page(request: HttpRequest, course_id: int) -> HttpResponse:
     course = Course.objects.get(pk=course_id)
-    credits = Credit.objects.filter(student__group__direction__course=course, student__group__direction__faculty=request.user.faculty)
+    students = Student.objects.filter(group__direction__course=course, group__direction__faculty=request.user.faculty)
 
     context = {
         'course': course,
-        'credits': credits
+        'students': students
     }
     return render(request, 'credits/src/deanery/course/course_credits.html', context)
 
@@ -97,12 +103,12 @@ def get_deanery_direction_page(request: HttpRequest, course_id: int, direction_i
 def get_deanery_direction_credits_page(request: HttpRequest, course_id: int, direction_id: int) -> HttpResponse:
     course = Course.objects.get(pk=course_id)
     direction = Direction.objects.get(pk=direction_id)
-    credits = Credit.objects.filter(student__group__direction=direction)
+    students = Student.objects.filter(group__direction=direction)
 
     context = {
         'course': course,
         'direction': direction,
-        'credits': credits
+        'students': students
     }
     return render(request, 'credits/src/deanery/direction/direction_credits.html', context)
 
@@ -122,12 +128,12 @@ def get_deanery_group_page(request: HttpRequest, course_id: int, group_id: int) 
 def get_deanery_group_credits_page(request: HttpRequest, course_id: int, group_id: int) -> HttpResponse:
     course = Course.objects.get(pk=course_id)
     group = Group.objects.get(pk=group_id)
-    credits = Credit.objects.filter(student__group=group)
+    students = Student.objects.filter(group=group)
     
     context = {
         'course': course,
         'group': group,
-        'credits': credits
+        'students': students
     }
     return render(request, 'credits/src/deanery/group/group_credits.html', context)
 
@@ -145,14 +151,23 @@ def get_deanery_semestr_page(request: HttpRequest, group_id: int, semestr_id: in
     return render(request, 'credits/src/deanery/semestr.html', context)
 
 
-def deanery_pay_submit(request: HttpRequest, credit_id: int):
-    if is_deadline(): return JsonResponse({'success': False})
+def deanery_pay_submit(request: HttpRequest, student_id: int):
+    redirect_url = request.GET.get('redirect_url', '/')
+    if is_deadline(): return redirect(redirect_url)
     
-    data: dict = json.loads(request.body.decode('utf-8'))
-    _credit_id: int | None = data.get('credit_id')
-    if credit_id != int(_credit_id) or not (credits := Credit.objects.filter(pk=credit_id, student__group__direction__faculty=request.user.faculty)).exists(): return JsonResponse({'success': False})
-    credits.update(status=CreditStatuses.DEANERY_SETPAID)
-    return JsonResponse({'success': True})
+    data: dict = request.POST
+    if not (students := Student.objects.filter(pk=student_id, group__direction__faculty=request.user.faculty)).exists():
+        messages.error(request, _('Такого студента не существует'))
+        return redirect(redirect_url)
+    
+    with transaction.atomic():
+        credits = [i.replace(f'payed-{student_id}-', '') for i in data.keys() if f'payed-{student_id}-' in i]
+        (credits := Credit.objects.filter(pk__in=credits)).update(status=CreditStatuses.DEANERY_SETPAID)
+
+        pay_set = PaySet.objects.create(pay_time=data.get(f'pay-date{student_id}'))
+        pay_set.credits.set(credits)
+
+    return redirect(redirect_url)
     
 
 def get_deanery_upload_page(request: HttpRequest) -> HttpResponse:
@@ -170,10 +185,10 @@ def deanery_upload(request: HttpRequest) -> HttpResponse:
 
     with transaction.atomic():
         for i, item in enumerate(items):
+            
             course = Course.objects.get(course=item['course'])
             semestr = Semestr.objects.get(semestr=item['semestr'])
 
-            print(item['hemis_id'])
             direction = Direction.objects.get(name=item['direction'], faculty=user.faculty)
             group = Group.objects.get(name=item['group'], direction=direction)
             student, _ = Student.objects.get_or_create(group=group, name=item['name'].upper(), hemis_id=item['hemis_id'])
@@ -214,11 +229,15 @@ def get_accountant_overview_page(request: HttpRequest):
 
 def get_accountant_search_page(request: HttpRequest):
     name = request.GET.get('name'); page: int = request.GET.get('page', 1)
-    credits = Credit.objects.filter(Q(student__name__icontains=name) | Q(student__hemis_id=name)) if name else Credit.objects.none()
-    paginator = paginated_queryset(credits, page)
+    students = Student.objects.filter(Q(name__icontains=name) | Q(hemis_id=name)) if name else Student.objects.none()
+    paginator = paginated_queryset(students, page)
+
+    redirect_url = quote(f"{reverse('credits:accountant-search')}?name={name}&page={page}")
+
     context = {
         'name': name,
-        'paginator': paginator
+        'paginator': paginator,
+        'redirect_url': redirect_url
     }
     return render(request, 'credits/src/accountant/search.html', context=context)
 
@@ -233,9 +252,9 @@ def get_accountant_faculty_credits_page(request: HttpRequest, faculty_id: int) -
     page = request.GET.get('page', 1)
 
     faculty = Faculty.objects.get(pk=faculty_id)
-    credits = Credit.objects.filter(student__group__direction__faculty=faculty)
+    students = Student.objects.filter(group__direction__faculty=faculty)
 
-    paginator = paginated_queryset(credits, page)
+    paginator = paginated_queryset(students, page)
     context = {
         'faculty': faculty,
         'paginator': paginator
@@ -260,9 +279,9 @@ def get_accountant_course_credits_page(request: HttpRequest, faculty_id: int, co
 
     faculty = Faculty.objects.get(pk=faculty_id)
     course = Course.objects.get(pk=course_id)
-    credits = Credit.objects.filter(student__group__direction__course=course, student__group__direction__faculty=faculty)
+    students = Student.objects.filter(group__direction__course=course, group__direction__faculty=faculty)
 
-    paginator = paginated_queryset(credits, page)
+    paginator = paginated_queryset(students, page)
     context = {
         'faculty': faculty,
         'course': course,
@@ -296,24 +315,32 @@ def get_accountant_group_page(request: HttpRequest, course_id: int, group_id: in
 def get_accountant_semestr_page(request: HttpRequest, group_id: int, semestr_id: int) -> HttpResponse:
     group = Group.objects.get(pk=group_id)
     semestr = Semestr.objects.get(pk=semestr_id)
-    credits = Credit.objects.filter(student__group=group, semestr=semestr)
+    students = Student.objects.filter(group=group, semestr=semestr)
     
     context = {
         'group': group,
         'semestr': semestr,
-        'credits': credits
+        'students': students
     }
     return render(request, 'credits/src/accountant/semestr.html', context)
 
 
-def accountant_pay_submit(request: HttpRequest, credit_id: int):
-    if is_deadline(): return JsonResponse({'success': False})
+def accountant_pay_submit(request: HttpRequest, payset_id: int):
+    redirect_url = request.GET.get('redirect_url', '/')
+    if is_deadline(): return redirect(redirect_url)
 
-    data: dict = json.loads(request.body.decode('utf-8'))
-    _credit_id: int | None = data.get('credit_id')
-    if credit_id != int(_credit_id) or not (credits := Credit.objects.filter(pk=credit_id)).exists(): return JsonResponse({'success': False})
-    credits.update(status=CreditStatuses.ACCOUNTANT_SUBMITED)
-    return JsonResponse({'success': True})
+    if not (paysets := PaySet.objects.filter(pk=payset_id)).exists():
+        messages.error(request, _('Оплата не найдена'))
+        return redirect(redirect_url)
+    
+    with transaction.atomic():
+
+        paysets.update(submited=True)
+        for credit in paysets.first().credits.all():
+            credit.status = CreditStatuses.ACCOUNTANT_SUBMITED
+            credit.save()
+        
+    return redirect(redirect_url)
 
 
 def get_finances_overview_page(request: HttpRequest):

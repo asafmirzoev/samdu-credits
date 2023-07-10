@@ -1,6 +1,7 @@
 from django import template
 
-from credits.models import DeadLine
+from credits.models import DeadLine, Student
+from credits.choices import CreditStatuses
 from credits.utils import is_deadline
 from users.models import User
 from users.choices import UserRoles
@@ -21,3 +22,8 @@ def check_deadline(user: User):
     if user.role == UserRoles.ACCOUNTANT: return is_deadline(for_accountant=True)
     if user.role == UserRoles.FINANCE: return is_deadline(for_finances=True)
     return False
+
+
+@register.simple_tag(name='deanery_get_valid_credits')
+def deanery_get_valid_credits(student):
+    return student.credit_set.filter(status=CreditStatuses.FINANCE_SETTED)
