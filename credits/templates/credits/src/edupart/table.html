@@ -17,6 +17,13 @@
                 <th>Ta'lim shakli</th>
                 <th>Akademik qarizdor bo'lgan fan o'quv yili</th>
                 <th>Semestr</th>
+                <th>Bir yillik kredit</th>
+                <th>Fanga ajratilgan umumiy soat</th>
+                <th>Ma'ruza</th>
+                <th>Amaliy</th>
+                <th>Semenar</th>
+                <th>Laboratoriya</th>
+                <th>MT</th>
                 <th>Fan krediti</th>
                 <th>Bir yillik shartnoma miqdori</th>
                 <th>To'lanadigan kredit miqdor</th>
@@ -37,6 +44,13 @@
                     <td>{{ credit.student.group.education_form }}</td>
                     <td>{{ credit.edu_year.year }}</td>
                     <td>{{ credit.semestr.semestr }}</td>
+                    <td>{{ credit.edu_hours }}</td>
+                    <td>{% if credit.subject.hours %}{{ credit.subject.hours }}{% endif %}</td>
+                    <td>{% if credit.subject.lecture_hours %}{{ credit.subject.lecture_hours }}{% endif %}</td>
+                    <td>{% if credit.subject.practice_hours %}{{ credit.subject.practice_hours }}{% endif %}</td>
+                    <td>{% if credit.subject.seminar_hours %}{{ credit.subject.seminar_hours }}{% endif %}</td>
+                    <td>{% if credit.subject.laboratory_hours %}{{ credit.subject.laboratory_hours }}{% endif %}</td>
+                    <td>{% if credit.subject.independent_hours %}{{ credit.subject.independent_hours }}{% endif %}</td>
                     <td>{{ credit.subject.credits }}</td>
 
                     <td>
