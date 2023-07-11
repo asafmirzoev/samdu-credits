@@ -82,8 +82,6 @@ class Direction(models.Model):
         super(Direction, self).save(*args, **kwargs)
         if not hasattr(self, 'kontraktamount'):
             KontraktAmount.objects.create(direction=self)
-            
-
 
     class Meta:
         verbose_name = 'Направление'
@@ -172,7 +170,7 @@ class Credit(models.Model):
     status = models.CharField(max_length=64, choices=CreditStatuses.choices, default=CreditStatuses.DEANERY_UPLOADED)
 
     class Meta:
-        ordering = ['id']
+        ordering = ['student__name']
 
 
 class PaySet(models.Model):

@@ -409,11 +409,43 @@ def get_edupart_overview_page(request: HttpRequest):
 
 def get_edupart_search_page(request: HttpRequest):
     name = request.GET.get('name'); page: int = request.GET.get('page', 1)
-    credits = Credit.objects.filter(Q(student__name__icontains=name) | Q(student__hemis_id=name)) if name else Credit.objects.none()
+    faculty_id: int = request.GET.get('faculty_id'); course_id: int = request.GET.get('course_id'); direction_id: int = request.GET.get('direction_id'); group_id: int = request.GET.get('group_id');
+
+    credits = Credit.objects.all()
+
+    if name: credits = credits.filter(Q(student__name__icontains=name) | Q(student__hemis_id=name))
+
+    faculties = Faculty.objects.all(); courses = None; directions = None; groups = None
+
+    if faculty_id:
+        credits = credits.filter(student__group__direction__faculty_id=faculty_id)
+        courses = Course.objects.all()
+    
+    if course_id:
+        credits = credits.filter(student__group__direction__faculty_id=faculty_id, student__group__direction__course_id=course_id)
+        directions = Direction.objects.filter(faculty_id=faculty_id, course_id=course_id)
+    
+    if direction_id:
+        credits = credits.filter(student__group__direction_id=direction_id)
+        groups = Group.objects.filter(direction_id=direction_id)
+    
+    if group_id:
+        credits = credits.filter(student__group_id=group_id)
+
     paginator = paginated_queryset(credits, page)
     context = {
         'name': name,
-        'paginator': paginator
+        'paginator': paginator,
+
+        'faculty_id': int(faculty_id) if faculty_id else '',
+        'course_id': int(course_id) if course_id else '',
+        'direction_id': int(direction_id) if direction_id else '',
+        'group_id': int(group_id) if group_id else '',
+
+        'faculties': faculties,
+        'courses': courses,
+        'directions': directions,
+        'groups': groups
     }
     return render(request, 'credits/src/edupart/search.html', context=context)
 
@@ -435,7 +467,7 @@ def get_edupart_faculty_credits_page(request: HttpRequest, faculty_id: int) -> H
         'faculty': faculty,
         'paginator': paginator
     }
-    return render(request, 'credits/src/accountant/faculty/faculty_credits.html', context)
+    return render(request, 'credits/src/edupart/faculty/faculty_credits.html', context)
 
 
 def get_edupart_course_page(request: HttpRequest, faculty_id: int, course_id: int) -> HttpResponse:

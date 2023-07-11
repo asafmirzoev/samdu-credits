@@ -8,13 +8,50 @@
         <h5 class="card-header">Поиск студента</h5>
 
         <div class="row mb-4">
-            <form method="get">
+            <form method="get" id="search">
                 <div class="row">
-                    <div class="col-6">
+                    
+                    <div class="col-3 mb-2">
+                        <select class="form-select" id="faculty_id" name="faculty_id" onchange="$('#search').submit()">
+                            <option value="">--------------</option>
+                            {% for faculty in faculties %}
+                                <option value="{{ faculty.pk }}" {% if faculty.pk == faculty_id %}selected="selected"{% endif %}>{{ faculty.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-3 mb-2">
+                        <select class="form-select" id="course_id" name="course_id" onchange="$('#search').submit()" {% if not courses %}disabled{% endif %}>
+                            <option value="">--------------</option>
+                            {% for course in courses %}
+                                <option value="{{ course.pk }}" {% if course.pk == course_id %}selected="selected"{% endif %}>{{ course.course }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-3 mb-2">
+                        <select class="form-select" id="direction_id" name="direction_id" onchange="$('#search').submit()" {% if not directions %}disabled{% endif %}>
+                            <option value="">--------------</option>
+                            {% for direction in directions %}
+                                <option value="{{ direction.pk }}" {% if direction.pk == direction_id %}selected="selected"{% endif %}>{{ direction.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-3 mb-2">
+                        <select class="form-select" id="group_id" name="group_id" onchange="$('#search').submit()" {% if not groups %}disabled{% endif %}>
+                            <option value="">--------------</option>
+                            {% for group in groups %}
+                                <option value="{{ group.pk }}" {% if group.pk == group_id %}selected="selected"{% endif %}>{{ group.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-3 mb-2">
                         <input value="{% if name %}{{ name }}{% endif %}" type="text" class="form-control" id="name" name="name" placeholder="{% trans 'ФИО или Hemis ID студента' %}" required>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-3 mb-2">
                         <button type="submit" class="btn btn-primary w-100">{% trans 'Поиск' %}</button>
                     </div>
                 </div>
@@ -28,17 +65,17 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
                         <li class="page-item prev">
-                            <a class="page-link" {% if paginator.previous_page %} href="{% url 'credits:edu-part-search' %}?name={{ name }}&page={{ paginator.previous_page }}" {% endif %}><i class="tf-icon bx bx-chevron-left"></i></a>
+                            <a class="page-link" {% if paginator.previous_page %} href="{% url 'credits:edu-part-search' %}?faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id={{ group_id }}&name={{ name }}&page={{ paginator.previous_page }}" {% endif %}><i class="tf-icon bx bx-chevron-left"></i></a>
                         </li>
 
                         {% for page in paginator.pages %}
                             <li class="page-item {% if page == paginator.this_page %}active{% endif %}">
-                                <a class="page-link" href="{% url 'credits:edu-part-search' %}?name={{ name }}&page={{ page }}">{{ page }}</a>
+                                <a class="page-link" href="{% url 'credits:edu-part-search' %}?faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id={{ group_id }}&name={{ name }}&page={{ page }}">{{ page }}</a>
                             </li>
                         {% endfor %}
 
                         <li class="page-item next">
-                            <a class="page-link" {% if paginator.next_page %} href="{% url 'credits:edu-part-search' %}?name={{ name }}&page={{ paginator.next_page }}" {% endif %}><i class="tf-icon bx bx-chevron-right"></i></a>
+                            <a class="page-link" {% if paginator.next_page %} href="{% url 'credits:edu-part-search' %}?faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id={{ group_id }}&name={{ name }}&page={{ paginator.next_page }}" {% endif %}><i class="tf-icon bx bx-chevron-right"></i></a>
                         </li>
                     </ul>
                 </nav>
