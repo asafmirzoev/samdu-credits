@@ -164,7 +164,7 @@ def deanery_pay_submit(request: HttpRequest, student_id: int):
         credits = [i.replace(f'payed-{student_id}-', '') for i in data.keys() if f'payed-{student_id}-' in i]
         (credits := Credit.objects.filter(pk__in=credits)).update(status=CreditStatuses.DEANERY_SETPAID)
 
-        pay_set = PaySet.objects.create(pay_time=data.get(f'pay-date{student_id}'))
+        pay_set = PaySet.objects.create(student=students.first(), pay_time=data.get(f'pay-date{student_id}'))
         pay_set.credits.set(credits)
 
     return redirect(redirect_url)
@@ -408,7 +408,7 @@ def get_edupart_overview_page(request: HttpRequest):
 
 
 def get_edupart_search_page(request: HttpRequest):
-    name = request.GET.get('name'); page: int = request.GET.get('page', 1)
+    name = request.GET.get('name', ''); page: int = request.GET.get('page', 1)
     faculty_id: int = request.GET.get('faculty_id'); course_id: int = request.GET.get('course_id'); direction_id: int = request.GET.get('direction_id'); group_id: int = request.GET.get('group_id');
 
     credits = Credit.objects.all()
