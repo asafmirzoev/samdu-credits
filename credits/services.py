@@ -192,18 +192,21 @@ def deanery_upload(request: HttpRequest) -> HttpResponse:
             semestr = Semestr.objects.get(semestr=item['semestr'])
 
             if not (directions := Direction.objects.filter(name=item['direction'], faculty=user.faculty)).exists():
+                transaction.set_rollback(True)
                 messages.error(request, f"Yo'nalishda xato (topilmadi). Qator: {i + 1}")
                 return redirect('credits:deanery-upload')
             
             direction = directions.first()
 
             if not (groups := Group.objects.filter(name=item['group'], direction=direction)).exists():
+                transaction.set_rollback(True)
                 messages.error(request, f'Guruhda xato (topilmadi). Qator: {i + 1}')
                 return redirect('credits:deanery-upload')
             
             group = groups.first()
 
             if (students := Student.objects.filter(hemis_id=item['hemis_id'])).exists() and not students.filter(name=item['name'].upper(), group=group):
+                transaction.set_rollback(True)
                 messages.error(request, f"Student ma'lumitida xato. Qator: {i + 1}")
                 return redirect('credits:deanery-upload')
             
