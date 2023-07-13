@@ -1858,5 +1858,101 @@
                 }
             }
         }
+    },
+    "Geografiya va ekologiya fakulteti": {
+        "2": {
+            "GEO_60530400-Geografiya  bakalavr_2021": {
+                "GEO_2021_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2021_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2021_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "GEO_60710400 - Ekologiya  bakalavr_2021": {
+                "GEO_2021_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2021_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "GEO_60530500-Geologiya bakalavr_2021": {
+                "GEO_2021_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2021_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            }
+        },
+        "3": {
+            "GEO_5150500_Geografiya iqtisodiy bilim asoslari_2020": {
+                "GEO_2020_01": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2020_02": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2020_03": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            },
+            "GEO_5140600_Geografiya bakalavriat_2020": {
+                "GEO_2020_04": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2020_05": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2020_12": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "GEO_5630100_Ekologiya va atrof-muhit muhofazasi bakalavriat_2020": {
+                "GEO_2020_06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2020_07": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2020_11": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "GEO_5140800_Geologiya bakalavriat_2020": {
+                "GEO_2020_08": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2020_09": {
+                    "education_form": "Kunduzgi",
+                    "language": "O\u2018zbek"
+                },
+                "GEO_2020_10": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
+                }
+            }
+        }
     }
 }
