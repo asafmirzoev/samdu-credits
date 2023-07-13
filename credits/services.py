@@ -232,7 +232,7 @@ def deanery_upload(request: HttpRequest) -> HttpResponse:
 
             if hasattr(direction, 'kontraktamount') and direction.kontraktamount.amount:
                 credit.status = CreditStatuses.FINANCE_SETTED
-                credit.amount = float((direction.kontraktamount.amount / credit.edu_hours) * credit.subject.credits, 2)
+                credit.amount = round((direction.kontraktamount.amount / credit.edu_hours) * credit.subject.credits, 2)
                 credit.save()
 
     return redirect('credits:home')
