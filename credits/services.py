@@ -141,12 +141,12 @@ def get_deanery_group_credits_page(request: HttpRequest, course_id: int, group_i
 def get_deanery_semestr_page(request: HttpRequest, group_id: int, semestr_id: int) -> HttpResponse:
     group = Group.objects.get(pk=group_id)
     semestr = Semestr.objects.get(pk=semestr_id)
-    credits = Credit.objects.filter(student__group=group, semestr=semestr)
+    students = {student: credits for student in Student.objects.filter(group=group) if (credits := student.credit_set.filter(semestr=semestr)).exists()}
     
     context = {
         'group': group,
         'semestr': semestr,
-        'credits': credits
+        'students': students
     }
     return render(request, 'credits/src/deanery/semestr.html', context)
 

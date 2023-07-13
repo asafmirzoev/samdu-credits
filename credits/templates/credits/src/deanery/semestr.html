@@ -1,5 +1,6 @@
 {% extends 'credits/base.html' %}
 {% load i18n %}
+{% load credits_tags %}
 
 {% block title %}{% trans 'Обзор' %}{% endblock %}
 
@@ -20,7 +21,130 @@
 <div class="row">
     <div class="card">
         <h5 class="card-header">Таблица</h5>
-        {% include 'credits/src/deanery/table.html' %}
+        <div class="table-responsive text-nowrap mb-4">
+            {% check_deadline request.user as is_deadline %}
+        
+            <table class="table table-striped table-bordered mb-2">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Hemis ID</th>
+                        <th>F.I.SH</th>
+                        <th>Ta'lim yo'nalishi</th>
+                        <th>Akademik guruhi</th>
+                        <th>Akademik qarzdor bo'lgan fan</th>
+                        <th>Ta'lim bosqichi</th>
+                        <th>Ta'lim tili</th>
+                        <th>Ta'lim shakli</th>
+                        <th>Akademik qarizdor bo'lgan fan o'quv yili</th>
+                        <th>Semestr</th>
+                        <th>Bir yillik kredit</th>
+                        <th>Fanga ajratilgan umumiy soat</th>
+                        <th>Ma'ruza</th>
+                        <th>Amaliy</th>
+                        <th>Semenar</th>
+                        <th>Laboratoriya</th>
+                        <th>MT</th>
+                        <th>Fan krediti</th>
+                        <th>Bir yillik shartnoma miqdori</th>
+                        <th>To'lanadigan kredit miqdor</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    {% for student, credits in students.items %}
+                        <tr id="student{{ student.pk }}">
+                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ forloop.counter }}</td>
+                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.hemis_id }}</td>
+                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.name }}</td>
+                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.direction.name }}</td>
+                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.name }}</td>
+                        </tr>
+        
+                        {% for credit in credits %}
+                            <tr>
+                                <td>{{ credit.subject.name }}</td>
+                                <td>{{ credit.semestr.course.course }}</td>
+                                <td>{{ credit.student.group.language }}</td>
+                                <td>{{ credit.student.group.education_form }}</td>
+                                <td>{{ credit.edu_year.year }}</td>
+                                <td>{{ credit.semestr.semestr }}</td>
+                                <td>{{ credit.edu_hours }}</td>
+                                <td>{% if credit.subject.hours %}{{ credit.subject.hours }}{% endif %}</td>
+                                <td>{% if credit.subject.lecture_hours %}{{ credit.subject.lecture_hours }}{% endif %}</td>
+                                <td>{% if credit.subject.practice_hours %}{{ credit.subject.practice_hours }}{% endif %}</td>
+                                <td>{% if credit.subject.seminar_hours %}{{ credit.subject.seminar_hours }}{% endif %}</td>
+                                <td>{% if credit.subject.laboratory_hours %}{{ credit.subject.laboratory_hours }}{% endif %}</td>
+                                <td>{% if credit.subject.independent_hours %}{{ credit.subject.independent_hours }}{% endif %}</td>
+                                <td>{{ credit.subject.credits }}</td>
+        
+                                <td>
+                                    {% if credit.status != 'DEANERY_UPLOADED' %}{{ credit.student.group.direction.kontraktamount.amount }} сум{% endif %}
+                                </td>
+                                <td>
+                                    {% if credit.status != 'DEANERY_UPLOADED' %}{{ credit.amount }} сум{% endif %}
+                                </td>
+        
+                                <td id="status"><span class="badge bg-label-info">{{ credit.get_status_display }}</span></td>
+        
+                                {% if forloop.counter == 1 and student.has_payed_credit and not is_deadline %}
+                                    <td id="pay-submit" rowspan="{{ student.credit_set.count|add:1 }}">
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#PayModal{{ student.pk }}">{% trans 'Оплатил' %}</button>
+                                    </td>
+                                {% endif %}
+        
+                            </tr>
+                        {% endfor %}
+        
+                    {% empty %}
+                        <tr>
+                            <td colspan="22" class="text-center">{% trans 'Ничего не найдено' %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        {% if not is_deadline %}
+            {% for student in students %}
+                <div class="modal fade" id="PayModal{{ student.pk }}" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalCenterTitle">Оплата</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{% url 'credits:deanery-pay-submit' student.pk %}?redirect_url={{ redirect_url }}" method="post">
+                                    {% csrf_token %}
+        
+                                    {% deanery_get_valid_credits student as valid_credits %}
+                                    {% for credit in valid_credits %}
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="payed-{{ student.pk }}-{{ credit.pk }}" name="payed-{{ student.pk }}-{{ credit.pk }}">
+                                            <label class="form-check-label" for="defaultCheck1"> {{ credit.subject.name }}: <b>{{ credit.amount }} сум</b></label>
+                                        </div>
+                                    {% endfor %}
+        
+                                    <div class="mb-3">
+                                        <label for="pay-date{{ student.pk }}">{% trans 'Дата оплаты' %}:</label>
+                                        <input class="form-control" type="date" id="pay-date{{ student.pk }}" name="pay-date{{ student.pk }}" required>
+                                    </div>
+        
+                                    <div class="modal-footer">
+                                        <button id="PayModal-close-button{{ student.pk }}" type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                            {% trans 'Закрыть' %}
+                                        </button>
+                                        <button type="submit" class="btn btn-success">{% trans 'Подтвердить' %}</button>
+                                    </div>
+        
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% endblock %}
