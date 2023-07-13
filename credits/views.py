@@ -171,6 +171,12 @@ class FinancesDirectionView(View):
 
     def post(self, request: HttpRequest, course_id: int, direction_id: int) -> HttpResponse:
         return svc.get_finances_direction_page(request, course_id, direction_id)
+
+
+class FinancesCreditsView(View):
+
+    def get(self, request: HttpRequest, direction_id: int) -> HttpResponse:
+        return svc.get_finances_credits_page(request, direction_id)
     
 
 class EduPartOverviewView(View):

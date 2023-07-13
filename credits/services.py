@@ -402,6 +402,19 @@ def get_finances_direction_page(request: HttpRequest, course_id: int, direction_
     return redirect('credits:finances-course', faculty_id=direction.faculty.pk, course_id=course_id)
 
 
+def get_finances_credits_page(request: HttpRequest, direction_id: int):
+    page = request.GET.get('page', 1)
+
+    students = Student.objects.filter(group__direction_id=direction_id)
+    
+    paginator = paginated_queryset(students, page)
+    context = {
+        'paginator': paginator
+    }
+    return render(request, 'credits/src/finances/credits.html', context)
+
+
+
 def get_edupart_overview_page(request: HttpRequest):
     faculties = Faculty.objects.all()
     return render(request, 'credits/src/edupart/overview.html', {'faculties': faculties})

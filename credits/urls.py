@@ -6,10 +6,10 @@ from .views import (
     DeaneryPaySubmitView, DeaneryUploadView, AccountantOverviewView, AccountantFacultyView,
     AccountantFacultyCreditsView, AccountantSearchView, AccountantCourseView, AccountantCourseCreditsView,
     AccountantDirectionView, AccountantGroupView, AccountantSemestrView, AccountantPaySubmitView,
-    FinancesOverviewView, FinancesFacultyView, FinancesCourseView, FinancesDirectionView, EduPartOverviewView,
-    EduPartSearchView, EduPartFacultyView, EduPartFacultyCreditsView, EduPartCourseView, EduPartCourseCreditsView,
-    EduPartDirectionView, EduPartDirectionCreditsView, EduPartGroupView, EduPartGroupCreditsView, EduPartSemestrView,
-    EduPartDeadlineView
+    FinancesOverviewView, FinancesFacultyView, FinancesCourseView, FinancesDirectionView, FinancesCreditsView,
+    EduPartOverviewView, EduPartSearchView, EduPartFacultyView, EduPartFacultyCreditsView, EduPartCourseView,
+    EduPartCourseCreditsView, EduPartDirectionView, EduPartDirectionCreditsView, EduPartGroupView,
+    EduPartGroupCreditsView, EduPartSemestrView, EduPartDeadlineView
 )
 
 
@@ -64,6 +64,7 @@ urlpatterns = [
             path('<int:faculty_id>/<int:course_id>/', FinancesCourseView.as_view(), name='finances-course'),
             path('<int:course_id>/direction/<int:direction_id>/', FinancesDirectionView.as_view(), name='finances-direction'),
         ])),
+        path('credits/<int:direction_id>/', FinancesCreditsView.as_view(), name='finances-credits')
     ])),
 
     path('edu-part/', include([

@@ -149,6 +149,7 @@ class Student(models.Model):
         return self.credit_set.filter(status=CreditStatuses.FINANCE_SETTED).exists()
     
     class Meta:
+        ordering = ['name']
         verbose_name = 'Студент'
         verbose_name_plural = 'Студенты'
 

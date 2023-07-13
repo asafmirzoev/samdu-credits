@@ -52,9 +52,10 @@
 
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                            {% trans 'Закрыть' %}
+                                                {% trans 'Закрыть' %}
                                             </button>
-                                            <button type="submit" class="btn btn-primary">{% trans 'Сохранить' %}</button>
+                                            <button type="button" class="btn btn-primary" onclick="location.href=`{% url 'credits:finances-credits' direction.pk %}`">{% trans 'Кредиты' %}</button>
+                                            <button type="submit" class="btn btn-success">{% trans 'Сохранить' %}</button>
                                         </div>
                                     </form>
                                 </div>

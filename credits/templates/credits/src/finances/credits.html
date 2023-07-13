@@ -1,0 +1,89 @@
+{% extends 'credits/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans 'Обзор' %}{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="card">
+        <h5 class="card-header">Таблица</h5>
+        <div class="table-responsive text-nowrap mb-4">        
+            <table class="table table-striped table-bordered mb-2">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Hemis ID</th>
+                        <th>F.I.SH</th>
+                        <th>Ta'lim yo'nalishi</th>
+                        <th>Akademik guruhi</th>
+                        <th>Akademik qarzdor bo'lgan fan</th>
+                        <th>Ta'lim bosqichi</th>
+                        <th>Ta'lim tili</th>
+                        <th>Ta'lim shakli</th>
+                        <th>Akademik qarizdor bo'lgan fan o'quv yili</th>
+                        <th>Semestr</th>
+                        <th>Bir yillik kredit</th>
+                        <th>Fanga ajratilgan umumiy soat</th>
+                        <th>Ma'ruza</th>
+                        <th>Amaliy</th>
+                        <th>Semenar</th>
+                        <th>Laboratoriya</th>
+                        <th>MT</th>
+                        <th>Fan krediti</th>
+                        <th>Bir yillik shartnoma miqdori</th>
+                        <th>To'lanadigan kredit miqdor</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    {% for student in paginator.queryset %}
+                        <tr id="student{{ student.pk }}">
+                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ forloop.counter }}</td>
+                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.hemis_id }}</td>
+                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.name }}</td>
+                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.direction.name }}</td>
+                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.name }}</td>
+                        </tr>
+        
+                        {% for credit in student.credit_set.all %}
+                            <tr>
+                                <td>{{ credit.subject.name }}</td>
+                                <td>{{ credit.semestr.course.course }}</td>
+                                <td>{{ credit.student.group.language }}</td>
+                                <td>{{ credit.student.group.education_form }}</td>
+                                <td>{{ credit.edu_year.year }}</td>
+                                <td>{{ credit.semestr.semestr }}</td>
+                                <td>{{ credit.edu_hours }}</td>
+                                <td>{% if credit.subject.hours %}{{ credit.subject.hours }}{% endif %}</td>
+                                <td>{% if credit.subject.lecture_hours %}{{ credit.subject.lecture_hours }}{% endif %}</td>
+                                <td>{% if credit.subject.practice_hours %}{{ credit.subject.practice_hours }}{% endif %}</td>
+                                <td>{% if credit.subject.seminar_hours %}{{ credit.subject.seminar_hours }}{% endif %}</td>
+                                <td>{% if credit.subject.laboratory_hours %}{{ credit.subject.laboratory_hours }}{% endif %}</td>
+                                <td>{% if credit.subject.independent_hours %}{{ credit.subject.independent_hours }}{% endif %}</td>
+                                <td>{{ credit.subject.credits }}</td>
+        
+                                <td>
+                                    {% if credit.status != 'DEANERY_UPLOADED' %}{{ credit.student.group.direction.kontraktamount.amount }} сум{% endif %}
+                                </td>
+                                <td>
+                                    {% if credit.status != 'DEANERY_UPLOADED' %}{{ credit.amount }} сум{% endif %}
+                                </td>
+        
+                                <td id="status"><span class="badge bg-label-info">{{ credit.get_status_display }}</span></td>
+        
+                            </tr>
+                        {% endfor %}
+        
+                    {% empty %}
+                        <tr>
+                            <td colspan="22" class="text-center">{% trans 'Ничего не найдено' %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
