@@ -11,7 +11,7 @@ from credits.utils import is_deadline
 
 class SetUserLoginMiddleware(MiddlewareMixin):
     def process_request(self, request: HttpRequest):
-        if request.user.is_authenticated and ('/admin/' in request.path or '/logout/' in request.path or '/jsi18n/' in request.path or '/i18n/' in request.path): return
+        if request.user.is_authenticated and (request.path in ['/credits/', '/credits'] or '/admin/' in request.path or '/logout/' in request.path or '/jsi18n/' in request.path or '/i18n/' in request.path): return
 
         # if not request.user.is_authenticated and (request.path != reverse('users:login') and request.path != '/'):
         #     return redirect('users:login')

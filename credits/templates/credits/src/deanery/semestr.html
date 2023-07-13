@@ -54,11 +54,11 @@
                 <tbody class="table-border-bottom-0">
                     {% for student, credits in students.items %}
                         <tr id="student{{ student.pk }}">
-                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ forloop.counter }}</td>
-                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.hemis_id }}</td>
-                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.name }}</td>
-                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.direction.name }}</td>
-                            <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.name }}</td>
+                            <td rowspan="{{ credits.count|add:1 }}">{{ forloop.counter }}</td>
+                            <td rowspan="{{ credits.count|add:1 }}">{{ student.hemis_id }}</td>
+                            <td rowspan="{{ credits.count|add:1 }}">{{ student.name }}</td>
+                            <td rowspan="{{ credits.count|add:1 }}">{{ student.group.direction.name }}</td>
+                            <td rowspan="{{ credits.count|add:1 }}">{{ student.group.name }}</td>
                         </tr>
         
                         {% for credit in credits %}
@@ -88,7 +88,7 @@
                                 <td id="status"><span class="badge bg-label-info">{{ credit.get_status_display }}</span></td>
         
                                 {% if forloop.counter == 1 and student.has_payed_credit and not is_deadline %}
-                                    <td id="pay-submit" rowspan="{{ student.credit_set.count|add:1 }}">
+                                    <td id="pay-submit" rowspan="{{ credits.count|add:1 }}">
                                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#PayModal{{ student.pk }}">{% trans 'Оплатил' %}</button>
                                     </td>
                                 {% endif %}
