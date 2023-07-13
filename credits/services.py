@@ -44,7 +44,7 @@ def student_credits(request: HttpRequest) -> HttpResponse:
         credits = Credit.objects.filter(student=student)
         return render(request, 'credits/students/credits.html', {'credits': credits, 'student': student})
     messages.error(request, _('Неверный логин или для этого ID нет информации'))
-    return redirect('credits:home')
+    return redirect('credits:student-credits')
 
 
 def get_deanery_overview_page(request: HttpRequest) -> HttpResponse:

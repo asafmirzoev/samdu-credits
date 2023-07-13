@@ -78,6 +78,7 @@
 							<tr>
 								<th>#</th>
 								<th>{% trans 'Предмет' %}</th>
+								<th>{% trans 'Семестр' %}</th>
 								<th>{% trans 'Сумма' %}</th>
 								<th>{% trans 'Статус' %}</th>
 							</tr>
@@ -87,6 +88,7 @@
 								<tr id="credit-{{ credit.pk }}">
 									<td>{{ forloop.counter }}</td>
 									<td>{{ credit.subject.name }}</td>
+									<td>{{ credit.semestr.semestr }}</td>
 									<td>
 										{% if credit.amount %}
 											{{ credit.amount }}
@@ -97,6 +99,8 @@
 									
 									<td>
 										{% if credit.status == ACCOUNTANT_SUBMITED %}
+											<span class="badge bg-label-success">{% trans 'Оплата подтверждена' %}</span>
+										{% elif credit.status == DEANERY_SETPAID %}
 											<span class="badge bg-label-success">{% trans 'Оплачен' %}</span>
 										{% else %}
 											<span class="badge bg-label-danger">{% trans 'В разработке' %}</span>
