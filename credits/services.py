@@ -1,7 +1,7 @@
 import json
 from urllib.parse import quote, unquote
 
-from django.http import HttpRequest, HttpResponse, JsonResponse, Http404
+from django.http import HttpRequest, HttpResponse, JsonResponse, FileResponse, Http404
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.db import transaction
@@ -45,6 +45,10 @@ def student_credits(request: HttpRequest) -> HttpResponse:
         return render(request, 'credits/students/credits.html', {'credits': credits, 'student': student})
     messages.error(request, _('Неверный логин или для этого ID нет информации'))
     return redirect('credits:student-credits')
+
+
+def get_invoice(payset_id: int):
+    return FileResponse(PaySet.objects.get(pk=payset_id).invoice)
 
 
 def get_deanery_overview_page(request: HttpRequest) -> HttpResponse:
@@ -142,11 +146,14 @@ def get_deanery_semestr_page(request: HttpRequest, group_id: int, semestr_id: in
     group = Group.objects.get(pk=group_id)
     semestr = Semestr.objects.get(pk=semestr_id)
     students = {student: credits for student in Student.objects.filter(group=group) if (credits := student.credit_set.filter(semestr=semestr)).exists()}
+
+    redirect_url = reverse('credits:deanery-semestr', group_id=group_id, semestr_id=semestr_id)
     
     context = {
         'group': group,
         'semestr': semestr,
-        'students': students
+        'students': students,
+        'redirect_url': redirect_url
     }
     return render(request, 'credits/src/deanery/semestr.html', context)
 
@@ -160,11 +167,21 @@ def deanery_pay_submit(request: HttpRequest, student_id: int):
         messages.error(request, _('Такого студента не существует'))
         return redirect(redirect_url)
     
+    file = request.FILES.get(f'pay-incoice{student_id}')
+
+    if not file:
+        messages.error(request, _('Файл квитанции обязателен'))
+        return redirect(redirect_url)
+
+    if file.size > 1_048_576:
+        messages.error(request, _('Размер файла не может превышать 1MB'))
+        return redirect(redirect_url)
+    
     with transaction.atomic():
         credits = [i.replace(f'payed-{student_id}-', '') for i in data.keys() if f'payed-{student_id}-' in i]
         (credits := Credit.objects.filter(pk__in=credits)).update(status=CreditStatuses.DEANERY_SETPAID)
 
-        pay_set = PaySet.objects.create(student=students.first(), pay_time=data.get(f'pay-date{student_id}'))
+        pay_set = PaySet.objects.create(student=students.first(), pay_time=data.get(f'pay-date{student_id}'), invoice=file)
         pay_set.credits.set(credits)
 
     return redirect(redirect_url)
@@ -334,7 +351,7 @@ def get_accountant_group_page(request: HttpRequest, course_id: int, group_id: in
 def get_accountant_semestr_page(request: HttpRequest, group_id: int, semestr_id: int) -> HttpResponse:
     group = Group.objects.get(pk=group_id)
     semestr = Semestr.objects.get(pk=semestr_id)
-    students = Student.objects.filter(group=group, semestr=semestr)
+    students = {student: credits for student in Student.objects.filter(group=group) if (credits := student.credit_set.filter(semestr=semestr))}
     
     context = {
         'group': group,
@@ -393,7 +410,7 @@ def get_finances_direction_page(request: HttpRequest, course_id: int, direction_
         direction.kontraktamount.amount = float(request.POST.get('amount'))
         direction.kontraktamount.save()
 
-        credits = Credit.objects.filter(student__group__direction=direction)
+        credits = Credit.objects.filter(student__group__direction=direction, status__in=[CreditStatuses.DEANERY_UPLOADED, CreditStatuses.FINANCE_SETTED])
 
         credits_for_update = []
         for credit in credits:

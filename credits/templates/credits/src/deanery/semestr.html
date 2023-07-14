@@ -115,7 +115,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="{% url 'credits:deanery-pay-submit' student.pk %}?redirect_url={{ redirect_url }}" method="post">
+                                <form action="{% url 'credits:deanery-pay-submit' student.pk %}?redirect_url={{ redirect_url }}" method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
         
                                     {% deanery_get_valid_credits student as valid_credits %}
@@ -129,6 +129,11 @@
                                     <div class="mb-3">
                                         <label for="pay-date{{ student.pk }}">{% trans 'Дата оплаты' %}:</label>
                                         <input class="form-control" type="date" id="pay-date{{ student.pk }}" name="pay-date{{ student.pk }}" required>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="pay-incoice{{ student.pk }}">{% trans 'Квитанция' %}:</label>
+                                        <input class="form-control" type="file" accept="application/pdf" id="pay-incoice{{ student.pk }}" name="pay-incoice{{ student.pk }}" required>
                                     </div>
         
                                     <div class="modal-footer">

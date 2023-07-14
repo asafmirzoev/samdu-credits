@@ -25,11 +25,11 @@
         <tbody class="table-border-bottom-0">
             {% for student in students %}
                 <tr id="student{{ student.pk }}">
-                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ forloop.counter }}</td>
-                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.hemis_id }}</td>
-                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.name }}</td>
-                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.direction.name }}</td>
-                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.name }}</td>
+                    <td rowspan="{{ student.payset_set.count|add:1 }}">{{ forloop.counter }}</td>
+                    <td rowspan="{{ student.payset_set.count|add:1 }}">{{ student.hemis_id }}</td>
+                    <td rowspan="{{ student.payset_set.count|add:1 }}">{{ student.name }}</td>
+                    <td rowspan="{{ student.payset_set.count|add:1 }}">{{ student.group.direction.name }}</td>
+                    <td rowspan="{{ student.payset_set.count|add:1 }}">{{ student.group.name }}</td>
                 </tr>
 
                 {% if not is_deadline %}
@@ -38,6 +38,9 @@
                             <td>{% for credit in payset.credits.all %}{{ credit.subject.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
                             <td>{{ payset.amount }}</td>
                             <td>{{ payset.pay_time }}</td>
+                            <td>
+                                <a href="{% url 'credits:invoices' payset.pk %}">{% trans 'Квитанция' %}</a>
+                            </td>
                             <td>
                                 {% if payset.submited %}
                                     <span class="badge bg-label-info">{% trans 'Оплата подтверждена' %}</span>

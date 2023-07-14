@@ -9,13 +9,16 @@ from .views import (
     FinancesOverviewView, FinancesFacultyView, FinancesCourseView, FinancesDirectionView, FinancesCreditsView,
     EduPartOverviewView, EduPartSearchView, EduPartFacultyView, EduPartFacultyCreditsView, EduPartCourseView,
     EduPartCourseCreditsView, EduPartDirectionView, EduPartDirectionCreditsView, EduPartGroupView,
-    EduPartGroupCreditsView, EduPartSemestrView, EduPartDeadlineView
+    EduPartGroupCreditsView, EduPartSemestrView, EduPartDeadlineView, 
+    InvoicesView
 )
 
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('credits/', StudentCreditsView.as_view(), name='student-credits'),
+
+    path('invoices/<int:payset_id>/', InvoicesView.as_view(), name='invoices'),
 
     path('deanery/', include([
         path('overview/', include([

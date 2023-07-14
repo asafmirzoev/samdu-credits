@@ -1954,5 +1954,71 @@
                 }
             }
         }
+    },
+    "Xalqaro ta’lim dasturlari markazi": {
+        "2": {
+            "XTD_60220300_Tarix (Buyuk ipak yo'li tarixi)_2021": {
+                "XTD_2021_01": {
+                    "education_form": "Qo'shma",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "XTD_60110200_Maktabgacha ta'lim_2021": {
+                "XTD_2021_02": {
+                    "education_form": "Qo'shma",
+                    "language": "O\u2018zbek"
+                }
+            },
+            "XTD_60540200_Amaliy matematika_2021": {
+                "XTD_2021_03": {
+                    "education_form": "Qo'shma",
+                    "language": "Ingliz"
+                }
+            },
+            "XTD_60711400_Texnologik jarayonlar_2021": {
+                "XTD_2021_04": {
+                    "education_form": "Qo'shma",
+                    "language": "Rus"
+                }
+            },
+            "XTD_60720600_Materialshunoslik_2021": {
+                "XTD_2021_05": {
+                    "education_form": "Qo'shma",
+                    "language": "Rus"
+                }
+            },
+            "XTD_60610100_Kompyuter ilmlari_1_2021": {
+                "XTD_2021_06": {
+                    "education_form": "Qo'shma",
+                    "language": "Ingliz"
+                }
+            },
+            "XTD_60310500_Raqamli iqtisodiyot_2021": {
+                "XTD_2021_07": {
+                    "education_form": "Qo'shma",
+                    "language": "Rus"
+                }
+            },
+            "XTD_60310100_Iqtisodiyot_2021": {
+                "XTD_2021_08": {
+                    "education_form": "Qo'shma",
+                    "language": "Rus"
+                }
+            }
+        },
+        "3": {
+            "XTD_5130200_Amaliy matematika_2020": {
+                "XTD_2020_03": {
+                    "education_form": "Qo'shma",
+                    "language": "Ingliz"
+                }
+            },
+            "XTD_5330100_Kompyuter ilmlari_2020": {
+                "XTD_2020_06": {
+                    "education_form": "Qo'shma",
+                    "language": "Ingliz"
+                }
+            }
+        }
     }
 }

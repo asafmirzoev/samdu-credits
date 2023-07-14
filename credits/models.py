@@ -178,6 +178,7 @@ class PaySet(models.Model):
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     credits = models.ManyToManyField(Credit)
+    invoice = models.FileField(upload_to='files/invoices/%Y/%m/%d/', null=True)
     pay_time = models.DateField()
     submited = models.BooleanField(default=False)
 

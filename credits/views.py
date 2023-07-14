@@ -20,6 +20,12 @@ class StudentCreditsView(View):
         return svc.student_credits(request)
     
 
+class InvoicesView(View):
+
+    def get(self, request: HttpRequest, payset_id: int) -> HttpResponse:
+        return svc.get_invoice(payset_id)
+    
+
 class DeaneryOverviewView(View):
 
     def get(self, request: HttpRequest) -> HttpResponse:

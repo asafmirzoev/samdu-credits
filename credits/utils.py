@@ -133,7 +133,7 @@ def parse_deanery_file(file):
 
 
 def is_deadline(faculty_id: int = None, for_accountant: bool = None, for_finances: bool = None):
-    if not all([faculty_id, for_accountant, for_finances]): return False
+    if not any([faculty_id, for_accountant, for_finances]): return False
     if faculty_id: deadline = DeadLine.objects.get(faculty_id=faculty_id)
     if for_accountant: deadline = DeadLine.objects.get(for_accountant=True)
     if for_finances: deadline = DeadLine.objects.get(for_finances=True)
