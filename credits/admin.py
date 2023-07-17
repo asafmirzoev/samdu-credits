@@ -5,6 +5,11 @@ from .models import (
     Semestr, Subject, Student, Credit, PaySet
 )
 
+@admin.register(Faculty)
+class StudentAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(Direction)
 class StudentAdmin(admin.ModelAdmin):
     pass
