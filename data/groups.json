@@ -927,116 +927,102 @@
     },
     "Muxandislik fizikasi instituti": {
         "1": {
-            "Fiz_60530900-Fizika (kechki-2022)": {
-                "MFI-2022-01K": {
-                    "education_form": "Kechki",
-                    "language": "O\u2018zbek"
-                }
-            },
-            "Fiz_60720800-Mashinasozlik texnologiyasi, mashinasozlik ishlab chiqarishni jihozlash va avtomatlashtirish(2022)": {
-                "MFI-2022-MT08": {
-                    "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
-                }
-            },
-            "Fiz_60711600-Intellektual muhandislik tizimlari (tarmoqlar va sohalar bo'yicha) (2022)": {
-                "MFI-2022-I07": {
-                    "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
-                }
-            },
-            "Fiz_60531200-Tibbiyot fizikasi (2022)": {
-                "MFI-2022-T04": {
-                    "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
-                }
-            },
-            "Fiz_60530900-Fizika (2022)": {
+            "Fiz_60530900-Fizika (2022-2023)": {
                 "MFI-2022-F01": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "MFI-2022-F02": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "MFI-2022-F03R": {
                     "education_form": "Kunduzgi",
                     "language": "Rus"
                 }
             },
-            "Fiz_60711200-Elektronika va asbobsozlik(tar.buyicha)-2022": {
-                "MFI-2022-EA06": {
+            "Fiz_60531200-Tibbiyot fizikasi (2022-2023)": {
+                "MFI-2022-T04": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 }
             },
-            "Fiz_60712000-Elektron apparatlarni ishlab chiqarish texnologiyasi(2022)": {
+            "Fiz_60712000-Elektron apparatlarni ishlab chiqarish texnologiyasi (2022-2023)": {
                 "MFI-2022-ET05": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 }
             },
-            "Fiz_60531000-Mexanika va matematik modellashtirish (tarmoqlar bo'yicha)-2022": {
+            "Fiz_60711200-Elektronika va asbobsozlik (tarmoqlar bo'yicha) (2022-2023)": {
+                "MFI-2022-EA06": {
+                    "education_form": "Kunduzgi",
+                    "language": "O'Zbek"
+                }
+            },
+            "Fiz_60711600-Intellektual muhandislik tizimlari (tarmoqlar va sohalar bo'yicha) (2022-2023)": {
+                "MFI-2022-I07": {
+                    "education_form": "Kunduzgi",
+                    "language": "O'Zbek"
+                }
+            },
+            "Fiz_60720800-Mashinasozlik texnologiyasi, mashinasozlik ishlab chiqarishni jihozlash va avtomatlashtirish (2022-2023)": {
+                "MFI-2022-MT08": {
+                    "education_form": "Kunduzgi",
+                    "language": "O'Zbek"
+                }
+            },
+            "Fiz_60531000-Mexanika va matematik modellashtirish (tarmoqlar bo'yicha) (2022-2023)": {
                 "MFI-2022-MM09": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 }
             }
         },
         "2": {
+            "Fiz_60530900-Fizika (2022-2023) (kechki)": {
+                "MFI-2022-01K": {
+                    "education_form": "Kechki",
+                    "language": "O'Zbek"
+                }
+            },
             "Fiz_60530900_Fizika (2021-2022)": {
                 "Fiz-2021-01": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "Fiz-2021-02": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "Fiz-2021-04": {
                     "education_form": "Kunduzgi",
                     "language": "Rus"
-                },
-                "Fiz-2021-03": {
-                    "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
                 }
             },
-            "Fiz_60531000_Mexanika va matematik modellashtirish bakalavr kunduzgi (2021-2022)": {
+            "iz_60531000_Mexanika va matematik modellashtirish (2021-2022)": {
                 "MEX_2021_05-guruh": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "MEX_2021_06-guruh": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 }
             }
         },
         "3": {
-            "Mexanika va matematik modellashtirish bakalavr kunduzgi (2020-2021)": {
-                "MEX_2020_15-guruh": {
-                    "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
-                },
-                "MEX_2020_16-guruh": {
-                    "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
-                }
-            },
             "Fiz_5140200_Fizika-(2020-2021)": {
                 "Fiz-2020-01": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "Fiz-2020-02": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "Fiz-2020-03": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "Fiz-2020-04": {
                     "education_form": "Kunduzgi",
@@ -1046,37 +1032,45 @@
             "Fiz_5110200_Fizika va Astronomiya (2020-2021)": {
                 "Fiz-2020-05": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "Fiz-2020-06": {
                     "education_form": "Kunduzgi",
-                    "language": "O\u2018zbek"
-                },
-                "Fiz-2020-08": {
-                    "education_form": "Kunduzgi",
-                    "language": "Rus"
+                    "language": "O'Zbek"
                 },
                 "Fiz-2020-07": {
                     "education_form": "Kunduzgi",
                     "language": "Tojik"
+                },
+                "Fiz-2020-08": {
+                    "education_form": "Kunduzgi",
+                    "language": "Rus"
                 }
             },
-            "iz_5110200_Fizika va Astronomiya (2020-2021) (kechki)": {
+            "Fiz_5140300_Mexanika va matematik modellashtirish (2020-2021)": {
+                "MEX_2020_15-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O'Zbek"
+                },
+                "MEX_2020_16-guruh": {
+                    "education_form": "Kunduzgi",
+                    "language": "O'Zbek"
+                },
                 "Fiz-2020-01K": {
                     "education_form": "Kechki",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "Fiz-2020-02K": {
                     "education_form": "Kechki",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "Fiz-2020-03K": {
                     "education_form": "Kechki",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 },
                 "Fiz-2020-04K": {
                     "education_form": "Kechki",
-                    "language": "O\u2018zbek"
+                    "language": "O'Zbek"
                 }
             }
         }
