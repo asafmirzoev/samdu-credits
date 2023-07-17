@@ -147,7 +147,7 @@ def get_deanery_semestr_page(request: HttpRequest, group_id: int, semestr_id: in
     semestr = Semestr.objects.get(pk=semestr_id)
     students = {student: credits for student in Student.objects.filter(group=group) if (credits := student.credit_set.filter(semestr=semestr)).exists()}
 
-    redirect_url = reverse('credits:deanery-semestr', group_id=group_id, semestr_id=semestr_id)
+    redirect_url = reverse('credits:deanery-semestr', kwargs={'group_id': group_id, 'semestr_id': semestr_id})
     
     context = {
         'group': group,
