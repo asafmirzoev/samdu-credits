@@ -1,11 +1,14 @@
+from uuid import uuid4
 import json
 import requests
 from bs4 import BeautifulSoup
 
 from django.db import transaction
+from django.db.models import QuerySet
 from django.utils import timezone
+from django.conf import settings
 
-from .models import Faculty, Department, Teacher, Direction, Course, Group, EducationYear, Semestr, Subject, DeadLine
+from .models import Faculty, Department, Teacher, Direction, Course, Group, EducationYear, Semestr, Subject, DeadLine, Credit
 
 
 class InitData:
@@ -130,6 +133,42 @@ def parse_deanery_file(file):
         except:
             return None, i
     return data, None
+
+
+def credits_to_excel(credits: QuerySet[Credit]):
+    import pandas as pd
+
+    data = [
+        [
+            i + 1,
+            credit.student.hemis_id,
+            credit.student.name,
+            credit.student.group.direction.name,
+            credit.student.group.name,
+            credit.subject.name,
+            credit.semestr.course.course,
+            credit.student.group.language,
+            credit.student.group.education_form,
+            credit.edu_year.year,
+            credit.semestr.semestr,
+            credit.subject.hours,
+            credit.subject.lecture_hours,
+            credit.subject.practice_hours,
+            credit.subject.seminar_hours,
+            credit.subject.laboratory_hours,
+            credit.subject.independent_hours,
+            credit.subject.credits,
+            credit.student.group.direction.kontraktamount.amount if hasattr(credit.student.group.direction, 'kontraktamount') else '',
+            credit.amount,
+            credit.get_status_display()
+        ] for i, credit in enumerate(credits)
+    ]
+    df = pd.DataFrame(data)
+
+    filename = settings.BASE_DIR / f'files/credits/credits-{uuid4()}.xlsx'
+    df.to_excel(filename, header=False, index=False)
+    return filename
+
 
 
 def is_deadline(faculty_id: int = None, for_accountant: bool = None, for_finances: bool = None):

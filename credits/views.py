@@ -195,6 +195,9 @@ class EduPartSearchView(View):
 
     def get(self, request: HttpRequest) -> HttpResponse:
         return svc.get_edupart_search_page(request)
+    
+    def post(self, request: HttpRequest) -> HttpResponse:
+        return svc.download_edupart_search_results(request)
 
 
 class EduPartFacultyView(View):

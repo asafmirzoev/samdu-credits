@@ -1,4 +1,4 @@
-import json
+import os
 from urllib.parse import quote, unquote
 
 from django.http import HttpRequest, HttpResponse, JsonResponse, FileResponse, Http404
@@ -18,7 +18,7 @@ from .models import (
 )
 from .choices import CreditStatuses
 from .paginator import paginated_queryset
-from .utils import parse_deanery_file, is_deadline, StudentLogin
+from .utils import parse_deanery_file, credits_to_excel, is_deadline, StudentLogin
 
 
 def get_home_page(request: HttpRequest) -> HttpResponse:
@@ -442,13 +442,16 @@ def get_edupart_overview_page(request: HttpRequest):
 
 def get_edupart_search_page(request: HttpRequest):
     name = request.GET.get('name', ''); page: int = request.GET.get('page', 1)
-    faculty_id: int = request.GET.get('faculty_id'); course_id: int = request.GET.get('course_id'); direction_id: int = request.GET.get('direction_id'); group_id: int = request.GET.get('group_id');
+    status: str = request.GET.get('status'); faculty_id: int = request.GET.get('faculty_id'); course_id: int = request.GET.get('course_id'); direction_id: int = request.GET.get('direction_id'); group_id: int = request.GET.get('group_id'); download: int = int(request.GET.get('download', 0))
 
     credits = Credit.objects.all()
 
     if name: credits = credits.filter(Q(student__name__icontains=name) | Q(student__hemis_id=name))
 
-    faculties = Faculty.objects.all(); courses = None; directions = None; groups = None
+    statuses = {key: value for key, value in CreditStatuses.choices}; faculties = Faculty.objects.all(); courses = None; directions = None; groups = None
+
+    if status:
+        credits = credits.filter(status=status)
 
     if faculty_id:
         credits = credits.filter(student__group__direction__faculty_id=faculty_id)
@@ -465,16 +468,26 @@ def get_edupart_search_page(request: HttpRequest):
     if group_id:
         credits = credits.filter(student__group_id=group_id)
 
+    if download:
+        filename = credits_to_excel(credits)
+        with open(filename, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(filename)
+        os.remove(filename)
+        return response
+
     paginator = paginated_queryset(credits, page)
     context = {
         'name': name,
         'paginator': paginator,
 
+        'status': status,
         'faculty_id': int(faculty_id) if faculty_id else '',
         'course_id': int(course_id) if course_id else '',
         'direction_id': int(direction_id) if direction_id else '',
         'group_id': int(group_id) if group_id else '',
 
+        'statuses': statuses,
         'faculties': faculties,
         'courses': courses,
         'directions': directions,

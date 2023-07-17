@@ -1,18 +1,22 @@
 {% extends 'credits/base.html' %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}{% trans 'Обзор' %}{% endblock %}
 
 {% block content %}
+<script src="{% static 'js/edu-part.js' %}"></script>
+
+
     <div class="card">
         <h5 class="card-header">Поиск студента</h5>
 
         <div class="row mb-4">
-            <form method="get" id="search">
+            <form id="search" method="get">
                 <div class="row">
                     
                     <div class="col-3 mb-2">
-                        <select class="form-select" id="faculty_id" name="faculty_id" onchange="$('#search').submit()">
+                        <select class="form-select" id="faculty_id" name="faculty_id" onchange="location.href=`{% url 'credits:edu-part-search' %}?name={{ name }}&status={{ status }}&faculty_id=${this.value}`">
                             <option value="">--------------</option>
                             {% for faculty in faculties %}
                                 <option value="{{ faculty.pk }}" {% if faculty.pk == faculty_id %}selected="selected"{% endif %}>{{ faculty.name }}</option>
@@ -21,7 +25,7 @@
                     </div>
 
                     <div class="col-3 mb-2">
-                        <select class="form-select" id="course_id" name="course_id" onchange="$('#search').submit()" {% if not courses %}disabled{% endif %}>
+                        <select class="form-select" id="course_id" name="course_id" onchange="location.href=`{% url 'credits:edu-part-search' %}?name={{ name }}&status={{ status }}&faculty_id={{ faculty_id }}&course_id=${this.value}`" {% if not courses %}disabled{% endif %}>
                             <option value="">--------------</option>
                             {% for course in courses %}
                                 <option value="{{ course.pk }}" {% if course.pk == course_id %}selected="selected"{% endif %}>{{ course.course }}</option>
@@ -30,7 +34,7 @@
                     </div>
 
                     <div class="col-3 mb-2">
-                        <select class="form-select" id="direction_id" name="direction_id" onchange="$('#search').submit()" {% if not directions %}disabled{% endif %}>
+                        <select class="form-select" id="direction_id" name="direction_id" onchange="location.href=`{% url 'credits:edu-part-search' %}?name={{ name }}&status={{ status }}&faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id=${this.value}`" {% if not directions %}disabled{% endif %}>
                             <option value="">--------------</option>
                             {% for direction in directions %}
                                 <option value="{{ direction.pk }}" {% if direction.pk == direction_id %}selected="selected"{% endif %}>{{ direction.name }}</option>
@@ -39,10 +43,19 @@
                     </div>
 
                     <div class="col-3 mb-2">
-                        <select class="form-select" id="group_id" name="group_id" onchange="$('#search').submit()" {% if not groups %}disabled{% endif %}>
+                        <select class="form-select" id="group_id" name="group_id" onchange="location.href=`{% url 'credits:edu-part-search' %}?name={{ name }}&status={{ status }}&faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id=${this.value}`" {% if not groups %}disabled{% endif %}>
                             <option value="">--------------</option>
                             {% for group in groups %}
                                 <option value="{{ group.pk }}" {% if group.pk == group_id %}selected="selected"{% endif %}>{{ group.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-3 mb-2">
+                        <select class="form-select" id="status" name="status" onchange="location.href=`{% url 'credits:edu-part-search' %}?name={{ name }}&status=${this.value}&faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id={{ group_id }}`">
+                            <option value="">--------------</option>
+                            {% for status_k, status_v in statuses.items %}
+                                <option value="{{ status_k }}" {% if status_k == status %}selected="selected"{% endif %}>{{ status_v }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -54,6 +67,12 @@
                     <div class="col-3 mb-2">
                         <button type="submit" class="btn btn-primary w-100">{% trans 'Поиск' %}</button>
                     </div>
+
+                    {% if paginator.queryset %}
+                        <div class="col-3 mb-2">
+                            <button type="button" onclick="location.href=`{% url 'credits:edu-part-search' %}?name={{ name }}&status={{ status }}&faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id={{ group_id }}&download=1`" class="btn btn-success w-100">{% trans 'Скачать' %}</button>
+                        </div>
+                    {% endif %}
                 </div>
             </form>
         </div>
@@ -65,17 +84,17 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
                         <li class="page-item prev">
-                            <a class="page-link" {% if paginator.previous_page %} href="{% url 'credits:edu-part-search' %}?faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id={{ group_id }}&name={{ name }}&page={{ paginator.previous_page }}" {% endif %}><i class="tf-icon bx bx-chevron-left"></i></a>
+                            <a class="page-link" {% if paginator.previous_page %} href="{% url 'credits:edu-part-search' %}?name={{ name }}&status={{ status }}&faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id={{ group_id }}&page={{ paginator.previous_page }}" {% endif %}><i class="tf-icon bx bx-chevron-left"></i></a>
                         </li>
 
                         {% for page in paginator.pages %}
                             <li class="page-item {% if page == paginator.this_page %}active{% endif %}">
-                                <a class="page-link" href="{% url 'credits:edu-part-search' %}?faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id={{ group_id }}&name={{ name }}&page={{ page }}">{{ page }}</a>
+                                <a class="page-link" href="{% url 'credits:edu-part-search' %}?name={{ name }}&status={{ status }}&faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id={{ group_id }}&page={{ page }}">{{ page }}</a>
                             </li>
                         {% endfor %}
 
                         <li class="page-item next">
-                            <a class="page-link" {% if paginator.next_page %} href="{% url 'credits:edu-part-search' %}?faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id={{ group_id }}&name={{ name }}&page={{ paginator.next_page }}" {% endif %}><i class="tf-icon bx bx-chevron-right"></i></a>
+                            <a class="page-link" {% if paginator.next_page %} href="{% url 'credits:edu-part-search' %}?name={{ name }}&status={{ status }}&faculty_id={{ faculty_id }}&course_id={{ course_id }}&direction_id={{ direction_id }}&group_id={{ group_id }}&page={{ paginator.next_page }}" {% endif %}><i class="tf-icon bx bx-chevron-right"></i></a>
                         </li>
                     </ul>
                 </nav>
