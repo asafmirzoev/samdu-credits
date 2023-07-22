@@ -87,9 +87,12 @@ def get_deanery_course_credits_page(request: HttpRequest, course_id: int) -> Htt
     course = Course.objects.get(pk=course_id)
     students = Student.objects.filter(group__direction__course=course, group__direction__faculty=request.user.faculty)
 
+    redirect_url = reverse('credits:deanery-course-credits', kwargs={'course_id': course_id})
+
     context = {
         'course': course,
-        'students': students
+        'students': students,
+        'redirect_url': redirect_url
     }
     return render(request, 'credits/src/deanery/course/course_credits.html', context)
 
@@ -109,10 +112,13 @@ def get_deanery_direction_credits_page(request: HttpRequest, course_id: int, dir
     direction = Direction.objects.get(pk=direction_id)
     students = Student.objects.filter(group__direction=direction)
 
+    redirect_url = reverse('credits:deanery-direction-credits', kwargs={'course_id': course_id, 'direction_id': direction_id})
+
     context = {
         'course': course,
         'direction': direction,
-        'students': students
+        'students': students,
+        'redirect_url': redirect_url
     }
     return render(request, 'credits/src/deanery/direction/direction_credits.html', context)
 
