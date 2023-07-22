@@ -448,7 +448,7 @@ def get_edupart_overview_page(request: HttpRequest):
 
 def get_edupart_search_page(request: HttpRequest):
     name = request.GET.get('name', ''); page: int = request.GET.get('page', 1)
-    status: str = request.GET.get('status'); faculty_id: int = request.GET.get('faculty_id'); course_id: int = request.GET.get('course_id'); direction_id: int = request.GET.get('direction_id'); group_id: int = request.GET.get('group_id'); download: int = int(request.GET.get('download', 0))
+    status: str = request.GET.get('status', ''); faculty_id: int = request.GET.get('faculty_id'); course_id: int = request.GET.get('course_id'); direction_id: int = request.GET.get('direction_id'); group_id: int = request.GET.get('group_id'); download: int = int(request.GET.get('download', 0))
 
     credits = Credit.objects.all()
 
