@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (
     Faculty, Department, Teacher, Course, Direction, Group, EducationYear,
-    Semestr, Subject, Student, Credit, PaySet
+    Semestr, Subject, Student, Credit, PaySet, KontraktAmount
 )
 
 @admin.register(Faculty)
@@ -28,4 +28,8 @@ class CreditAdmin(admin.ModelAdmin):
 
 @admin.register(PaySet)
 class PaySetAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(KontraktAmount)
+class KontraktAmountAdmin(admin.ModelAdmin):
     pass
