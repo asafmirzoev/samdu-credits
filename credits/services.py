@@ -14,7 +14,7 @@ from users.choices import UserRoles
 
 from .models import (
     Faculty, Department, Teacher, Course, Direction, Group, EducationYear,
-    Semestr, Subject, Student, Credit, PaySet, DeadLine
+    Semestr, Subject, Student, Credit, PaySet, DeadLine, KontraktAmount
 )
 from .choices import CreditStatuses
 from .paginator import paginated_queryset
@@ -414,6 +414,7 @@ def get_finances_direction_page(request: HttpRequest, course_id: int, direction_
 
     with transaction.atomic():
         direction = Direction.objects.get(pk=direction_id)
+        if not hasattr(direction, 'kontraktamount'): KontraktAmount.objects.create(direction=direction)
         direction.kontraktamount.amount = float(request.POST.get('amount'))
         direction.kontraktamount.save()
 
