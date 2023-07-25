@@ -131,10 +131,12 @@
                                         <input class="form-control" type="date" id="pay-date{{ student.pk }}" name="pay-date{{ student.pk }}" required>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="pay-incoice{{ student.pk }}">{% trans 'Квитанция' %}:</label>
-                                        <input class="form-control" type="file" accept="application/pdf" id="pay-incoice{{ student.pk }}" name="pay-incoice{{ student.pk }}" required>
-                                    </div>
+                                    {% comment %}
+                                        <div class="mb-3">
+                                            <label for="pay-incoice{{ student.pk }}">{% trans 'Квитанция' %}:</label>
+                                            <input class="form-control" type="file" accept="image/jpeg,image/gif,image/png,application/pdf" id="pay-incoice{{ student.pk }}" name="pay-incoice{{ student.pk }}" required>
+                                        </div>
+                                    {% endcomment %}
         
                                     <div class="modal-footer">
                                         <button id="PayModal-close-button{{ student.pk }}" type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">

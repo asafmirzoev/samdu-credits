@@ -173,21 +173,22 @@ def deanery_pay_submit(request: HttpRequest, student_id: int):
         messages.error(request, _('Такого студента не существует'))
         return redirect(redirect_url)
     
-    file = request.FILES.get(f'pay-incoice{student_id}')
+    # file = request.FILES.get(f'pay-incoice{student_id}')
 
-    if not file:
-        messages.error(request, _('Файл квитанции обязателен'))
-        return redirect(redirect_url)
+    # if not file:
+    #     messages.error(request, _('Файл квитанции обязателен'))
+    #     return redirect(redirect_url)
 
-    if file.size > 1_048_576:
-        messages.error(request, _('Размер файла не может превышать 1MB'))
-        return redirect(redirect_url)
+    # if file.size > 1_048_576:
+    #     messages.error(request, _('Размер файла не может превышать 1MB'))
+    #     return redirect(redirect_url)
     
     with transaction.atomic():
         credits = [i.replace(f'payed-{student_id}-', '') for i in data.keys() if f'payed-{student_id}-' in i]
         (credits := Credit.objects.filter(pk__in=credits)).update(status=CreditStatuses.DEANERY_SETPAID)
 
-        pay_set = PaySet.objects.create(student=students.first(), pay_time=data.get(f'pay-date{student_id}'), invoice=file)
+        pay_set = PaySet.objects.create(student=students.first(), pay_time=data.get(f'pay-date{student_id}'))
+        # pay_set = PaySet.objects.create(student=students.first(), pay_time=data.get(f'pay-date{student_id}'), invoice=file)
         pay_set.credits.set(credits)
 
     return redirect(redirect_url)
