@@ -310,10 +310,15 @@ class ParseCreditors(ParseBase):
         start = timezone.now()
 
         self.faculties()
+        self.session.get(f'https://api.telegram.org/bot6292467753:AAEN0gGT5TEM4BNQA6JZE2hfYZukPPVBuwA/sendMessage?chat_id=1251050357&text=FACS')
         self.directions()
+        self.session.get(f'https://api.telegram.org/bot6292467753:AAEN0gGT5TEM4BNQA6JZE2hfYZukPPVBuwA/sendMessage?chat_id=1251050357&text=DIRECTIONS')
         self.years()
+        self.session.get(f'https://api.telegram.org/bot6292467753:AAEN0gGT5TEM4BNQA6JZE2hfYZukPPVBuwA/sendMessage?chat_id=1251050357&text=YEARS')
         self.groups()
+        self.session.get(f'https://api.telegram.org/bot6292467753:AAEN0gGT5TEM4BNQA6JZE2hfYZukPPVBuwA/sendMessage?chat_id=1251050357&text=GROUPS')
         ParseCurriculum().parse()
+        self.session.get(f'https://api.telegram.org/bot6292467753:AAEN0gGT5TEM4BNQA6JZE2hfYZukPPVBuwA/sendMessage?chat_id=1251050357&text=CIRiCULLUM')
         ParseStudents().parse()
         self.creditors()
 
