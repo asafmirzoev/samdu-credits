@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-03 13:33+0500\n"
+"POT-Creation-Date: 2023-07-17 12:42+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,36 +26,63 @@ msgstr "Kunduzgi"
 msgid "Вечернее"
 msgstr "Sirtqi"
 
-#: .\credits\choices.py:13
+#: .\credits\choices.py:9
+msgid "Смешанное"
+msgstr "Qo'shma"
+
+#: .\credits\choices.py:14
 msgid "Узбекский"
 msgstr "O'zbek tili"
 
-#: .\credits\choices.py:14 .\samdu_credits\settings.py:121
+#: .\credits\choices.py:15 .\samdu_credits\settings.py:121
 msgid "Русский"
 msgstr ""
 
-#: .\credits\choices.py:19
+#: .\credits\choices.py:16
+msgid "Таджикский"
+msgstr "Tojik tili"
+
+#: .\credits\choices.py:17
+msgid "Английсикй"
+msgstr ""
+
+#: .\credits\choices.py:22
 msgid "Загружено деканатом"
 msgstr "Dekanat tomonidan yuklangan"
 
-#: .\credits\choices.py:20
+#: .\credits\choices.py:23
 msgid "Цена кредита утверждена"
 msgstr "Kredit narxi tasdiqlangan"
 
-#: .\credits\choices.py:21
-#: .\credits\templates\credits\src\deanery\table.html:73
+#: .\credits\choices.py:24
+#: .\credits\templates\credits\src\deanery\semestr.html:92
+#: .\credits\templates\credits\src\deanery\table.html:77
 msgid "Оплатил"
 msgstr "To'langan"
 
-#: .\credits\choices.py:22
+#: .\credits\choices.py:25
 msgid "Подтверждено бухгалтером"
 msgstr "Buxgalter tomonidan tasdiqlangan"
 
-#: .\credits\services.py:44
-#, fuzzy
-#| msgid "Неверные логин или пароль"
+#: .\credits\services.py:46
 msgid "Неверный логин или для этого ID нет информации"
-msgstr "Login yoki parol xato"
+msgstr "Login noto'g'ri yoki bu ID uchun ma'lumot yo'q"
+
+#: .\credits\services.py:167
+msgid "Такого студента не существует"
+msgstr ""
+
+#: .\credits\services.py:173
+msgid "Файл квитанции обязателен"
+msgstr "Kvitansiya fayli zarur"
+
+#: .\credits\services.py:177
+msgid "Размер файла не может превышать 1MB"
+msgstr ""
+
+#: .\credits\services.py:369
+msgid "Оплата не найдена"
+msgstr "To'lov topilmadi"
 
 #: .\credits\templates\credits\base.html:62
 #: .\credits\templates\credits\students\login.html:14
@@ -81,7 +108,7 @@ msgstr "Bosh sahifa"
 #: .\credits\templates\credits\src\accountant\group\group_credits.html:4
 #: .\credits\templates\credits\src\accountant\overview.html:4
 #: .\credits\templates\credits\src\accountant\search.html:4
-#: .\credits\templates\credits\src\accountant\semestr.html:4
+#: .\credits\templates\credits\src\accountant\semestr.html:6
 #: .\credits\templates\credits\src\deanery\course.html:4
 #: .\credits\templates\credits\src\deanery\course\course_credits.html:4
 #: .\credits\templates\credits\src\deanery\direction.html:4
@@ -90,7 +117,7 @@ msgstr "Bosh sahifa"
 #: .\credits\templates\credits\src\deanery\group\group_credits.html:4
 #: .\credits\templates\credits\src\deanery\overview.html:4
 #: .\credits\templates\credits\src\deanery\search.html:4
-#: .\credits\templates\credits\src\deanery\semestr.html:4
+#: .\credits\templates\credits\src\deanery\semestr.html:5
 #: .\credits\templates\credits\src\edupart\course.html:4
 #: .\credits\templates\credits\src\edupart\course\course_credits.html:4
 #: .\credits\templates\credits\src\edupart\direction.html:4
@@ -100,9 +127,10 @@ msgstr "Bosh sahifa"
 #: .\credits\templates\credits\src\edupart\group.html:4
 #: .\credits\templates\credits\src\edupart\group\group_credits.html:4
 #: .\credits\templates\credits\src\edupart\overview.html:4
-#: .\credits\templates\credits\src\edupart\search.html:4
+#: .\credits\templates\credits\src\edupart\search.html:5
 #: .\credits\templates\credits\src\edupart\semestr.html:4
 #: .\credits\templates\credits\src\finances\course.html:7
+#: .\credits\templates\credits\src\finances\credits.html:4
 #: .\credits\templates\credits\src\finances\faculty.html:4
 #: .\credits\templates\credits\src\finances\overview.html:4
 msgid "Обзор"
@@ -130,7 +158,7 @@ msgid "Дедлайн"
 msgstr "Dedlayn"
 
 #: .\credits\templates\credits\base.html:171
-#: .\credits\templates\credits\src\edupart\deadline.html:8
+#: .\credits\templates\credits\src\edupart\deadline.html:11
 msgid "Текущий Дедлайн"
 msgstr "Hozirgi Dedlayn"
 
@@ -143,13 +171,13 @@ msgid "Время обработки кредитов вышло"
 msgstr "Kreditni kiritish muddati tugadi"
 
 #: .\credits\templates\credits\src\accountant\course.html:10
-#: .\credits\templates\credits\src\deanery\course.html:28
+#: .\credits\templates\credits\src\deanery\course.html:21
 #: .\credits\templates\credits\src\edupart\course.html:10
 msgid "Направления"
 msgstr "Yo'nalishlar"
 
 #: .\credits\templates\credits\src\accountant\course.html:11
-#: .\credits\templates\credits\src\deanery\course.html:29
+#: .\credits\templates\credits\src\deanery\course.html:22
 #: .\credits\templates\credits\src\edupart\course.html:11
 msgid "Кредиты курса"
 msgstr "Kurs kreditlari"
@@ -157,15 +185,15 @@ msgstr "Kurs kreditlari"
 #: .\credits\templates\credits\src\accountant\direction\direction_credits.html:18
 #: .\credits\templates\credits\src\accountant\group.html:11
 #: .\credits\templates\credits\src\accountant\group\group_credits.html:18
-#: .\credits\templates\credits\src\accountant\semestr.html:11
-#: .\credits\templates\credits\src\deanery\course.html:18
-#: .\credits\templates\credits\src\deanery\course\course_credits.html:18
-#: .\credits\templates\credits\src\deanery\direction.html:18
-#: .\credits\templates\credits\src\deanery\direction\direction_credits.html:18
-#: .\credits\templates\credits\src\deanery\group.html:18
-#: .\credits\templates\credits\src\deanery\group\group_credits.html:18
+#: .\credits\templates\credits\src\accountant\semestr.html:13
+#: .\credits\templates\credits\src\deanery\course.html:11
+#: .\credits\templates\credits\src\deanery\course\course_credits.html:11
+#: .\credits\templates\credits\src\deanery\direction.html:11
+#: .\credits\templates\credits\src\deanery\direction\direction_credits.html:11
+#: .\credits\templates\credits\src\deanery\group.html:11
+#: .\credits\templates\credits\src\deanery\group\group_credits.html:11
 #: .\credits\templates\credits\src\deanery\overview.html:9
-#: .\credits\templates\credits\src\deanery\semestr.html:18
+#: .\credits\templates\credits\src\deanery\semestr.html:12
 msgid "Курсы"
 msgstr "Kurslar"
 
@@ -173,19 +201,19 @@ msgstr "Kurslar"
 #: .\credits\templates\credits\src\accountant\faculty.html:17
 #: .\credits\templates\credits\src\accountant\group.html:12
 #: .\credits\templates\credits\src\accountant\group\group_credits.html:19
-#: .\credits\templates\credits\src\accountant\semestr.html:12
-#: .\credits\templates\credits\src\deanery\course.html:19
-#: .\credits\templates\credits\src\deanery\course\course_credits.html:19
-#: .\credits\templates\credits\src\deanery\direction.html:19
-#: .\credits\templates\credits\src\deanery\direction\direction_credits.html:19
-#: .\credits\templates\credits\src\deanery\group.html:19
-#: .\credits\templates\credits\src\deanery\group\group_credits.html:19
+#: .\credits\templates\credits\src\accountant\semestr.html:14
+#: .\credits\templates\credits\src\deanery\course.html:12
+#: .\credits\templates\credits\src\deanery\course\course_credits.html:12
+#: .\credits\templates\credits\src\deanery\direction.html:12
+#: .\credits\templates\credits\src\deanery\direction\direction_credits.html:12
+#: .\credits\templates\credits\src\deanery\group.html:12
+#: .\credits\templates\credits\src\deanery\group\group_credits.html:12
 #: .\credits\templates\credits\src\deanery\overview.html:14
-#: .\credits\templates\credits\src\deanery\semestr.html:19
+#: .\credits\templates\credits\src\deanery\semestr.html:13
 #: .\credits\templates\credits\src\edupart\faculty.html:17
-#: .\credits\templates\credits\src\finances\course.html:23
-#: .\credits\templates\credits\src\finances\course.html:31
-#: .\credits\templates\credits\src\finances\faculty.html:32
+#: .\credits\templates\credits\src\finances\course.html:16
+#: .\credits\templates\credits\src\finances\course.html:24
+#: .\credits\templates\credits\src\finances\faculty.html:25
 msgid "Курс"
 msgstr "Kurs"
 
@@ -195,90 +223,94 @@ msgid "Кредиты факультета"
 msgstr "Fakultet kreditlari"
 
 #: .\credits\templates\credits\src\accountant\group.html:23
-#: .\credits\templates\credits\src\deanery\group.html:30
+#: .\credits\templates\credits\src\deanery\group.html:23
 #: .\credits\templates\credits\src\edupart\group.html:11
 msgid "Семестры"
 msgstr "Semestrlar"
 
 #: .\credits\templates\credits\src\accountant\group.html:24
-#: .\credits\templates\credits\src\deanery\group.html:31
+#: .\credits\templates\credits\src\deanery\group.html:24
 #: .\credits\templates\credits\src\edupart\group.html:12
 msgid "Кредиты группы"
 msgstr "Guruh kreditlari"
 
 #: .\credits\templates\credits\src\accountant\group.html:30
-#: .\credits\templates\credits\src\deanery\group.html:37
+#: .\credits\templates\credits\src\deanery\group.html:30
 #: .\credits\templates\credits\src\edupart\group.html:18
 msgid "Семемтр"
 msgstr "Semestr"
 
 #: .\credits\templates\credits\src\accountant\overview.html:10
 #: .\credits\templates\credits\src\edupart\overview.html:10
-#: .\credits\templates\credits\src\finances\course.html:21
-#: .\credits\templates\credits\src\finances\faculty.html:18
-#: .\credits\templates\credits\src\finances\overview.html:18
+#: .\credits\templates\credits\src\finances\course.html:14
+#: .\credits\templates\credits\src\finances\faculty.html:11
+#: .\credits\templates\credits\src\finances\overview.html:11
 msgid "Факультеты"
 msgstr "Fakultetlar"
 
 #: .\credits\templates\credits\src\accountant\search.html:14
 #: .\credits\templates\credits\src\deanery\search.html:16
-#: .\credits\templates\credits\src\edupart\search.html:14
+#: .\credits\templates\credits\src\edupart\search.html:64
 msgid "ФИО или Hemis ID студента"
 msgstr "Student FISh yoki Hemis IDsi"
 
 #: .\credits\templates\credits\src\accountant\search.html:18
 #: .\credits\templates\credits\src\deanery\search.html:20
-#: .\credits\templates\credits\src\edupart\search.html:18
+#: .\credits\templates\credits\src\edupart\search.html:68
 msgid "Поиск"
 msgstr "Qidirish"
 
-#: .\credits\templates\credits\src\accountant\semestr.html:15
-#: .\credits\templates\credits\src\accountant\table.html:86
-#: .\credits\templates\credits\src\deanery\semestr.html:22
-#: .\credits\templates\credits\src\deanery\table.html:100
+#: .\credits\templates\credits\src\accountant\semestr.html:17
+#: .\credits\templates\credits\src\deanery\semestr.html:16
+#: .\credits\templates\credits\students\credits.html:81
 msgid "Семестр"
 msgstr "Semestr"
 
-#: .\credits\templates\credits\src\accountant\table.html:59
+#: .\credits\templates\credits\src\accountant\semestr.html:58
+#: .\credits\templates\credits\src\accountant\table.html:42
+#: .\credits\templates\credits\src\deanery\semestr.html:135
+#: .\credits\templates\credits\src\deanery\table.html:120
+msgid "Квитанция"
+msgstr ""
+
+#: .\credits\templates\credits\src\accountant\semestr.html:62
+#: .\credits\templates\credits\src\accountant\table.html:46
+#: .\credits\templates\credits\students\credits.html:102
+msgid "Оплата подтверждена"
+msgstr "To'lov tasdiqlangan"
+
+#: .\credits\templates\credits\src\accountant\semestr.html:64
+#: .\credits\templates\credits\src\accountant\table.html:48
 msgid "Подтвердить оплату"
 msgstr "To'lovni tasdiqlash"
 
-#: .\credits\templates\credits\src\accountant\table.html:65
-#: .\credits\templates\credits\src\deanery\table.html:79
-#: .\credits\templates\credits\src\edupart\table.html:55
-#: .\credits\templates\credits\students\credits.html:108
+#: .\credits\templates\credits\src\accountant\semestr.html:73
+#: .\credits\templates\credits\src\accountant\table.html:57
+#: .\credits\templates\credits\src\deanery\semestr.html:101
+#: .\credits\templates\credits\src\deanery\table.html:86
+#: .\credits\templates\credits\src\edupart\table.html:67
+#: .\credits\templates\credits\src\finances\credits.html:80
+#: .\credits\templates\credits\students\credits.html:112
 msgid "Ничего не найдено"
 msgstr "Hechnima topilmadi"
 
-#: .\credits\templates\credits\src\accountant\table.html:85
-#: .\credits\templates\credits\src\deanery\table.html:99
+#: .\credits\templates\credits\src\accountant\semestr.html:98
+#: .\credits\templates\credits\src\accountant\table.html:78
 msgid "Вы уверены что хотите подтвердить оплату студента"
 msgstr "Haqiqatan ham talaba toʻlovini tasdiqlamoqchimisiz?"
 
-#: .\credits\templates\credits\src\accountant\table.html:87
-#: .\credits\templates\credits\src\deanery\table.html:101
-#: .\credits\templates\credits\students\credits.html:80
-msgid "Предмет"
-msgstr "Fan"
-
-#: .\credits\templates\credits\src\accountant\table.html:88
-#: .\credits\templates\credits\src\deanery\table.html:102
-msgid "Количество кредитов"
-msgstr "Kredit miqdori"
-
-#: .\credits\templates\credits\src\accountant\table.html:89
-#: .\credits\templates\credits\src\deanery\table.html:103
-msgid "Оплачиваемая сумма"
-msgstr "To'lov summasi"
-
-#: .\credits\templates\credits\src\accountant\table.html:93
-#: .\credits\templates\credits\src\deanery\table.html:107
-#: .\credits\templates\credits\src\finances\course.html:62
+#: .\credits\templates\credits\src\accountant\semestr.html:102
+#: .\credits\templates\credits\src\accountant\table.html:82
+#: .\credits\templates\credits\src\deanery\semestr.html:141
+#: .\credits\templates\credits\src\deanery\table.html:126
+#: .\credits\templates\credits\src\finances\course.html:55
 msgid "Закрыть"
 msgstr "Yopish"
 
-#: .\credits\templates\credits\src\accountant\table.html:95
-#: .\credits\templates\credits\src\deanery\table.html:109
+#: .\credits\templates\credits\src\accountant\semestr.html:104
+#: .\credits\templates\credits\src\accountant\table.html:84
+#: .\credits\templates\credits\src\deanery\semestr.html:143
+#: .\credits\templates\credits\src\deanery\table.html:128
 msgid "Подтвердить"
 msgstr "Tasdiqlash"
 
@@ -294,52 +326,72 @@ msgstr "Faylni tanlang"
 msgid "Загрузить"
 msgstr "Yuklash"
 
-#: .\credits\templates\credits\src\deanery\direction.html:29
+#: .\credits\templates\credits\src\deanery\direction.html:22
 msgid "Группы"
 msgstr "Guruhlar"
 
-#: .\credits\templates\credits\src\deanery\direction.html:30
+#: .\credits\templates\credits\src\deanery\direction.html:23
 #: .\credits\templates\credits\src\edupart\direction.html:11
 msgid "Кредиты направления"
 msgstr "Yo'nalish kreditlari"
 
-#: .\credits\templates\credits\src\edupart\deadline.html:19
-#: .\credits\templates\credits\src\finances\course.html:64
-msgid "Сохранить"
-msgstr "Saqlash"
+#: .\credits\templates\credits\src\deanery\semestr.html:130
+#: .\credits\templates\credits\src\deanery\table.html:115
+msgid "Дата оплаты"
+msgstr "To'lov vaqti"
 
-#: .\credits\templates\credits\src\finances\course.html:13
-#: .\credits\templates\credits\src\finances\faculty.html:10
-#: .\credits\templates\credits\src\finances\overview.html:10
+#: .\credits\templates\credits\src\edupart\deadline.html:11
+#: .\users\choices.py:10
+msgid "Бухгалтер"
+msgstr "Buxgalter"
+
+#: .\credits\templates\credits\src\edupart\deadline.html:11
 #: .\users\choices.py:9
 msgid "Финансы"
 msgstr "Moliya"
 
-#: .\credits\templates\credits\src\finances\course.html:46
+#: .\credits\templates\credits\src\edupart\deadline.html:20
+#: .\credits\templates\credits\src\finances\course.html:58
+msgid "Сохранить"
+msgstr "Saqlash"
+
+#: .\credits\templates\credits\src\edupart\search.html:73
+msgid "Скачать"
+msgstr "Yuklab olish"
+
+#: .\credits\templates\credits\src\finances\course.html:39
 msgid "Направление"
 msgstr "Yo'nalishlar"
 
-#: .\credits\templates\credits\src\finances\course.html:55
+#: .\credits\templates\credits\src\finances\course.html:48
 msgid "Стоимость контракта направления"
 msgstr "Yo'nash yillik shartnoma narxi"
 
-#: .\credits\templates\credits\students\credits.html:81
+#: .\credits\templates\credits\src\finances\course.html:57
+msgid "Кредиты"
+msgstr "Kreditlar"
+
+#: .\credits\templates\credits\students\credits.html:80
+msgid "Предмет"
+msgstr "Fan"
+
+#: .\credits\templates\credits\students\credits.html:82
 msgid "Сумма"
 msgstr "Summa"
 
-#: .\credits\templates\credits\students\credits.html:82
+#: .\credits\templates\credits\students\credits.html:83
 msgid "Статус"
 msgstr "Status"
 
-#: .\credits\templates\credits\students\credits.html:94
+#: .\credits\templates\credits\students\credits.html:96
 msgid "Ещё не утверждена"
 msgstr "Hali tasdiqlanmagan"
 
-#: .\credits\templates\credits\students\credits.html:100
+#: .\credits\templates\credits\students\credits.html:104
 msgid "Оплачен"
 msgstr "To'langan"
 
-#: .\credits\templates\credits\students\credits.html:102
+#: .\credits\templates\credits\students\credits.html:106
 msgid "В разработке"
 msgstr "Ko'rib chiqilmoqda"
 
@@ -368,10 +420,6 @@ msgstr "O'quv bo'limi"
 msgid "Декан"
 msgstr "Dekan"
 
-#: .\users\choices.py:10
-msgid "Бухгалтер"
-msgstr "Buxgalter"
-
 #: .\users\services.py:17
 msgid "Неверные логин или пароль"
 msgstr "Login yoki parol xato"
@@ -387,6 +435,12 @@ msgstr "Parolingizni kiriting"
 #: .\users\templates\users\login.html:86
 msgid "Пароль"
 msgstr "Parol"
+
+#~ msgid "Количество кредитов"
+#~ msgstr "Kredit miqdori"
+
+#~ msgid "Оплачиваемая сумма"
+#~ msgstr "To'lov summasi"
 
 #~ msgid "Ректорат"
 #~ msgstr "Rektorat"

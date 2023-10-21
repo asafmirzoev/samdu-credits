@@ -6,6 +6,7 @@ from .choices import EducationForms, EducationLanguages, CreditStatuses
 
 class Faculty(models.Model):
 
+    faculty_id = models.CharField(max_length=16)
     name = models.CharField('Название', max_length=255, unique=True)
 
     def __str__(self):
@@ -43,6 +44,20 @@ class Teacher(models.Model):
         verbose_name_plural = 'Преподаватели'
 
 
+class EducationYear(models.Model):
+
+    year_id = models.CharField(max_length=16)
+    year = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.year
+
+    class Meta:
+        ordering = ('year',)
+        verbose_name = 'Год'
+        verbose_name_plural = 'Год'
+
+
 class Course(models.Model):
 
     course = models.PositiveSmallIntegerField('Курс')
@@ -57,8 +72,9 @@ class Course(models.Model):
 
 class Semestr(models.Model):
 
-    semestr = models.PositiveSmallIntegerField('Семестр')
-    course = models.ForeignKey(Course, verbose_name='Курс', on_delete=models.CASCADE)
+    semestr_id = models.CharField(max_length=16)
+    semestr = models.CharField('Семестр', max_length=32)
+    # course = models.ForeignKey(Course, verbose_name='Курс', on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.semestr)
@@ -70,10 +86,11 @@ class Semestr(models.Model):
 
 
 class Direction(models.Model):
-
+    
+    direction_id = models.CharField(max_length=16)
     name = models.CharField('Имя', max_length=255, unique=True)
     faculty = models.ForeignKey(Faculty, verbose_name='Факультет', on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, verbose_name='Курс', on_delete=models.CASCADE)
+    # course = models.ForeignKey(Course, verbose_name='Курс', on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -88,12 +105,20 @@ class Direction(models.Model):
         verbose_name_plural = 'Направления'
 
 
+class DirectionEduYear(models.Model):
+
+    direction = models.ForeignKey(Direction, verbose_name='Направление', on_delete=models.CASCADE)
+    edu_year = models.ForeignKey(EducationYear, on_delete=models.PROTECT)
+    semestrs = models.ManyToManyField(Semestr)
+
+
 class Group(models.Model):
 
+    group_id = models.CharField(max_length=16)
     name = models.CharField('Имя', max_length=255, unique=True)
     direction = models.ForeignKey(Direction, verbose_name='Направление', on_delete=models.CASCADE)
-    education_form = models.CharField('Форма обучения', max_length=32, choices=EducationForms.choices)
-    language = models.CharField('Язык обучения', max_length=32, choices=EducationLanguages.choices)
+    education_form = models.CharField('Форма обучения', max_length=32)
+    # language = models.CharField('Язык обучения', max_length=32, choices=EducationLanguages.choices)
 
     def __str__(self):
         return self.name
@@ -103,20 +128,10 @@ class Group(models.Model):
         verbose_name_plural = 'Группы'
 
 
-class EducationYear(models.Model):
-
-    year = models.CharField(max_length=64)
-
-    def __str__(self):
-        return self.year
-
-    class Meta:
-        ordering = ('year',)
-        verbose_name = 'Год'
-        verbose_name_plural = 'Год'
-
-
 class Subject(models.Model):
+    
+    direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
+    semestr = models.ForeignKey(Semestr, on_delete=models.CASCADE)
     
     name = models.CharField(max_length=255)
     hours = models.PositiveSmallIntegerField('Часы')
@@ -164,9 +179,7 @@ class Credit(models.Model):
 
     student = models.ForeignKey(Student, verbose_name='Студент', on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
-    semestr = models.ForeignKey(Semestr, on_delete=models.PROTECT)
     edu_year = models.ForeignKey(EducationYear, on_delete=models.PROTECT)
-    edu_hours = models.PositiveSmallIntegerField('Часы за год')
     amount = models.DecimalField(max_digits=12, decimal_places=2, null=True, default=None, blank=True)
     status = models.CharField(max_length=64, choices=CreditStatuses.choices, default=CreditStatuses.DEANERY_UPLOADED)
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-03 13:33+0500\n"
+"POT-Creation-Date: 2023-07-17 12:42+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,33 +28,62 @@ msgstr ""
 msgid "Вечернее"
 msgstr ""
 
-#: .\credits\choices.py:13
+#: .\credits\choices.py:9
+msgid "Смешанное"
+msgstr ""
+
+#: .\credits\choices.py:14
 msgid "Узбекский"
 msgstr ""
 
-#: .\credits\choices.py:14 .\samdu_credits\settings.py:121
+#: .\credits\choices.py:15 .\samdu_credits\settings.py:121
 msgid "Русский"
 msgstr ""
 
-#: .\credits\choices.py:19
-msgid "Загружено деканатом"
+#: .\credits\choices.py:16
+msgid "Таджикский"
 msgstr ""
 
-#: .\credits\choices.py:20
-msgid "Цена кредита утверждена"
-msgstr ""
-
-#: .\credits\choices.py:21
-#: .\credits\templates\credits\src\deanery\table.html:73
-msgid "Оплатил"
+#: .\credits\choices.py:17
+msgid "Английсикй"
 msgstr ""
 
 #: .\credits\choices.py:22
+msgid "Загружено деканатом"
+msgstr ""
+
+#: .\credits\choices.py:23
+msgid "Цена кредита утверждена"
+msgstr ""
+
+#: .\credits\choices.py:24
+#: .\credits\templates\credits\src\deanery\semestr.html:92
+#: .\credits\templates\credits\src\deanery\table.html:77
+msgid "Оплатил"
+msgstr ""
+
+#: .\credits\choices.py:25
 msgid "Подтверждено бухгалтером"
 msgstr ""
 
-#: .\credits\services.py:44
+#: .\credits\services.py:46
 msgid "Неверный логин или для этого ID нет информации"
+msgstr ""
+
+#: .\credits\services.py:167
+msgid "Такого студента не существует"
+msgstr ""
+
+#: .\credits\services.py:173
+msgid "Файл квитанции обязателен"
+msgstr ""
+
+#: .\credits\services.py:177
+msgid "Размер файла не может превышать 1MB"
+msgstr ""
+
+#: .\credits\services.py:369
+msgid "Оплата не найдена"
 msgstr ""
 
 #: .\credits\templates\credits\base.html:62
@@ -81,7 +110,7 @@ msgstr ""
 #: .\credits\templates\credits\src\accountant\group\group_credits.html:4
 #: .\credits\templates\credits\src\accountant\overview.html:4
 #: .\credits\templates\credits\src\accountant\search.html:4
-#: .\credits\templates\credits\src\accountant\semestr.html:4
+#: .\credits\templates\credits\src\accountant\semestr.html:6
 #: .\credits\templates\credits\src\deanery\course.html:4
 #: .\credits\templates\credits\src\deanery\course\course_credits.html:4
 #: .\credits\templates\credits\src\deanery\direction.html:4
@@ -90,7 +119,7 @@ msgstr ""
 #: .\credits\templates\credits\src\deanery\group\group_credits.html:4
 #: .\credits\templates\credits\src\deanery\overview.html:4
 #: .\credits\templates\credits\src\deanery\search.html:4
-#: .\credits\templates\credits\src\deanery\semestr.html:4
+#: .\credits\templates\credits\src\deanery\semestr.html:5
 #: .\credits\templates\credits\src\edupart\course.html:4
 #: .\credits\templates\credits\src\edupart\course\course_credits.html:4
 #: .\credits\templates\credits\src\edupart\direction.html:4
@@ -100,9 +129,10 @@ msgstr ""
 #: .\credits\templates\credits\src\edupart\group.html:4
 #: .\credits\templates\credits\src\edupart\group\group_credits.html:4
 #: .\credits\templates\credits\src\edupart\overview.html:4
-#: .\credits\templates\credits\src\edupart\search.html:4
+#: .\credits\templates\credits\src\edupart\search.html:5
 #: .\credits\templates\credits\src\edupart\semestr.html:4
 #: .\credits\templates\credits\src\finances\course.html:7
+#: .\credits\templates\credits\src\finances\credits.html:4
 #: .\credits\templates\credits\src\finances\faculty.html:4
 #: .\credits\templates\credits\src\finances\overview.html:4
 msgid "Обзор"
@@ -130,7 +160,7 @@ msgid "Дедлайн"
 msgstr ""
 
 #: .\credits\templates\credits\base.html:171
-#: .\credits\templates\credits\src\edupart\deadline.html:8
+#: .\credits\templates\credits\src\edupart\deadline.html:11
 msgid "Текущий Дедлайн"
 msgstr ""
 
@@ -143,13 +173,13 @@ msgid "Время обработки кредитов вышло"
 msgstr ""
 
 #: .\credits\templates\credits\src\accountant\course.html:10
-#: .\credits\templates\credits\src\deanery\course.html:28
+#: .\credits\templates\credits\src\deanery\course.html:21
 #: .\credits\templates\credits\src\edupart\course.html:10
 msgid "Направления"
 msgstr ""
 
 #: .\credits\templates\credits\src\accountant\course.html:11
-#: .\credits\templates\credits\src\deanery\course.html:29
+#: .\credits\templates\credits\src\deanery\course.html:22
 #: .\credits\templates\credits\src\edupart\course.html:11
 msgid "Кредиты курса"
 msgstr ""
@@ -157,15 +187,15 @@ msgstr ""
 #: .\credits\templates\credits\src\accountant\direction\direction_credits.html:18
 #: .\credits\templates\credits\src\accountant\group.html:11
 #: .\credits\templates\credits\src\accountant\group\group_credits.html:18
-#: .\credits\templates\credits\src\accountant\semestr.html:11
-#: .\credits\templates\credits\src\deanery\course.html:18
-#: .\credits\templates\credits\src\deanery\course\course_credits.html:18
-#: .\credits\templates\credits\src\deanery\direction.html:18
-#: .\credits\templates\credits\src\deanery\direction\direction_credits.html:18
-#: .\credits\templates\credits\src\deanery\group.html:18
-#: .\credits\templates\credits\src\deanery\group\group_credits.html:18
+#: .\credits\templates\credits\src\accountant\semestr.html:13
+#: .\credits\templates\credits\src\deanery\course.html:11
+#: .\credits\templates\credits\src\deanery\course\course_credits.html:11
+#: .\credits\templates\credits\src\deanery\direction.html:11
+#: .\credits\templates\credits\src\deanery\direction\direction_credits.html:11
+#: .\credits\templates\credits\src\deanery\group.html:11
+#: .\credits\templates\credits\src\deanery\group\group_credits.html:11
 #: .\credits\templates\credits\src\deanery\overview.html:9
-#: .\credits\templates\credits\src\deanery\semestr.html:18
+#: .\credits\templates\credits\src\deanery\semestr.html:12
 msgid "Курсы"
 msgstr ""
 
@@ -173,19 +203,19 @@ msgstr ""
 #: .\credits\templates\credits\src\accountant\faculty.html:17
 #: .\credits\templates\credits\src\accountant\group.html:12
 #: .\credits\templates\credits\src\accountant\group\group_credits.html:19
-#: .\credits\templates\credits\src\accountant\semestr.html:12
-#: .\credits\templates\credits\src\deanery\course.html:19
-#: .\credits\templates\credits\src\deanery\course\course_credits.html:19
-#: .\credits\templates\credits\src\deanery\direction.html:19
-#: .\credits\templates\credits\src\deanery\direction\direction_credits.html:19
-#: .\credits\templates\credits\src\deanery\group.html:19
-#: .\credits\templates\credits\src\deanery\group\group_credits.html:19
+#: .\credits\templates\credits\src\accountant\semestr.html:14
+#: .\credits\templates\credits\src\deanery\course.html:12
+#: .\credits\templates\credits\src\deanery\course\course_credits.html:12
+#: .\credits\templates\credits\src\deanery\direction.html:12
+#: .\credits\templates\credits\src\deanery\direction\direction_credits.html:12
+#: .\credits\templates\credits\src\deanery\group.html:12
+#: .\credits\templates\credits\src\deanery\group\group_credits.html:12
 #: .\credits\templates\credits\src\deanery\overview.html:14
-#: .\credits\templates\credits\src\deanery\semestr.html:19
+#: .\credits\templates\credits\src\deanery\semestr.html:13
 #: .\credits\templates\credits\src\edupart\faculty.html:17
-#: .\credits\templates\credits\src\finances\course.html:23
-#: .\credits\templates\credits\src\finances\course.html:31
-#: .\credits\templates\credits\src\finances\faculty.html:32
+#: .\credits\templates\credits\src\finances\course.html:16
+#: .\credits\templates\credits\src\finances\course.html:24
+#: .\credits\templates\credits\src\finances\faculty.html:25
 msgid "Курс"
 msgstr ""
 
@@ -195,90 +225,94 @@ msgid "Кредиты факультета"
 msgstr ""
 
 #: .\credits\templates\credits\src\accountant\group.html:23
-#: .\credits\templates\credits\src\deanery\group.html:30
+#: .\credits\templates\credits\src\deanery\group.html:23
 #: .\credits\templates\credits\src\edupart\group.html:11
 msgid "Семестры"
 msgstr ""
 
 #: .\credits\templates\credits\src\accountant\group.html:24
-#: .\credits\templates\credits\src\deanery\group.html:31
+#: .\credits\templates\credits\src\deanery\group.html:24
 #: .\credits\templates\credits\src\edupart\group.html:12
 msgid "Кредиты группы"
 msgstr ""
 
 #: .\credits\templates\credits\src\accountant\group.html:30
-#: .\credits\templates\credits\src\deanery\group.html:37
+#: .\credits\templates\credits\src\deanery\group.html:30
 #: .\credits\templates\credits\src\edupart\group.html:18
 msgid "Семемтр"
 msgstr ""
 
 #: .\credits\templates\credits\src\accountant\overview.html:10
 #: .\credits\templates\credits\src\edupart\overview.html:10
-#: .\credits\templates\credits\src\finances\course.html:21
-#: .\credits\templates\credits\src\finances\faculty.html:18
-#: .\credits\templates\credits\src\finances\overview.html:18
+#: .\credits\templates\credits\src\finances\course.html:14
+#: .\credits\templates\credits\src\finances\faculty.html:11
+#: .\credits\templates\credits\src\finances\overview.html:11
 msgid "Факультеты"
 msgstr ""
 
 #: .\credits\templates\credits\src\accountant\search.html:14
 #: .\credits\templates\credits\src\deanery\search.html:16
-#: .\credits\templates\credits\src\edupart\search.html:14
+#: .\credits\templates\credits\src\edupart\search.html:64
 msgid "ФИО или Hemis ID студента"
 msgstr ""
 
 #: .\credits\templates\credits\src\accountant\search.html:18
 #: .\credits\templates\credits\src\deanery\search.html:20
-#: .\credits\templates\credits\src\edupart\search.html:18
+#: .\credits\templates\credits\src\edupart\search.html:68
 msgid "Поиск"
 msgstr ""
 
-#: .\credits\templates\credits\src\accountant\semestr.html:15
-#: .\credits\templates\credits\src\accountant\table.html:86
-#: .\credits\templates\credits\src\deanery\semestr.html:22
-#: .\credits\templates\credits\src\deanery\table.html:100
+#: .\credits\templates\credits\src\accountant\semestr.html:17
+#: .\credits\templates\credits\src\deanery\semestr.html:16
+#: .\credits\templates\credits\students\credits.html:81
 msgid "Семестр"
 msgstr ""
 
-#: .\credits\templates\credits\src\accountant\table.html:59
+#: .\credits\templates\credits\src\accountant\semestr.html:58
+#: .\credits\templates\credits\src\accountant\table.html:42
+#: .\credits\templates\credits\src\deanery\semestr.html:135
+#: .\credits\templates\credits\src\deanery\table.html:120
+msgid "Квитанция"
+msgstr ""
+
+#: .\credits\templates\credits\src\accountant\semestr.html:62
+#: .\credits\templates\credits\src\accountant\table.html:46
+#: .\credits\templates\credits\students\credits.html:102
+msgid "Оплата подтверждена"
+msgstr ""
+
+#: .\credits\templates\credits\src\accountant\semestr.html:64
+#: .\credits\templates\credits\src\accountant\table.html:48
 msgid "Подтвердить оплату"
 msgstr ""
 
-#: .\credits\templates\credits\src\accountant\table.html:65
-#: .\credits\templates\credits\src\deanery\table.html:79
-#: .\credits\templates\credits\src\edupart\table.html:55
-#: .\credits\templates\credits\students\credits.html:108
+#: .\credits\templates\credits\src\accountant\semestr.html:73
+#: .\credits\templates\credits\src\accountant\table.html:57
+#: .\credits\templates\credits\src\deanery\semestr.html:101
+#: .\credits\templates\credits\src\deanery\table.html:86
+#: .\credits\templates\credits\src\edupart\table.html:67
+#: .\credits\templates\credits\src\finances\credits.html:80
+#: .\credits\templates\credits\students\credits.html:112
 msgid "Ничего не найдено"
 msgstr ""
 
-#: .\credits\templates\credits\src\accountant\table.html:85
-#: .\credits\templates\credits\src\deanery\table.html:99
+#: .\credits\templates\credits\src\accountant\semestr.html:98
+#: .\credits\templates\credits\src\accountant\table.html:78
 msgid "Вы уверены что хотите подтвердить оплату студента"
 msgstr ""
 
-#: .\credits\templates\credits\src\accountant\table.html:87
-#: .\credits\templates\credits\src\deanery\table.html:101
-#: .\credits\templates\credits\students\credits.html:80
-msgid "Предмет"
-msgstr ""
-
-#: .\credits\templates\credits\src\accountant\table.html:88
-#: .\credits\templates\credits\src\deanery\table.html:102
-msgid "Количество кредитов"
-msgstr ""
-
-#: .\credits\templates\credits\src\accountant\table.html:89
-#: .\credits\templates\credits\src\deanery\table.html:103
-msgid "Оплачиваемая сумма"
-msgstr ""
-
-#: .\credits\templates\credits\src\accountant\table.html:93
-#: .\credits\templates\credits\src\deanery\table.html:107
-#: .\credits\templates\credits\src\finances\course.html:62
+#: .\credits\templates\credits\src\accountant\semestr.html:102
+#: .\credits\templates\credits\src\accountant\table.html:82
+#: .\credits\templates\credits\src\deanery\semestr.html:141
+#: .\credits\templates\credits\src\deanery\table.html:126
+#: .\credits\templates\credits\src\finances\course.html:55
 msgid "Закрыть"
 msgstr ""
 
-#: .\credits\templates\credits\src\accountant\table.html:95
-#: .\credits\templates\credits\src\deanery\table.html:109
+#: .\credits\templates\credits\src\accountant\semestr.html:104
+#: .\credits\templates\credits\src\accountant\table.html:84
+#: .\credits\templates\credits\src\deanery\semestr.html:143
+#: .\credits\templates\credits\src\deanery\table.html:128
 msgid "Подтвердить"
 msgstr ""
 
@@ -294,52 +328,72 @@ msgstr ""
 msgid "Загрузить"
 msgstr ""
 
-#: .\credits\templates\credits\src\deanery\direction.html:29
+#: .\credits\templates\credits\src\deanery\direction.html:22
 msgid "Группы"
 msgstr ""
 
-#: .\credits\templates\credits\src\deanery\direction.html:30
+#: .\credits\templates\credits\src\deanery\direction.html:23
 #: .\credits\templates\credits\src\edupart\direction.html:11
 msgid "Кредиты направления"
 msgstr ""
 
-#: .\credits\templates\credits\src\edupart\deadline.html:19
-#: .\credits\templates\credits\src\finances\course.html:64
-msgid "Сохранить"
+#: .\credits\templates\credits\src\deanery\semestr.html:130
+#: .\credits\templates\credits\src\deanery\table.html:115
+msgid "Дата оплаты"
 msgstr ""
 
-#: .\credits\templates\credits\src\finances\course.html:13
-#: .\credits\templates\credits\src\finances\faculty.html:10
-#: .\credits\templates\credits\src\finances\overview.html:10
+#: .\credits\templates\credits\src\edupart\deadline.html:11
+#: .\users\choices.py:10
+msgid "Бухгалтер"
+msgstr ""
+
+#: .\credits\templates\credits\src\edupart\deadline.html:11
 #: .\users\choices.py:9
 msgid "Финансы"
 msgstr ""
 
-#: .\credits\templates\credits\src\finances\course.html:46
+#: .\credits\templates\credits\src\edupart\deadline.html:20
+#: .\credits\templates\credits\src\finances\course.html:58
+msgid "Сохранить"
+msgstr ""
+
+#: .\credits\templates\credits\src\edupart\search.html:73
+msgid "Скачать"
+msgstr ""
+
+#: .\credits\templates\credits\src\finances\course.html:39
 msgid "Направление"
 msgstr ""
 
-#: .\credits\templates\credits\src\finances\course.html:55
+#: .\credits\templates\credits\src\finances\course.html:48
 msgid "Стоимость контракта направления"
 msgstr ""
 
-#: .\credits\templates\credits\students\credits.html:81
-msgid "Сумма"
+#: .\credits\templates\credits\src\finances\course.html:57
+msgid "Кредиты"
+msgstr ""
+
+#: .\credits\templates\credits\students\credits.html:80
+msgid "Предмет"
 msgstr ""
 
 #: .\credits\templates\credits\students\credits.html:82
+msgid "Сумма"
+msgstr ""
+
+#: .\credits\templates\credits\students\credits.html:83
 msgid "Статус"
 msgstr ""
 
-#: .\credits\templates\credits\students\credits.html:94
+#: .\credits\templates\credits\students\credits.html:96
 msgid "Ещё не утверждена"
 msgstr ""
 
-#: .\credits\templates\credits\students\credits.html:100
+#: .\credits\templates\credits\students\credits.html:104
 msgid "Оплачен"
 msgstr ""
 
-#: .\credits\templates\credits\students\credits.html:102
+#: .\credits\templates\credits\students\credits.html:106
 msgid "В разработке"
 msgstr ""
 
@@ -366,10 +420,6 @@ msgstr ""
 
 #: .\users\choices.py:8
 msgid "Декан"
-msgstr ""
-
-#: .\users\choices.py:10
-msgid "Бухгалтер"
 msgstr ""
 
 #: .\users\services.py:17
