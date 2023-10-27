@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import (
-    Faculty, Department, Teacher, Course, Direction, Group, EducationYear,
+    Faculty, Course, Direction, Group, EducationYear,
     Semestr, Subject, Student, Credit, PaySet, KontraktAmount
 )
 
@@ -12,6 +12,10 @@ class StudentAdmin(admin.ModelAdmin):
 
 @admin.register(Direction)
 class StudentAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Course)
+class CourseAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(Group)

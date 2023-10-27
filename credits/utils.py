@@ -3,6 +3,7 @@ import json
 import requests
 import time
 import pickle
+import logging
 from bs4 import BeautifulSoup
 
 from django.db import transaction
@@ -11,86 +12,13 @@ from django.utils import timezone
 from django.conf import settings
 
 from .models import (
-    Faculty, Department, Teacher, Direction, Course, Group, EducationYear, Semestr, Subject, DeadLine, Credit,
+    Faculty, Direction, Course, Group, EducationYear, Semestr, Subject, DeadLine, Credit,
     DirectionEduYear, Student
 )
 
 
-class InitData:
+logging.basicConfig(filename='logs.log', level=logging.INFO)
 
-    def __init__(self):
-
-        self.facs_file: dict = json.load(open('data/faculties.json', 'r', encoding='utf-8'))
-        self.deps_file: dict = json.load(open('data/data.json', 'r', encoding='utf-8'))
-        self.groups_file: dict = json.load(open('data/groups.json', 'r', encoding='utf-8'))
-    
-    def run(self):
-        with transaction.atomic():
-            self.init_courses()
-
-            self.init_faculties()
-            self.init_departments_and_teachers()
-            self.init_directs_and_groups()
-    
-    def init_courses(self):
-        for i in range(1, 5):
-            course, _ = Course.objects.get_or_create(course=i)
-
-            Semestr.objects.get_or_create(semestr=i*2-1, course=course)
-            Semestr.objects.get_or_create(semestr=i*2, course=course)
-    
-    def init_faculties(self):
-        facs = [
-            Faculty(name_ru=faculty.get('name_ru'), name_uz=faculty.get('name_uz')) for faculty_id, faculty in self.facs_file.items() if not Faculty.objects.filter(name_ru=faculty.get('name_ru')).exists()
-        ]
-        if facs: Faculty.objects.bulk_create(facs)
-    
-    def init_departments_and_teachers(self):
-        deps = []
-        teachers = []
-        teachers_names = []
-
-        for faculty_id, _departments in self.deps_file.items():
-            for department, _teachers in _departments.items():
-                if not Department.objects.filter(faculty_id=faculty_id, name__icontains=department).exists():
-                    department = Department(faculty_id=faculty_id, name=department)
-                    deps.append(department)
-                else:
-                    department = Department.objects.get(faculty_id=faculty_id, name__icontains=department)
-                for teacher_name in _teachers:
-                    if not Teacher.objects.filter(name__icontains=teacher_name).exists() and teacher_name not in teachers_names:
-                        teachers.append(Teacher(name=teacher_name, department=department))
-                        teachers_names.append(teacher_name)
-                            
-        if deps: Department.objects.bulk_create(deps)
-        if teachers: Teacher.objects.bulk_create(teachers)
-    
-    def init_directs_and_groups(self):
-        directs = []
-        groups = []
-
-        for faculty_name, directions in self.groups_file.items():
-            faculty = Faculty.objects.get(name_uz=faculty_name)
-            for course, _directions in directions.items():
-                course = Course.objects.get(course=int(course))
-                
-                for direction_name, _groups in _directions.items():
-
-                    if (direction := Direction.objects.filter(name=direction_name, faculty=faculty)).exists():
-                        direction = direction.first()
-                        direction.course = course
-                        direction.save()
-                    else:
-                        direction = Direction(name=direction_name, course=course, faculty=faculty)
-                        directs.append(direction)
-
-                    for group_name, group_data in _groups.items():
-                        if not (group := Group.objects.filter(name=group_name, direction=direction, education_form=group_data['education_form'], language=group_data['language'])).exists():
-                            group = Group(name=group_name, direction=direction, education_form=group_data['education_form'], language=group_data['language'])
-                            groups.append(group)
-
-        Direction.objects.bulk_create(directs)
-        Group.objects.bulk_create(groups)
     
 def init_deadline():
     for faculty in Faculty.objects.all():
@@ -174,8 +102,6 @@ def credits_to_excel(credits: QuerySet[Credit]):
     df.to_excel(filename, header=False, index=False)
     return filename
 
-
-
 def is_deadline(faculty_id: int = None, for_accountant: bool = None, for_finances: bool = None):
     if not any([faculty_id, for_accountant, for_finances]): return False
     if faculty_id: deadline = DeadLine.objects.get(faculty_id=faculty_id)
@@ -242,36 +168,6 @@ class StudentLogin:
             return None, 'error'
 
 
-def read_students_file(full_name: str):
-    import pandas as pd
-    import numpy as np
-    
-    with open(settings.BASE_DIR / 'data/talabalar.xlsx', 'r', encoding='utf-8') as file:
-
-        xl_file = pd.read_excel(file, header=None)
-        # df = xl_file.where(pd.notnull(xl_file), None)
-        df = xl_file.replace({np.nan: None})
-
-        for i, (
-            hemis_id, name, course, direction, group, year, semestr, edu_type
-        ) in df.iterrows():
-            if full_name == name.replace('‘', "'").replace('’', "'"):
-                try:
-                    data = {
-                        'hemis_id': hemis_id.strip(),
-                        'name': name.strip(),
-                        'course': course.strip(),
-                        'direction': direction.strip(),
-                        'group': group.strip(),
-                        'year': year.strip(),
-                        'semestr': semestr.strip(),
-                        'edu_type': edu_type
-                    }
-                    return data, None
-                except:
-                    return None, i
-                
-
 class ParseBase:
 
     def __init__(self):
@@ -309,17 +205,12 @@ class ParseCreditors(ParseBase):
     def parse(self):
         start = timezone.now()
 
-        self.faculties()
-        self.session.get(f'https://api.telegram.org/bot6292467753:AAEN0gGT5TEM4BNQA6JZE2hfYZukPPVBuwA/sendMessage?chat_id=1251050357&text=FACS')
-        self.directions()
-        self.session.get(f'https://api.telegram.org/bot6292467753:AAEN0gGT5TEM4BNQA6JZE2hfYZukPPVBuwA/sendMessage?chat_id=1251050357&text=DIRECTIONS')
-        self.years()
-        self.session.get(f'https://api.telegram.org/bot6292467753:AAEN0gGT5TEM4BNQA6JZE2hfYZukPPVBuwA/sendMessage?chat_id=1251050357&text=YEARS')
-        self.groups()
-        self.session.get(f'https://api.telegram.org/bot6292467753:AAEN0gGT5TEM4BNQA6JZE2hfYZukPPVBuwA/sendMessage?chat_id=1251050357&text=GROUPS')
-        ParseCurriculum().parse()
-        self.session.get(f'https://api.telegram.org/bot6292467753:AAEN0gGT5TEM4BNQA6JZE2hfYZukPPVBuwA/sendMessage?chat_id=1251050357&text=CIRiCULLUM')
-        ParseStudents().parse()
+        # self.faculties()
+        # self.directions()
+        # self.years()
+        # self.groups()
+        # ParseCurriculum().parse()
+        # ParseStudents().parse()
         self.creditors()
 
         self.session.get(f'https://api.telegram.org/bot6292467753:AAEN0gGT5TEM4BNQA6JZE2hfYZukPPVBuwA/sendMessage?chat_id=1251050357&text={start - timezone.now()}')
@@ -333,7 +224,7 @@ class ParseCreditors(ParseBase):
 
         for option in reversed(soup.find('select', attrs={'id': '_education_year_search'}).find_all('option')):
             if not (opt_value := option.get('value')): continue
-            EducationYear.objects.get_or_create(year_id=opt_value, defaults={'year': option.getText(strip=True)})
+            EducationYear.objects.get_or_create(year_id=opt_value, defaults={'year': option.getText(strip=True), 'current': opt_value == current_year})
             if opt_value == current_year: break
 
         options = soup.find('select', attrs={'id': 'filterform-_faculty'}).find_all('option')
@@ -358,9 +249,9 @@ class ParseCreditors(ParseBase):
         Direction.objects.bulk_create(_directions)
 
     def years(self):
-        
         all_years = EducationYear.objects.all()
         for direction in Direction.objects.all():
+            logging.info(f'years - {direction.pk}')
             for edu_year in all_years:
                 data = {
                     'depdrop_parents[0]': direction.direction_id,
@@ -374,17 +265,24 @@ class ParseCreditors(ParseBase):
                 except:
                     continue
 
+                time.sleep(0.5)
+
                 if not (semestrs := response['output']): continue
                 direction_edu_year, _ = DirectionEduYear.objects.get_or_create(direction=direction, edu_year=edu_year)
                 
                 for semestr in semestrs:
-                    if int(semestr_name := semestr['name'][0]) > 8: continue
+                    if (semestr_name := int(semestr['name'][0])) > 8: continue
                     semestr, _ = Semestr.objects.get_or_create(semestr=semestr_name, defaults={'semestr_id': semestr['id']})
                     direction_edu_year.semestrs.add(semestr)
+
+                    if edu_year.current and not direction.course and (course := round(semestr.semestr / 2)) > 0:
+                        direction.course = Course.objects.get_or_create(course=course)[0]
+                        direction.save()
     
     def groups(self):
 
         for year in DirectionEduYear.objects.all():
+            logging.info(f'gorups - {year.pk}')
             for semestr in year.semestrs.all():
                 data = {
                     'depdrop_parents[0]': year.direction.direction_id,
@@ -402,14 +300,16 @@ class ParseCreditors(ParseBase):
                 if not (groups := response['output']): continue
                 for group in groups:
                     Group.objects.get_or_create(name=group['name'], defaults={'group_id': group['id'], 'direction_id': year.direction_id})
-    
+
     def creditors(self):
         
         for edu_year in EducationYear.objects.all():
+            logging.info(f'CREDITORS {edu_year.year}')
             for group in Group.objects.all():
+                if not (dir_eduyears := DirectionEduYear.objects.filter(direction=group.direction, edu_year=edu_year)).exists(): continue
 
                 self.next_page = None
-                for semestr in DirectionEduYear.objects.get(direction=group.direction, edu_year=edu_year).semestrs.all():
+                for semestr in dir_eduyears.first().semestrs.all():
                     params = {
                         'FilterForm[_faculty]': group.direction.faculty.faculty_id,
                         'FilterForm[_curriculum]': group.direction.direction_id,
@@ -423,24 +323,31 @@ class ParseCreditors(ParseBase):
                     self.parse_creditors_table(response, group.direction, semestr, edu_year)
 
                     while self.next_page:
+                        print(self.next_page)
                         response = self.session.get(f'https://hemis.samdu.uz{self.next_page}')
-                        self.parse_creditors_table(response)
-                    
-    
+                        self.parse_creditors_table(response, group.direction, semestr, edu_year)
+
     def parse_creditors_table(self, response: requests.Response, direction, semestr, edu_year):
         soup = BeautifulSoup(response.text, 'html.parser')
 
         self.next_page = next_page_link['href'] if (pagination := soup.find('ul', attrs={'class': 'pagination'})) and (next_page_link := pagination.find('li', attrs={'class': 'next'}).find('a')) else None
 
         for tr in soup.find('tbody').find_all('tr'):
-            tds = tr.find_all('td'); name = tds[1].getText().strip().replace('‘', "'").replace('’', "'")
+            tds = tr.find_all('td')
+            if len(tds) < 2: continue
+
+            name = tds[1].getText().strip().replace('‘', "'").replace('’', "'")
             subject_name = tds[5].getText().strip().replace('‘', "'").replace('’', "'")
 
             student = Student.objects.filter(name=name)
             if not (students := Student.objects.filter(name=name)).exists(): continue
             student = students.first()
 
-            subject = Subject.objects.get(direction=direction, semestr=semestr, name=subject_name)
+            try:
+                subject = Subject.objects.get(direction=direction, semestr=semestr, name=subject_name)
+            except:
+                logging.error(f'CREDITORS subject {subject_name} - {name}')
+                continue
 
             if Credit.objects.filter(student=student, subject=subject, edu_year=edu_year).exists(): continue
             Credit.objects.get_or_create(student=student, subject=subject, edu_year=edu_year)
@@ -465,12 +372,15 @@ class ParseCurriculum(ParseBase):
 
         self.page = page_li['href'] if (page_li := soup.find('ul', attrs={'class': 'pagination'}).find('li', attrs={'class': 'next'}).find('a')) else None
 
-        group = None; semestr = None
         for curriculum in soup.find('tbody').find_all('tr'):
+            group = None
+
             tds = curriculum.find_all('td')
 
             response = self.session.get(f"{self.base_url}{tds[1].find('a')['href']}")
             soup = BeautifulSoup(response.text, 'html.parser')
+
+            time.sleep(1)
             
             groups_td = soup.find('table', attrs={'id': 'w0'}).find_all('tr')[5].find('td')
             if not groups_td.getText(): continue
@@ -481,8 +391,10 @@ class ParseCurriculum(ParseBase):
                     break
             
             if not group: continue
+            logging.info(f'curriculum - {group.pk}')
 
             for subject in soup.find('tbody').find_all('tr'):
+                semestr = None
                 
                 if (_semestr := subject.find('th')):
 
@@ -502,7 +414,6 @@ class ParseCurriculum(ParseBase):
 
                 response = self.session.get(f"{self.base_url}{_link['value']}", headers=self.headers_for_ajax)
                 soup = BeautifulSoup(response.text, 'html.parser')
-                time.sleep(0.5)
 
                 trs = soup.find('tbody').find_all('tr')
 
@@ -557,9 +468,12 @@ class ParseStudents(ParseBase):
         self.parse_table(response)
 
         while self.page:
-            time.sleep(0.5)
+            time.sleep(1)
 
-            response = self.session.get(f'{self.base_url}{self.page}')
+            try:
+                response = self.session.get(f'{self.base_url}{self.page}')
+            except:
+                continue
             self.parse_table(response)
 
     def parse_table(self, response: requests.Response):
@@ -572,6 +486,16 @@ class ParseStudents(ParseBase):
 
             name = tds[1].getText(strip=True).replace('Erkak', '').replace('Ayol', '').replace('‘', "'").replace('’', "'")
             hemis_id = tds[2].getText(strip=True)[:12]
-            group = Group.objects.get(name=tds[5].find('p').getText(strip=True))
 
-            Student.objects.get_or_create(group=group, name=name, hemis_id=hemis_id)
+            try:
+                group = Group.objects.get(name=tds[5].find('p').getText(strip=True))
+            except:
+                logging.error(f"GroupError {hemis_id} {tds[5].find('p').getText(strip=True)}")
+                continue
+
+            logging.info(f'student - {hemis_id} {name} {group.name}')
+
+            try:
+                Student.objects.get_or_create(group=group, name=name, hemis_id=hemis_id)
+            except:
+                logging.error(f"StudentError {hemis_id} {tds[5].find('p').getText(strip=True)}")

@@ -13,7 +13,7 @@ from users.models import User
 from users.choices import UserRoles
 
 from .models import (
-    Faculty, Department, Teacher, Course, Direction, Group, EducationYear,
+    Faculty, Course, Direction, Group, EducationYear,
     Semestr, Subject, Student, Credit, PaySet, DeadLine, KontraktAmount
 )
 from .choices import CreditStatuses
@@ -151,7 +151,7 @@ def get_deanery_group_credits_page(request: HttpRequest, course_id: int, group_i
 def get_deanery_semestr_page(request: HttpRequest, group_id: int, semestr_id: int) -> HttpResponse:
     group = Group.objects.get(pk=group_id)
     semestr = Semestr.objects.get(pk=semestr_id)
-    students = {student: credits for student in Student.objects.filter(group=group) if (credits := student.credit_set.filter(semestr=semestr)).exists()}
+    students = {student: credits for student in Student.objects.filter(group=group) if (credits := student.credit_set.filter(subject__semestr=semestr)).exists()}
 
     redirect_url = reverse('credits:deanery-semestr', kwargs={'group_id': group_id, 'semestr_id': semestr_id})
     
@@ -358,7 +358,7 @@ def get_accountant_group_page(request: HttpRequest, course_id: int, group_id: in
 def get_accountant_semestr_page(request: HttpRequest, group_id: int, semestr_id: int) -> HttpResponse:
     group = Group.objects.get(pk=group_id)
     semestr = Semestr.objects.get(pk=semestr_id)
-    students = {student: credits for student in Student.objects.filter(group=group) if (credits := student.credit_set.filter(semestr=semestr))}
+    students = {student: credits for student in Student.objects.filter(group=group) if (credits := student.credit_set.filter(subject_semestr=semestr))}
     
     context = {
         'group': group,
@@ -609,7 +609,7 @@ def get_edupart_group_credits_page(request: HttpRequest, course_id: int, group_i
 def get_edupart_semestr_page(request: HttpRequest, group_id: int, semestr_id: int) -> HttpResponse:
     group = Group.objects.get(pk=group_id)
     semestr = Semestr.objects.get(pk=semestr_id)
-    credits = Credit.objects.filter(student__group=group, semestr=semestr)
+    credits = Credit.objects.filter(student__group=group, subject__semestr=semestr)
     
     context = {
         'group': group,

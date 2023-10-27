@@ -18,36 +18,11 @@ class Faculty(models.Model):
         verbose_name_plural = 'Факультеты'
 
 
-class Department(models.Model):
-
-    name = models.CharField('Название', max_length=255, unique=True)
-    faculty = models.ForeignKey(Faculty, verbose_name='Факультет', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-    
-    class Meta:
-        verbose_name = 'Кафедра'
-        verbose_name_plural = 'Кафедры'
-
-
-class Teacher(models.Model):
-
-    name = models.CharField('Имя', max_length=255, unique=True)
-    department = models.ForeignKey(Department, verbose_name='Кафедра', on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.name
-    
-    class Meta:
-        verbose_name = 'Преподаватель'
-        verbose_name_plural = 'Преподаватели'
-
-
 class EducationYear(models.Model):
 
     year_id = models.CharField(max_length=16)
     year = models.CharField(max_length=64)
+    current = models.BooleanField(default=False)
 
     def __str__(self):
         return self.year
@@ -66,6 +41,7 @@ class Course(models.Model):
         return str(self.course)
 
     class Meta:
+        ordering = ['course']
         verbose_name = 'Курс'
         verbose_name_plural = 'Курсы'
 
@@ -73,7 +49,7 @@ class Course(models.Model):
 class Semestr(models.Model):
 
     semestr_id = models.CharField(max_length=16)
-    semestr = models.CharField('Семестр', max_length=32)
+    semestr = models.PositiveSmallIntegerField('Семестр')
     # course = models.ForeignKey(Course, verbose_name='Курс', on_delete=models.CASCADE)
 
     def __str__(self):
@@ -90,7 +66,7 @@ class Direction(models.Model):
     direction_id = models.CharField(max_length=16)
     name = models.CharField('Имя', max_length=255, unique=True)
     faculty = models.ForeignKey(Faculty, verbose_name='Факультет', on_delete=models.CASCADE)
-    # course = models.ForeignKey(Course, verbose_name='Курс', on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, verbose_name='Курс', on_delete=models.CASCADE, null=True, default=None)
 
     def __str__(self):
         return self.name

@@ -5,9 +5,8 @@ from django.core.wsgi import get_wsgi_application
 
 from credits.utils import ParseCreditors, init_deadline
 
-# InitData().run()
+# ParseCreditors().parse()
 # init_deadline()
-ParseCreditors().parse()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'samdu_credits.settings')
 
