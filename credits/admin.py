@@ -22,6 +22,12 @@ class CourseAdmin(admin.ModelAdmin):
 class StudentAdmin(admin.ModelAdmin):
     pass
 
+
+@admin.register(Subject)
+class StudentAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     pass
