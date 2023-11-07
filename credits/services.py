@@ -595,7 +595,7 @@ def get_edupart_group_credits_page(request: HttpRequest, course_id: int, group_i
 
     group = Group.objects.get(pk=group_id)
     course = Course.objects.get(pk=course_id)
-    credits = Credit.objects.filter(student__group__direction__course=course, student__group=group)
+    credits = Credit.objects.filter(student__group=group)
 
     paginator = paginated_queryset(credits, page)
     context = {

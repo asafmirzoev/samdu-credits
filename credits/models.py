@@ -50,7 +50,7 @@ class Semestr(models.Model):
 
     semestr_id = models.CharField(max_length=16)
     semestr = models.PositiveSmallIntegerField('Семестр')
-    # course = models.ForeignKey(Course, verbose_name='Курс', on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, verbose_name='Курс', on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.semestr)
@@ -77,6 +77,7 @@ class Direction(models.Model):
             KontraktAmount.objects.create(direction=self)
 
     class Meta:
+        ordering = ['id']
         verbose_name = 'Направление'
         verbose_name_plural = 'Направления'
 
@@ -100,6 +101,7 @@ class Group(models.Model):
         return self.name
 
     class Meta:
+        ordering = ['id']
         verbose_name = 'Группа'
         verbose_name_plural = 'Группы'
 
@@ -109,14 +111,15 @@ class Subject(models.Model):
     direction = models.ForeignKey(Direction, on_delete=models.CASCADE)
     semestr = models.ForeignKey(Semestr, on_delete=models.CASCADE)
     
+    subject_id = models.CharField(max_length=16, unique=True)
     name = models.CharField(max_length=255)
-    hours = models.PositiveSmallIntegerField('Часы')
+    hours = models.PositiveSmallIntegerField('Часы', null=True, default=None)
     lecture_hours = models.PositiveSmallIntegerField('Часы (Лекция)', null=True, default=None)
     practice_hours = models.PositiveSmallIntegerField('Часы (Практика)', null=True, default=None)
     seminar_hours = models.PositiveSmallIntegerField('Часы (Семинар)', null=True, default=None)
     laboratory_hours = models.PositiveSmallIntegerField('Часы (Лабораторная)', null=True, default=None)
     independent_hours = models.PositiveSmallIntegerField('Часы (Самостоятельное обучение)', null=True, default=None)
-    credits = models.PositiveSmallIntegerField('Кредиты')
+    credits = models.FloatField('Кредиты', null=True)
 
     def __str__(self):
         return f'{self.name}'

@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-t!onn57n7-(nr2&+o_5jk@e##advy-ed$3_b_=6)@xwo)8wnk4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['credits.samdu.uz']
+ALLOWED_HOSTS = ['credits.samdu.uz', '127.0.0.1']
 
 
 # Application definition
@@ -74,12 +74,18 @@ CSRF_TRUSTED_ORIGINS = ['https://*.samdu.uz']
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql', 
+#         'NAME': 'samdu-credits',
+#         'USER': 'postgres',
+#         'PASSWORD': 'asaffasa',
+#         'HOST': 'localhost',
+#         'PORT': 5433,
 #     }
 # }
+
 
 DATABASES = {
     'default': {
@@ -91,7 +97,6 @@ DATABASES = {
         'PORT': 5432,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -1,12 +1,11 @@
 import os
 
+import logging
 from django.core.wsgi import get_wsgi_application
 
 
-from credits.utils import ParseCreditors, init_deadline
+logging.basicConfig(filename='logs.log', level=logging.INFO)
 
-# ParseCreditors().parse()
-# init_deadline()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'samdu_credits.settings')
 
