@@ -37,16 +37,18 @@
             </tr>
         </thead>
         <tbody class="table-border-bottom-0">
-            {% for student in students %}
+            {% for student in paginator.queryset %}
+
+                {% credits_by_semestr student.credit_set.all semestr as credits %}
                 <tr id="student{{ student.pk }}">
-                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ forloop.counter }}</td>
-                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.hemis_id }}</td>
-                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.name }}</td>
-                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.direction.name }}</td>
-                    <td rowspan="{{ student.credit_set.count|add:1 }}">{{ student.group.name }}</td>
+                    <td rowspan="{{ credits.count|add:1 }}">{{ paginator.queryset.start_index|add:forloop.counter0 }}</td>
+                    <td rowspan="{{ credits.count|add:1 }}">{{ student.hemis_id }}</td>
+                    <td rowspan="{{ credits.count|add:1 }}">{{ student.name }}</td>
+                    <td rowspan="{{ credits.count|add:1 }}">{{ student.group.direction.name }}</td>
+                    <td rowspan="{{ credits.count|add:1 }}">{{ student.group.name }}</td>
                 </tr>
 
-                {% for credit in student.credit_set.all %}
+                {% for credit in credits %}
                     <tr>
                         <td>{{ credit.subject.name }}</td>
                         <td>{{ credit.semestr.course.course }}</td>
@@ -64,22 +66,68 @@
                         <td>{{ credit.subject.credits }}</td>
 
                         <td>
-                            {% if credit.status != 'DEANERY_UPLOADED' %}{{ credit.student.group.direction.kontraktamount.amount }} сум{% endif %}
+                            {% if credit.status != 'UPLOADED' and credit.status != 'DEANERY_UPLOADED' %}{{ credit.student.group.direction.kontraktamount.amount }} сум{% endif %}
                         </td>
                         <td>
-                            {% if credit.status != 'DEANERY_UPLOADED' %}{{ credit.amount }} сум{% endif %}
+                            {% if credit.status != 'UPLOADED' and credit.status != 'DEANERY_UPLOADED' %}{{ credit.amount }} сум{% endif %}
                         </td>
 
                         <td id="status"><span class="badge bg-label-info">{{ credit.get_status_display }}</span></td>
 
                         {% if forloop.counter == 1 and student.has_payed_credit and not is_deadline %}
-                            <td id="pay-submit" rowspan="{{ student.credit_set.count|add:1 }}">
+                            <td id="pay-submit" rowspan="{{ credits.count|add:1 }}">
                                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#PayModal{{ student.pk }}">{% trans 'Оплатил' %}</button>
                             </td>
                         {% endif %}
 
                     </tr>
                 {% endfor %}
+                
+                {% if not is_deadline %}
+                    <div class="modal fade" id="PayModal{{ student.pk }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalCenterTitle">Оплата</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'credits:deanery-pay-submit' student.pk %}?redirect_url={{ redirect_url }}" method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+            
+                                        {% deanery_get_valid_credits credits as valid_credits %}
+                                        {% for credit in valid_credits %}
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="payed-{{ student.pk }}-{{ credit.pk }}" name="payed-{{ student.pk }}-{{ credit.pk }}">
+                                                <label class="form-check-label" for="defaultCheck1"> {{ credit.subject.name }}: <b>{{ credit.amount }} сум</b></label>
+                                            </div>
+                                        {% endfor %}
+            
+                                        <div class="mb-3">
+                                            <label for="pay-date{{ student.pk }}">{% trans 'Дата оплаты' %}:</label>
+                                            <input class="form-control" type="date" id="pay-date{{ student.pk }}" name="pay-date{{ student.pk }}" required>
+                                        </div>
+                                        
+                                        {% comment %}
+                                            <div class="mb-3">
+                                                <label for="pay-incoice{{ student.pk }}">{% trans 'Квитанция' %}:</label>
+                                                <input class="form-control" type="file" accept="image/jpeg,image/gif,image/png,application/pdf" id="pay-incoice{{ student.pk }}" name="pay-incoice{{ student.pk }}" required>
+                                            </div>
+                                        {% endcomment %}
+            
+                                        <div class="modal-footer">
+                                            <button id="PayModal-close-button{{ student.pk }}" type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                                {% trans 'Закрыть' %}
+                                            </button>
+                                            <button type="submit" class="btn btn-success">{% trans 'Подтвердить' %}</button>
+                                        </div>
+            
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
 
             {% empty %}
                 <tr>
@@ -89,51 +137,3 @@
         </tbody>
     </table>
 </div>
-
-{% if not is_deadline %}
-    {% for student in students %}
-        <div class="modal fade" id="PayModal{{ student.pk }}" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalCenterTitle">Оплата</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="{% url 'credits:deanery-pay-submit' student.pk %}?redirect_url={{ redirect_url }}" method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-
-                            {% deanery_get_valid_credits student as valid_credits %}
-                            {% for credit in valid_credits %}
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="payed-{{ student.pk }}-{{ credit.pk }}" name="payed-{{ student.pk }}-{{ credit.pk }}">
-                                    <label class="form-check-label" for="defaultCheck1"> {{ credit.subject.name }}: <b>{{ credit.amount }} сум</b></label>
-                                </div>
-                            {% endfor %}
-
-                            <div class="mb-3">
-                                <label for="pay-date{{ student.pk }}">{% trans 'Дата оплаты' %}:</label>
-                                <input class="form-control" type="date" id="pay-date{{ student.pk }}" name="pay-date{{ student.pk }}" required>
-                            </div>
-                            
-                            {% comment %}
-                                <div class="mb-3">
-                                    <label for="pay-incoice{{ student.pk }}">{% trans 'Квитанция' %}:</label>
-                                    <input class="form-control" type="file" accept="image/jpeg,image/gif,image/png,application/pdf" id="pay-incoice{{ student.pk }}" name="pay-incoice{{ student.pk }}" required>
-                                </div>
-                            {% endcomment %}
-
-                            <div class="modal-footer">
-                                <button id="PayModal-close-button{{ student.pk }}" type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                    {% trans 'Закрыть' %}
-                                </button>
-                                <button type="submit" class="btn btn-success">{% trans 'Подтвердить' %}</button>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
-{% endif %}

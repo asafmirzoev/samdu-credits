@@ -25,5 +25,12 @@ def check_deadline(user: User):
 
 
 @register.simple_tag(name='deanery_get_valid_credits')
-def deanery_get_valid_credits(student):
-    return student.credit_set.filter(status=CreditStatuses.FINANCE_SETTED)
+def deanery_get_valid_credits(credits):
+    return credits.filter(status=CreditStatuses.FINANCE_SETTED)
+
+
+@register.simple_tag(name='credits_by_semestr')
+def credits_by_semestr(credits, semestr=None):
+    if semestr:
+        return credits.filter(subject__semestr=semestr)
+    return credits

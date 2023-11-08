@@ -24,7 +24,7 @@
         </div>
 
         <div class="row">
-            {% include 'credits/src/deanery/table.html' with students=paginator.queryset %}
+            {% include 'credits/src/deanery/table.html' with paginator=paginator %}
 
             {% if paginator.visible %}
                 <nav aria-label="Page navigation">

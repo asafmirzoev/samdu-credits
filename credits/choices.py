@@ -19,6 +19,7 @@ class EducationLanguages(TextChoices):
 
 class CreditStatuses(TextChoices):
 
+    UPLOADED = 'UPLOADED', _('Загружено с HEMIS')
     DEANERY_UPLOADED = 'DEANERY_UPLOADED', _('Загружено деканатом')
     FINANCE_SETTED = 'FINANCE_SETTED', _('Цена кредита утверждена')
     DEANERY_SETPAID = 'DEANERY_SETPAID', _('Оплатил')

@@ -13,7 +13,7 @@ from users.models import User
 from users.choices import UserRoles
 
 from .models import (
-    Faculty, Course, Direction, Group, EducationYear,
+    Faculty, Course, Direction, Group, EducationYear, DirectionEduYear,
     Semestr, Subject, Student, Credit, PaySet, DeadLine, KontraktAmount
 )
 from .choices import CreditStatuses
@@ -52,7 +52,13 @@ def get_invoice(payset_id: int):
 
 
 def get_deanery_overview_page(request: HttpRequest) -> HttpResponse:
-    courses = Course.objects.all()
+    faculty = request.user.faculty
+    directions = faculty.direction_set.all()
+    edu_years = DirectionEduYear.objects.filter(direction_id__in=directions.values_list('pk', flat=True))
+    courses = set()
+    for eduyear in edu_years:
+        for semestr in eduyear.semestrs.all():
+            courses.add(semestr.course)
     return render(request, 'credits/src/deanery/overview.html', {'courses': courses})
 
 
@@ -84,14 +90,17 @@ def get_deanery_course_page(request: HttpRequest, course_id: int) -> HttpRespons
 
 
 def get_deanery_course_credits_page(request: HttpRequest, course_id: int) -> HttpResponse:
+    page = request.GET.get('page', 1)
+
     course = Course.objects.get(pk=course_id)
     students = Student.objects.filter(group__direction__course=course, group__direction__faculty=request.user.faculty)
+    paginator = paginated_queryset(students, page)
 
     redirect_url = reverse('credits:deanery-course-credits', kwargs={'course_id': course_id})
 
     context = {
         'course': course,
-        'students': students,
+        'paginator': paginator,
         'redirect_url': redirect_url
     }
     return render(request, 'credits/src/deanery/course/course_credits.html', context)
@@ -108,16 +117,19 @@ def get_deanery_direction_page(request: HttpRequest, course_id: int, direction_i
 
 
 def get_deanery_direction_credits_page(request: HttpRequest, course_id: int, direction_id: int) -> HttpResponse:
+    page = request.GET.get('page', 1)
+
     course = Course.objects.get(pk=course_id)
     direction = Direction.objects.get(pk=direction_id)
     students = Student.objects.filter(group__direction=direction)
+    paginator = paginated_queryset(students, page)
 
     redirect_url = reverse('credits:deanery-direction-credits', kwargs={'course_id': course_id, 'direction_id': direction_id})
 
     context = {
         'course': course,
         'direction': direction,
-        'students': students,
+        'paginator': paginator,
         'redirect_url': redirect_url
     }
     return render(request, 'credits/src/deanery/direction/direction_credits.html', context)
@@ -126,7 +138,9 @@ def get_deanery_direction_credits_page(request: HttpRequest, course_id: int, dir
 def get_deanery_group_page(request: HttpRequest, course_id: int, group_id: int) -> HttpResponse:
     course = Course.objects.get(pk=course_id)
     group = Group.objects.get(pk=group_id)
-    semestrs = Semestr.objects.all()
+    semestrs = set()
+    for dir_eduyear in group.direction.directioneduyear_set.all():
+        semestrs.update(dir_eduyear.semestrs.all())
     context = {
         'course': course,
         'group': group,
@@ -136,29 +150,35 @@ def get_deanery_group_page(request: HttpRequest, course_id: int, group_id: int) 
 
 
 def get_deanery_group_credits_page(request: HttpRequest, course_id: int, group_id: int) -> HttpResponse:
+    page = request.GET.get('page', 1)
+
     course = Course.objects.get(pk=course_id)
     group = Group.objects.get(pk=group_id)
     students = Student.objects.filter(group=group)
+    paginator = paginated_queryset(students, page)
     
     context = {
         'course': course,
         'group': group,
-        'students': students
+        'paginator': paginator
     }
     return render(request, 'credits/src/deanery/group/group_credits.html', context)
 
 
 def get_deanery_semestr_page(request: HttpRequest, group_id: int, semestr_id: int) -> HttpResponse:
+    page = request.GET.get('page', 1)
+    
     group = Group.objects.get(pk=group_id)
     semestr = Semestr.objects.get(pk=semestr_id)
-    students = {student: credits for student in Student.objects.filter(group=group) if (credits := student.credit_set.filter(subject__semestr=semestr)).exists()}
+    students = [student for student in Student.objects.filter(group=group) if student.credit_set.filter(subject__semestr=semestr).exists()]
+    paginator = paginated_queryset(students, page)
 
     redirect_url = reverse('credits:deanery-semestr', kwargs={'group_id': group_id, 'semestr_id': semestr_id})
     
     context = {
         'group': group,
         'semestr': semestr,
-        'students': students,
+        'paginator': paginator,
         'redirect_url': redirect_url
     }
     return render(request, 'credits/src/deanery/semestr.html', context)
@@ -355,10 +375,25 @@ def get_accountant_group_page(request: HttpRequest, course_id: int, group_id: in
     return render(request, 'credits/src/accountant/group.html', context)
 
 
+def get_accountant_group_credits_page(request: HttpRequest, course_id: int, group_id: int):
+    page = request.GET.get('page', 1)
+    course = Course.objects.get(pk=course_id)
+    group = Group.objects.get(pk=group_id)
+    students = Student.objects.filter(group__direction__course=course, group=group)
+
+    paginator = paginated_queryset(students, page)
+    context = {
+        'course': course,
+        'group': group,
+        'paginator': paginator
+    }
+    return render(request, 'credits/src/accountant/group/group_credits.html', context)
+
+
 def get_accountant_semestr_page(request: HttpRequest, group_id: int, semestr_id: int) -> HttpResponse:
     group = Group.objects.get(pk=group_id)
     semestr = Semestr.objects.get(pk=semestr_id)
-    students = {student: credits for student in Student.objects.filter(group=group) if (credits := student.credit_set.filter(subject_semestr=semestr))}
+    students = {student: credits for student in Student.objects.filter(group=group) if (credits := student.credit_set.filter(subject__semestr=semestr))}
     
     context = {
         'group': group,

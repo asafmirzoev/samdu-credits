@@ -143,6 +143,12 @@ class AccountantGroupView(View):
         return svc.get_accountant_group_page(request, course_id, group_id)
 
 
+class AccountantGroupCreditsView(View):
+
+    def get(self, request: HttpRequest, course_id: int, group_id: int) -> HttpResponse:
+        return svc.get_accountant_group_credits_page(request, course_id, group_id)
+
+
 class AccountantSemestrView(View):
 
     def get(self, request: HttpRequest, group_id: int, semestr_id: int) -> HttpResponse:

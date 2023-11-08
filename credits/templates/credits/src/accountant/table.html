@@ -23,9 +23,9 @@
             </tr>
         </thead>
         <tbody class="table-border-bottom-0">
-            {% for student in students %}
+            {% for student in paginator.queryset %}
                 <tr id="student{{ student.pk }}">
-                    <td rowspan="{{ student.payset_set.count|add:1 }}">{{ forloop.counter }}</td>
+                    <td rowspan="{{ student.payset_set.count|add:1 }}">{{ paginator.queryset.start_index|add:forloop.counter0 }}</td>
                     <td rowspan="{{ student.payset_set.count|add:1 }}">{{ student.hemis_id }}</td>
                     <td rowspan="{{ student.payset_set.count|add:1 }}">{{ student.name }}</td>
                     <td rowspan="{{ student.payset_set.count|add:1 }}">{{ student.group.direction.name }}</td>
