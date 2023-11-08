@@ -20,7 +20,7 @@ class SetUserLoginMiddleware(MiddlewareMixin):
             if request.path in ['/users/login', '/users/login/']:
                 return redirect('credits:home')
 
-            if request.path != '/' and '/invoices/' not in request.path and request.path not in ['/users/logout/', '/credits/', '/credits'] and ((request.user.role == UserRoles.DEKAN and '/deanery' not in request.path) or (request.user.role == UserRoles.ACCOUNTANT and '/accountant' not in request.path) or (request.user.role == UserRoles.FINANCE and '/finances' not in request.path) or (request.user.role == UserRoles.EDUPART and '/edu-part' not in request.path)):
+            if request.path != '/' and '/invoices/' not in request.path and '/admin' not in request.path and request.path not in ['/users/logout/', '/credits/', '/credits'] and ((request.user.role == UserRoles.DEKAN and '/deanery' not in request.path) or (request.user.role == UserRoles.ACCOUNTANT and '/accountant' not in request.path) or (request.user.role == UserRoles.FINANCE and '/finances' not in request.path) or (request.user.role == UserRoles.EDUPART and '/edu-part' not in request.path)):
                 return redirect('credits:home')
         
     def process_response(self, request, response):
