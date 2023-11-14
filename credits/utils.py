@@ -542,6 +542,7 @@ class PraseCreditorsAsync:
                     credits=credits_count
                 ))
             else:
+                print(subject_id)
                 await _subjects.aupdate(
                     hours=hours.get('hours'),
                     lecture_hours=hours.get('lecture_hours'),
