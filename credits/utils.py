@@ -460,9 +460,11 @@ class PraseCreditorsAsync:
                     return
                 
                 if not (tr.find_all('td') and tr.find('a')):
+                    logging.error(f'error 1 {cirriculum_link} ___ {tr}')
                     continue
 
                 if not (subject_link := tr.find('a').get('value')):
+                    logging.error(f'error 2 {cirriculum_link} ___ {tr}')
                     continue
 
                 subject_name = tr.find('a').getText(strip=True)
