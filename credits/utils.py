@@ -225,9 +225,9 @@ class PraseCreditorsAsync:
             # await self.parse_directions(session)
             # await self.parse_direction_years(session)
             # await self.parse_groups(session)
-            await self.parse_cirriculum(session)
+            # await self.parse_cirriculum(session)
             # await self.parse_students(session)
-            # await self.parse_credits(session)
+            await self.parse_credits(session)
     
     async def parse_faculties(self, session: aiohttp.ClientSession):
         edu_years = []
@@ -708,7 +708,7 @@ class PraseCreditorsAsync:
                 student = await students.afirst()
 
                 subject_name = tds[5].getText(strip=True)
-                if not await (subjects := await sync_to_async(Subject.objects.filter)(name=subject_name, semestr=semestr)).aexists():
+                if not await (subjects := await sync_to_async(Subject.objects.filter)(name=subject_name, semestr=semestr, direction=dir_eduyear.direction)).aexists():
                     logging.error(f"subject not found {subject_name} {f'{self.base_url}/performance/debtors'} {tr}")
                     continue
                 subject = await subjects.afirst()
