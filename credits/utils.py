@@ -521,7 +521,7 @@ class PraseCreditorsAsync:
                 elif 'Laboratoriya' == subject_type:
                     hours_dict['laboratory_hours'] = subject_type_hours
                 elif 'Mustaqil ta‘lim' == subject_type:
-                    hours['independent_hours'] = subject_type_hours
+                    hours_dict['independent_hours'] = subject_type_hours
                 elif 'Jami' == subject_type:
                     hours_dict['hours'] = subject_type_hours
                     break
