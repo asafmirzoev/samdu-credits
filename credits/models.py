@@ -113,13 +113,13 @@ class Subject(models.Model):
     
     subject_id = models.CharField(max_length=16, unique=True)
     name = models.CharField(max_length=255)
-    hours = models.PositiveSmallIntegerField('Часы', null=True, default=None)
+    hours = models.PositiveSmallIntegerField('Часы')
     lecture_hours = models.PositiveSmallIntegerField('Часы (Лекция)', null=True, default=None)
     practice_hours = models.PositiveSmallIntegerField('Часы (Практика)', null=True, default=None)
     seminar_hours = models.PositiveSmallIntegerField('Часы (Семинар)', null=True, default=None)
     laboratory_hours = models.PositiveSmallIntegerField('Часы (Лабораторная)', null=True, default=None)
     independent_hours = models.PositiveSmallIntegerField('Часы (Самостоятельное обучение)', null=True, default=None)
-    credits = models.FloatField('Кредиты', null=True)
+    credits = models.FloatField('Кредиты')
 
     def __str__(self):
         return f'{self.name}'

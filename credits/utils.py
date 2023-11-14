@@ -469,9 +469,10 @@ class PraseCreditorsAsync:
 
                 credits_count = tr.find_all('td')[-1].getText(strip=True)
                 if not credits_count:
-                    credits_count = None
-                else:
-                    credits_count = float(credits_count)
+                    logging.error(f'credits is null {cirriculum_link} ___ {tr}')
+                    continue
+
+                credits_count = float(credits_count)
                 
                 subjects.extend(
                     await self.parse_subject_table(session, direction, subject_link, subject_name, credits_count, current_semestr)
@@ -516,10 +517,14 @@ class PraseCreditorsAsync:
                     hours['hours'] = subject_type_hours
                     break
             
+            if not hours.get('hours'):
+                logging.error(f'hours is null {subject_link}')
+                return
+            
             url_queries = dict(parse_qsl(urlsplit(subject_link).query))
             subject_id = url_queries.get('subject')
 
-            if not await (await sync_to_async(Subject.objects.filter)(subject_id=subject_id)).aexists():
+            if not await (_subjects := await sync_to_async(Subject.objects.filter)(subject_id=subject_id)).aexists():
             
                 subjects.append(Subject(
                     subject_id=subject_id,
@@ -534,6 +539,17 @@ class PraseCreditorsAsync:
                     independent_hours=hours.get('independent_hours'),
                     credits=credits_count
                 ))
+            else:
+                await _subjects.aupdate(
+                    hours=hours.get('hours'),
+                    lecture_hours=hours.get('lecture_hours'),
+                    practice_hours=hours.get('practice_hours'),
+                    seminar_hours=hours.get('seminar_hours'),
+                    laboratory_hours=hours.get('laboratory_hours'),
+                    independent_hours=hours.get('independent_hours'),
+                    credits=credits_count
+                )
+
         return subjects
 
     async def parse_students(self, session: aiohttp.ClientSession):
