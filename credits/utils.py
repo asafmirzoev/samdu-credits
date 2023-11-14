@@ -459,7 +459,7 @@ class PraseCreditorsAsync:
                     logging.error(f'semestr error {cirriculum_link} ___ {tr}')
                     return
                 
-                if not (tr.find_all('td') and tr.find('a')):
+                if not ((tds := tr.find_all('td')) and tr.find('a')):
                     logging.error(f'error 1 {cirriculum_link} ___ {tr}')
                     continue
 
@@ -469,15 +469,21 @@ class PraseCreditorsAsync:
 
                 subject_name = tr.find('a').getText(strip=True)
 
-                credits_count = tr.find_all('td')[-1].getText(strip=True)
+                credits_count = tds[-1].getText(strip=True)
                 if not credits_count:
                     logging.error(f'credits is null {cirriculum_link} ___ {tr}')
                     continue
 
+                hours = tds[-2].getText(strip=True)
+                if not hours:
+                    logging.error(f'hours is null {cirriculum_link} ___ {tr}')
+                    continue
+
                 credits_count = float(credits_count)
+                hours = int(hours)
                 
                 subjects.extend(
-                    await self.parse_subject_table(session, direction, subject_link, subject_name, credits_count, current_semestr)
+                    await self.parse_subject_table(session, direction, subject_link, subject_name, credits_count, hours, current_semestr)
                 )
         return subjects
 
@@ -487,6 +493,7 @@ class PraseCreditorsAsync:
             direction: Direction,
             subject_link: str,
             subject_name: str,
+            hours: int,
             credits_count: float,
             semestr: Semestr
         ) -> list:
@@ -496,7 +503,7 @@ class PraseCreditorsAsync:
         async with session.get(f'{self.base_url}{subject_link}') as response:
             soup = BeautifulSoup(await response.text(), 'html.parser')
             
-            hours = {}
+            hours_dict = {}
             for tr in soup.find('tbody').find_all('tr'):
                 tds = tr.find_all('td')
                 subject_type = tds[0].getText(strip=True)
@@ -506,22 +513,18 @@ class PraseCreditorsAsync:
                     subject_type_hours = None
 
                 if "Ma'ruza" == subject_type:
-                    hours['lecture_hours'] = subject_type_hours
+                    hours_dict['lecture_hours'] = subject_type_hours
                 elif 'Amaliy' == subject_type:
-                    hours['practice_hours'] = subject_type_hours
+                    hours_dict['practice_hours'] = subject_type_hours
                 elif 'Seminar' == subject_type:
-                    hours['seminar_hours'] = subject_type_hours
+                    hours_dict['seminar_hours'] = subject_type_hours
                 elif 'Laboratoriya' == subject_type:
-                    hours['laboratory_hours'] = subject_type_hours
+                    hours_dict['laboratory_hours'] = subject_type_hours
                 elif 'Mustaqil ta‘lim' == subject_type:
                     hours['independent_hours'] = subject_type_hours
                 elif 'Jami' == subject_type:
-                    hours['hours'] = subject_type_hours
+                    hours_dict['hours'] = subject_type_hours
                     break
-            
-            if not hours.get('hours'):
-                logging.error(f'hours is null {subject_link}')
-                return
             
             url_queries = dict(parse_qsl(urlsplit(subject_link).query))
             subject_id = url_queries.get('subject')
@@ -533,23 +536,22 @@ class PraseCreditorsAsync:
                     direction=direction,
                     semestr=semestr,
                     name=subject_name,
-                    hours=hours.get('hours'),
-                    lecture_hours=hours.get('lecture_hours'),
-                    practice_hours=hours.get('practice_hours'),
-                    seminar_hours=hours.get('seminar_hours'),
-                    laboratory_hours=hours.get('laboratory_hours'),
-                    independent_hours=hours.get('independent_hours'),
+                    hours=hours,
+                    lecture_hours=hours_dict.get('lecture_hours'),
+                    practice_hours=hours_dict.get('practice_hours'),
+                    seminar_hours=hours_dict.get('seminar_hours'),
+                    laboratory_hours=hours_dict.get('laboratory_hours'),
+                    independent_hours=hours_dict.get('independent_hours'),
                     credits=credits_count
                 ))
             else:
-                print(subject_id)
                 await _subjects.aupdate(
-                    hours=hours.get('hours'),
-                    lecture_hours=hours.get('lecture_hours'),
-                    practice_hours=hours.get('practice_hours'),
-                    seminar_hours=hours.get('seminar_hours'),
-                    laboratory_hours=hours.get('laboratory_hours'),
-                    independent_hours=hours.get('independent_hours'),
+                    hours=hours,
+                    lecture_hours=hours_dict.get('lecture_hours'),
+                    practice_hours=hours_dict.get('practice_hours'),
+                    seminar_hours=hours_dict.get('seminar_hours'),
+                    laboratory_hours=hours_dict.get('laboratory_hours'),
+                    independent_hours=hours_dict.get('independent_hours'),
                     credits=credits_count
                 )
 
