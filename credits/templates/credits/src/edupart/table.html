@@ -32,7 +32,7 @@
         </thead>
         <tbody class="table-border-bottom-0">
             {% for credit in credits %}
-                <tr id="credit-{{ credit.pk }}">
+                <tr id="credit-{{ credit.pk }}" data-subject="{{ credit.subject_id }}">
                     <td>{{ forloop.counter }}</td>
                     <td>{{ credit.student.hemis_id }}</td>
                     <td>{{ credit.student.name }}</td>
@@ -44,7 +44,7 @@
                     <td>{{ credit.student.group.education_form }}</td>
                     <td>{{ credit.edu_year.year }}</td>
                     <td>{{ credit.semestr.semestr }}</td>
-                    <td>{{ credit.edu_hours }}</td>
+                    <td>{{ credit.subject.hours }}</td>
                     <td>{% if credit.subject.hours %}{{ credit.subject.hours }}{% endif %}</td>
                     <td>{% if credit.subject.lecture_hours %}{{ credit.subject.lecture_hours }}{% endif %}</td>
                     <td>{% if credit.subject.practice_hours %}{{ credit.subject.practice_hours }}{% endif %}</td>
