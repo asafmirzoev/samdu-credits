@@ -526,6 +526,9 @@ class PraseCreditorsAsync:
                     hours_dict['hours'] = subject_type_hours
                     break
             
+            if direction.direction_id == '453':
+                print(hours, hours_dict)
+            
             url_queries = dict(parse_qsl(urlsplit(subject_link).query))
             subject_id = url_queries.get('subject')
 
