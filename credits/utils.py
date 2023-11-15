@@ -228,6 +228,8 @@ class PraseCreditorsAsync:
             # await self.parse_cirriculum(session)
             # await self.parse_students(session)
             await self.parse_credits(session)
+
+            requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text=parse ended')
     
     async def parse_faculties(self, session: aiohttp.ClientSession):
         edu_years = []
