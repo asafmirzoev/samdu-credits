@@ -64,7 +64,11 @@
                                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#PayModal{{ payset.pk }}">{% trans 'Подтвердить оплату' %}</button>
                                         {% endif %}
                                     </td>
-                                </tr>    
+                                </tr> 
+                            {% empty %}
+                                <tr>
+                                    <td>{% trans 'Платежей нет' %}</td>
+                                </tr>
                             {% endfor %}
                         {% endif %}
         
