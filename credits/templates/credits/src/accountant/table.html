@@ -30,6 +30,9 @@
                     <td rowspan="{{ student.payset_set.count|add:1 }}">{{ student.name }}</td>
                     <td rowspan="{{ student.payset_set.count|add:1 }}">{{ student.group.direction.name }}</td>
                     <td rowspan="{{ student.payset_set.count|add:1 }}">{{ student.group.name }}</td>
+                    {% if not student.payset_set.count %}
+                        <td colspan="3">{% trans 'Платежей нет' %}</td>
+                    {% endif %}
                 </tr>
 
                 {% if not is_deadline %}
@@ -48,11 +51,7 @@
                                     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#PayModal{{ payset.pk }}">{% trans 'Подтвердить оплату' %}</button>
                                 {% endif %}
                             </td>
-                        </tr>    
-                    {% empty %}
-                        <tr colspan="3">
-                            <td>{% trans 'Платежей нет' %}</td>
-                        </tr>
+                        </tr> 
                     {% endfor %}
                 {% endif %}
 

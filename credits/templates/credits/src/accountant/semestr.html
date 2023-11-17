@@ -47,7 +47,7 @@
                             <td rowspan="{{ paysets.count|add:1 }}">{{ student.group.direction.name }}</td>
                             <td rowspan="{{ paysets.count|add:1 }}">{{ student.group.name }}</td>
                             {% if not paysets %}
-                                <td colspan="2">{% trans 'Платежей нет' %}</td>
+                                <td colspan="3">{% trans 'Платежей нет' %}</td>
                             {% endif %}
                         </tr>
         
