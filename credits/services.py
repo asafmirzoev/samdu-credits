@@ -394,7 +394,16 @@ def get_accountant_group_credits_page(request: HttpRequest, course_id: int, grou
 def get_accountant_semestr_page(request: HttpRequest, group_id: int, semestr_id: int) -> HttpResponse:
     group = Group.objects.get(pk=group_id)
     semestr = Semestr.objects.get(pk=semestr_id)
-    students = {student: paysets for student in Student.objects.filter(group=group) if (paysets := student.payset_set.filter(subject__semestr=semestr))}
+
+    students = dict()
+    for student in Student.objects.filter(group=group):
+        paysets = set()
+        credits = student.credit_set.filter(subject__semestr=semestr)
+        for credit in credits:
+            paysets.update(credit.payset_set.all())
+        students[student] = paysets
+
+    students = {student: paysets for student in Student.objects.filter(group=group) if (paysets := student.credit_set.filter(subject__semestr=semestr))}
     
     context = {
         'group': group,
