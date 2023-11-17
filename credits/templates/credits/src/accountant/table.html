@@ -36,7 +36,7 @@
                     {% for payset in student.payset_set.all %}
                         <tr>
                             <td>{% for credit in payset.credits.all %}{{ credit.subject.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
-                            <td>{{ payset.amount }}</td>
+                            <td>{% if payset.amount %}{{ payset.amount }}{% else %}</td>
                             <td>{{ payset.pay_time }}</td>
                             <td>
                                 <a href="{% url 'credits:invoices' payset.pk %}">{% trans 'Квитанция' %}</a>
