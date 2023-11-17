@@ -401,6 +401,7 @@ def get_accountant_semestr_page(request: HttpRequest, group_id: int, semestr_id:
         credits = student.credit_set.filter(subject__semestr=semestr)
         for credit in credits:
             paysets.update(credit.payset_set.all())
+        print(credits)
         students[student] = paysets
 
     students = {student: paysets for student in Student.objects.filter(group=group) if (paysets := student.credit_set.filter(subject__semestr=semestr))}
