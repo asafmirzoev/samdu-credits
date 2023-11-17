@@ -39,17 +39,17 @@
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    {% for student, credits in students.items %}
+                    {% for student, paysets in students.items %}
                         <tr id="student{{ student.pk }}">
-                            <td rowspan="{{ credits.count|add:1 }}">{{ forloop.counter }}</td>
-                            <td rowspan="{{ credits.count|add:1 }}">{{ student.hemis_id }}</td>
-                            <td rowspan="{{ credits.count|add:1 }}">{{ student.name }}</td>
-                            <td rowspan="{{ credits.count|add:1 }}">{{ student.group.direction.name }}</td>
-                            <td rowspan="{{ credits.count|add:1 }}">{{ student.group.name }}</td>
+                            <td rowspan="{{ paysets.count|add:1 }}">{{ forloop.counter }}</td>
+                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.hemis_id }}</td>
+                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.name }}</td>
+                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.group.direction.name }}</td>
+                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.group.name }}</td>
                         </tr>
         
                         {% if not is_deadline %}
-                            {% for payset in credits %}
+                            {% for payset in paysets %}
                                 <tr>
                                     <td>{% for credit in payset.credits.all %}{{ credit.subject.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
                                     <td>{{ payset.amount }}</td>
