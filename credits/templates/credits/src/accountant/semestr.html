@@ -41,11 +41,11 @@
                 <tbody class="table-border-bottom-0">
                     {% for student, paysets in students.items %}
                         <tr id="student{{ student.pk }}">
-                            <td rowspan="{{ paysets.count|add:1 }}">{{ forloop.counter }}</td>
-                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.hemis_id }}</td>
-                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.name }}</td>
-                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.group.direction.name }}</td>
-                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.group.name }}</td>
+                            <td rowspan="{% if paysets %}{{ paysets.count|add:1 }}{% else %}1{% endif %}">{{ forloop.counter }}</td>
+                            <td rowspan="{% if paysets %}{{ paysets.count|add:1 }}{% else %}1{% endif %}">{{ student.hemis_id }}</td>
+                            <td rowspan="{% if paysets %}{{ paysets.count|add:1 }}{% else %}1{% endif %}">{{ student.name }}</td>
+                            <td rowspan="{% if paysets %}{{ paysets.count|add:1 }}{% else %}1{% endif %}">{{ student.group.direction.name }}</td>
+                            <td rowspan="{% if paysets %}{{ paysets.count|add:1 }}{% else %}1{% endif %}">{{ student.group.name }}</td>
                         </tr>
         
                         {% if not is_deadline %}
