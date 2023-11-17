@@ -49,6 +49,10 @@
                                 {% endif %}
                             </td>
                         </tr>    
+                    {% empty %}
+                        <tr colspan="3">
+                            <td>{% trans 'Платежей нет' %}</td>
+                        </tr>
                     {% endfor %}
                 {% endif %}
 
