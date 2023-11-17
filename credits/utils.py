@@ -3,8 +3,6 @@ import math
 import asyncio
 import aiohttp
 import requests
-import time
-import pickle
 import logging
 from bs4 import BeautifulSoup
 from urllib.parse import parse_qsl, urlsplit
@@ -397,7 +395,7 @@ class PraseCreditorsAsync:
             soup = BeautifulSoup(await response.text(), 'html.parser')
             csrf_backend = soup.find('input', attrs={'name': '_csrf-backend'})['value']
         
-        async for direction in Direction.objects.all().filter(name='MAT_60540200_Amaliy mat_2021'):
+        async for direction in Direction.objects.all():
             task = asyncio.create_task(self.parse_cirriculum_handle(session, csrf_backend, direction))
             tasks.append(task)
         
@@ -527,9 +525,6 @@ class PraseCreditorsAsync:
                 elif 'Jami' == subject_type:
                     hours_dict['hours'] = subject_type_hours
                     break
-            
-            if direction.direction_id == '453':
-                print(semestr.semestr, hours, hours_dict)
             
             url_queries = dict(parse_qsl(urlsplit(subject_link).query))
             subject_id = url_queries.get('subject')
