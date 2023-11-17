@@ -404,7 +404,7 @@ def get_accountant_semestr_page(request: HttpRequest, group_id: int, semestr_id:
         print(paysets)
         students[student] = paysets
 
-    students = {student: paysets for student in Student.objects.filter(group=group) if (paysets := student.credit_set.filter(subject__semestr=semestr))}
+    # students = {student: paysets for student in Student.objects.filter(group=group) if (paysets := student.credit_set.filter(subject__semestr=semestr))}
     
     context = {
         'group': group,
