@@ -223,9 +223,9 @@ class PraseCreditorsAsync:
             # await self.parse_directions(session)
             # await self.parse_direction_years(session)
             # await self.parse_groups(session)
-            # await self.parse_cirriculum(session)
+            await self.parse_cirriculum(session)
             # await self.parse_students(session)
-            await self.parse_credits(session)
+            # await self.parse_credits(session)
 
             requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text=parse ended')
     
@@ -446,6 +446,29 @@ class PraseCreditorsAsync:
         subjects = list()
         async with session.get(f'{self.base_url}{cirriculum_link}') as response:
             soup = BeautifulSoup(await response.text(), 'html.parser')
+
+            education_form = None
+            edu_hours = None
+            for tr in soup.find('table', id='w0').find_all('tr'):
+                th = tr.find('th').getText(strip=True)
+                td = tr.find('td').getText(strip=True)
+
+                if th == 'Ta’lim shakli':
+                    education_form = td
+                    if education_form in ['Qo‘shma', 'Kunduzgi', 'Magistr']:
+                        edu_hours = 60
+                    elif education_form == 'Kechki':
+                        edu_hours = 56
+                    elif education_form == 'Sirtqi':
+                        edu_hours = 48
+            
+            if education_form and edu_hours:
+                direction.education_form = education_form
+                direction.edu_hours = edu_hours
+                await direction.asave()
+            else:
+                logging.error(f'education form error {cirriculum_link}')
+                return
 
             current_semestr = None
             for tr in soup.find('tbody').find_all('tr'):

@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from .choices import EducationForms, EducationLanguages, CreditStatuses
+from .choices import CreditStatuses
 
 
 class Faculty(models.Model):
@@ -67,6 +67,9 @@ class Direction(models.Model):
     name = models.CharField('Имя', max_length=255, unique=True)
     faculty = models.ForeignKey(Faculty, verbose_name='Факультет', on_delete=models.CASCADE)
     course = models.ForeignKey(Course, verbose_name='Курс', on_delete=models.CASCADE, null=True, default=None)
+    
+    education_form = models.CharField('Форма обучения', max_length=32)
+    edu_hours = models.IntegerField(null=True, default=None)
 
     def __str__(self):
         return self.name
@@ -94,9 +97,7 @@ class Group(models.Model):
     group_id = models.CharField(max_length=16)
     name = models.CharField('Имя', max_length=255, unique=True)
     direction = models.ForeignKey(Direction, verbose_name='Направление', on_delete=models.CASCADE)
-    education_form = models.CharField('Форма обучения', max_length=32)
-    # language = models.CharField('Язык обучения', max_length=32, choices=EducationLanguages.choices)
-
+    
     def __str__(self):
         return self.name
 

@@ -465,9 +465,9 @@ def get_finances_direction_page(request: HttpRequest, course_id: int, direction_
 
         credits_for_update = []
         for credit in credits:
-            credit.status = CreditStatuses.FINANCE_SETTED
             if credit.subject.credits and credit.subject.hours:
-                credit.amount = round((direction.kontraktamount.amount / credit.subject.hours) * credit.subject.credits, 2)
+                credit.status = CreditStatuses.FINANCE_SETTED
+                credit.amount = round((direction.kontraktamount.amount / direction.edu_hours) * credit.subject.credits, 2)
                 credits_for_update.append(credit)
         Credit.objects.bulk_update(credits_for_update, ['status', 'amount'])
 
