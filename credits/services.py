@@ -200,7 +200,7 @@ def deanery_pay_submit(request: HttpRequest, student_id: int):
         messages.error(request, _('Файл квитанции обязателен'))
         return redirect(redirect_url)
 
-    if file.size > 1_048_576:
+    if file.size > 2_097_152:
         messages.error(request, _('Размер файла не может превышать 1MB'))
         return redirect(redirect_url)
     
