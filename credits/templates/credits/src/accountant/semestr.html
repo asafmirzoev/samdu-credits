@@ -41,11 +41,14 @@
                 <tbody class="table-border-bottom-0">
                     {% for student, paysets in students.items %}
                         <tr id="student{{ student.pk }}">
-                            <td rowspan="{% if paysets %}{{ paysets.count|add:1 }}{% else %}2{% endif %}">{{ forloop.counter }}</td>
-                            <td rowspan="{% if paysets %}{{ paysets.count|add:1 }}{% else %}2{% endif %}">{{ student.hemis_id }}</td>
-                            <td rowspan="{% if paysets %}{{ paysets.count|add:1 }}{% else %}2{% endif %}">{{ student.name }}</td>
-                            <td rowspan="{% if paysets %}{{ paysets.count|add:1 }}{% else %}2{% endif %}">{{ student.group.direction.name }}</td>
-                            <td rowspan="{% if paysets %}{{ paysets.count|add:1 }}{% else %}2{% endif %}">{{ student.group.name }}</td>
+                            <td rowspan="{{ paysets.count|add:1 }}">{{ forloop.counter }}</td>
+                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.hemis_id }}</td>
+                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.name }}</td>
+                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.group.direction.name }}</td>
+                            <td rowspan="{{ paysets.count|add:1 }}">{{ student.group.name }}</td>
+                            {% if not paysets %}
+                                <td colspan="2">{% trans 'Платежей нет' %}</td>
+                            {% endif %}
                         </tr>
         
                         {% if not is_deadline %}
@@ -64,10 +67,6 @@
                                             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#PayModal{{ payset.pk }}">{% trans 'Подтвердить оплату' %}</button>
                                         {% endif %}
                                     </td>
-                                </tr> 
-                            {% empty %}
-                                <tr colspan="2">
-                                    <td>{% trans 'Платежей нет' %}</td>
                                 </tr>
                             {% endfor %}
                         {% endif %}
