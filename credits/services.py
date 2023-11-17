@@ -463,7 +463,7 @@ def get_finances_direction_page(request: HttpRequest, course_id: int, direction_
                 credit.amount = round((direction.kontraktamount.amount / credit.subject.hours) * credit.subject.credits, 2)
                 credits_for_update.append(credit)
             else:
-                print(credit.pk, credit.subject.subject_id, credit.subject.direction.direction_id)
+                print(credit.pk, credit.subject.credits, credit.subject.hours, credit.subject.subject_id, credit.subject.direction.direction_id)
         Credit.objects.bulk_update(credits_for_update, ['status', 'amount'])
 
     return redirect('credits:finances-course', faculty_id=direction.faculty.pk, course_id=course_id)
