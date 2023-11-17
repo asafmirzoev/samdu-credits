@@ -459,10 +459,11 @@ def get_finances_direction_page(request: HttpRequest, course_id: int, direction_
         credits_for_update = []
         for credit in credits:
             credit.status = CreditStatuses.FINANCE_SETTED
-            if credit.subject.credits and credit.subject.hours:
+            try:
                 credit.amount = round((direction.kontraktamount.amount / credit.subject.hours) * credit.subject.credits, 2)
                 credits_for_update.append(credit)
-            else:
+            except Exception as e:
+                print(e)
                 print(credit.pk, credit.subject.credits, credit.subject.hours, credit.subject.subject_id, credit.subject.direction.direction_id)
         Credit.objects.bulk_update(credits_for_update, ['status', 'amount'])
 
