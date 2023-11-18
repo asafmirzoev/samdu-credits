@@ -46,12 +46,11 @@ class Course(models.Model):
         super(Course, self).save(*args, **kwargs)
         
         credits = Credit.objects.filter(student__group__direction__course=self)
-
+        credits.update(active=False)
         if self.last_semestr:
             credits.update(active=True)
-            credits.filter(subject__semestr=self.last_semestr).update(active=False)
-        else:
-            credits.update(active=False)
+            credits.filter(subject__semestr_id__lte=self.last_semestr.pk).update(active=True)
+            
 
     class Meta:
         ordering = ['course']
