@@ -694,7 +694,7 @@ def get_edupart_lastsemestrs_page(request: HttpRequest) -> HttpResponse:
 
 def set_edupart_lastsemestr(request: HttpRequest) -> HttpResponse:
     data = request.POST
-
+    print(data)
     with transaction.atomic():
         for key, semestr_id in data.items():
             
