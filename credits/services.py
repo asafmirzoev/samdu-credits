@@ -695,11 +695,10 @@ def get_edupart_lastsemestrs_page(request: HttpRequest) -> HttpResponse:
 def set_edupart_lastsemestr(request: HttpRequest) -> HttpResponse:
     data = request.POST
 
-    print(data)
     with transaction.atomic():
         for key, semestr_id in data.items():
             
-            if not key.startswith('semestr-'):
+            if not key.startswith('course-'):
                 continue
 
             course_id = key.replace('course-', '')
@@ -714,7 +713,6 @@ def set_edupart_lastsemestr(request: HttpRequest) -> HttpResponse:
                 messages.error(request, _('Ошибка в данных'))
                 return redirect('credits:edu-part-lastsemestr')
             
-            print(semestr_id)
             courses.update(last_semestr_id=semestr_id)
     
     messages.success(request, _('Семестры курсов успешно сохранены'))
