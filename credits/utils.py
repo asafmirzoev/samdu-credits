@@ -110,8 +110,8 @@ def students_to_excel(students: QuerySet[Credit]):
             student.hemis_id,
             student.name,
             student.group.direction.name,
-            sum([credit.amount for credit in student.credit_set.all()])
-        ] for i, student in enumerate(students)
+            amount
+        ] for i, student in enumerate(students) if (amount := sum([credit.amount for credit in student.credit_set.all() if credit.amount]))
     ]
     df = pd.DataFrame(data)
 
