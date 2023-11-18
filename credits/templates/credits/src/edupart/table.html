@@ -39,12 +39,12 @@
                     <td>{{ credit.student.group.direction.name }}</td>
                     <td>{{ credit.student.group.name }}</td>
                     <td>{{ credit.subject.name }}</td>
-                    <td>{{ credit.semestr.course.course }}</td>
+                    <td>{{ credit.subject.semestr.course.course }}</td>
                     <td>{{ credit.student.group.language }}</td>
-                    <td>{{ credit.student.group.education_form }}</td>
+                    <td>{{ credit.student.group.direction.education_form }}</td>
                     <td>{{ credit.edu_year.year }}</td>
-                    <td>{{ credit.semestr.semestr }}</td>
-                    <td>{{ credit.subject.hours }}</td>
+                    <td>{{ credit.subject.semestr.semestr }}</td>
+                    <td>{{ credit.student.group.direction.edu_hours }}</td>
                     <td>{% if credit.subject.hours %}{{ credit.subject.hours }}{% endif %}</td>
                     <td>{% if credit.subject.lecture_hours %}{{ credit.subject.lecture_hours }}{% endif %}</td>
                     <td>{% if credit.subject.practice_hours %}{{ credit.subject.practice_hours }}{% endif %}</td>
