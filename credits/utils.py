@@ -492,6 +492,7 @@ class PraseCreditorsAsync:
 
                 subject_name = tr.find('a').getText(strip=True)
 
+                # print(tds[-1])
                 credits_count = tds[-1].getText(strip=True)
                 if not credits_count:
                     logging.error(f'credits is null {cirriculum_link} ___ {tr}')
@@ -503,10 +504,11 @@ class PraseCreditorsAsync:
                     continue
 
                 credits_count = float(credits_count)
+                # print(credits_count)
                 hours = int(hours)
                 
                 subjects.extend(
-                    await self.parse_subject_table(session, direction, subject_link, subject_name, credits_count, hours, current_semestr)
+                    await self.parse_subject_table(session, direction, subject_link, subject_name, hours, credits_count, current_semestr)
                 )
         return subjects
 
@@ -568,6 +570,7 @@ class PraseCreditorsAsync:
                     credits=credits_count
                 ))
             else:
+                print(credits_count)
                 await _subjects.aupdate(
                     hours=hours,
                     lecture_hours=hours_dict.get('lecture_hours'),
