@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from .managers import CreditsManager
+from .managers import CreditsManager, AllCreditsManager
 from .choices import CreditStatuses
 
 
@@ -48,7 +48,6 @@ class Course(models.Model):
         credits = Credit.objects.filter(student__group__direction__course=self)
         credits.update(active=False)
         if self.last_semestr:
-            credits.update(active=True)
             credits.filter(subject__semestr_id__lte=self.last_semestr.pk).update(active=True)
             
 
@@ -177,6 +176,7 @@ class Credit(models.Model):
     active = models.BooleanField(default=True)
 
     objects = CreditsManager()
+    alls = AllCreditsManager()
 
     class Meta:
         ordering = ['student__name']
