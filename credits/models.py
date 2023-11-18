@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
+from .managers import CreditsManager
 from .choices import CreditStatuses
 
 
@@ -36,6 +37,7 @@ class EducationYear(models.Model):
 class Course(models.Model):
 
     course = models.PositiveSmallIntegerField('Курс')
+    last_semestr = models.ForeignKey('Semestr', related_name='courses_for_last', on_delete=models.PROTECT, default=None, null=True)
 
     def __str__(self):
         return str(self.course)
@@ -74,10 +76,10 @@ class Direction(models.Model):
     def __str__(self):
         return self.name
 
-    # def save(self, *args, **kwargs):
-        # super(Direction, self).save(*args, **kwargs)
-        # if not hasattr(self, 'kontraktamount'):
-        #     KontraktAmount.objects.create(direction=self)
+    def save(self, *args, **kwargs):
+        super(Direction, self).save(*args, **kwargs)
+        if not hasattr(self, 'kontraktamount'):
+            KontraktAmount.objects.create(direction=self)
 
     class Meta:
         ordering = ['id']
@@ -162,6 +164,9 @@ class Credit(models.Model):
     edu_year = models.ForeignKey(EducationYear, on_delete=models.PROTECT)
     amount = models.DecimalField(max_digits=12, decimal_places=2, null=True, default=None, blank=True)
     status = models.CharField(max_length=64, choices=CreditStatuses.choices, default=CreditStatuses.DEANERY_UPLOADED)
+    active = models.BooleanField(default=True)
+
+    objects = CreditsManager()
 
     class Meta:
         ordering = ['student__name']
