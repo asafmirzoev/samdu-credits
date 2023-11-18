@@ -169,7 +169,7 @@ class KontraktAmount(models.Model):
         super(KontraktAmount, self).save(*args, **kwargs)
 
         if self.amount:
-            credits = Credit.objects.filter(student__group__direction=self.direction, status__in=[CreditStatuses.DEANERY_UPLOADED, CreditStatuses.FINANCE_SETTED])
+            credits = Credit.objects.filter(student__group__direction=self.direction, status__in=[CreditStatuses.UPLOADED, CreditStatuses.DEANERY_UPLOADED, CreditStatuses.FINANCE_SETTED])
 
             credits_for_update = []
             for credit in credits:
