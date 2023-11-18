@@ -694,7 +694,7 @@ def get_edupart_lastsemestrs_page(request: HttpRequest) -> HttpResponse:
 
 def set_edupart_lastsemestr(request: HttpRequest) -> HttpResponse:
     data = request.POST
-    print(data)
+
     with transaction.atomic():
         for key, semestr_id in data.items():
             
@@ -709,8 +709,7 @@ def set_edupart_lastsemestr(request: HttpRequest) -> HttpResponse:
                 return redirect('credits:edu-part-lastsemestr')
             
             semestr_id = int(semestr_id) if semestr_id.isdecimal() else None
-            print(courses.first(), semestr_id)
-            if semestr_id and Semestr.objects.filter(course=courses.first(), pk=semestr_id).exists():
+            if semestr_id and not Semestr.objects.filter(course=courses.first(), pk=semestr_id).exists():
                 transaction.set_rollback(True)
                 messages.error(request, _('Ошибка в данных'))
                 return redirect('credits:edu-part-lastsemestr')
