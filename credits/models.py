@@ -177,7 +177,7 @@ class Credit(models.Model):
     status = models.CharField(max_length=64, choices=CreditStatuses.choices, default=CreditStatuses.DEANERY_UPLOADED)
     active = models.BooleanField(default=True)
 
-    # objects = CreditsManager()
+    objects = CreditsManager()
 
     class Meta:
         ordering = ['student__name']
