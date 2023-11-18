@@ -74,10 +74,10 @@ class Direction(models.Model):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):
-        super(Direction, self).save(*args, **kwargs)
-        if not hasattr(self, 'kontraktamount'):
-            KontraktAmount.objects.create(direction=self)
+    # def save(self, *args, **kwargs):
+        # super(Direction, self).save(*args, **kwargs)
+        # if not hasattr(self, 'kontraktamount'):
+        #     KontraktAmount.objects.create(direction=self)
 
     class Meta:
         ordering = ['id']
