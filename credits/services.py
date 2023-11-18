@@ -709,7 +709,7 @@ def set_edupart_lastsemestr(request: HttpRequest) -> HttpResponse:
                 return redirect('credits:edu-part-lastsemestr')
             
             semestr_id = int(semestr_id) if semestr_id.isdecimal() else None
-
+            print(semestr_id)
             if semestr_id and Semestr.objects.filter(course=courses.first(), pk=semestr_id).exists():
                 transaction.set_rollback(True)
                 messages.error(request, _('Ошибка в данных'))
