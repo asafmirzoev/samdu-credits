@@ -165,6 +165,20 @@ class KontraktAmount(models.Model):
     direction = models.OneToOneField(Direction, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=12, decimal_places=2, null=True, default=None, blank=True)
 
+    def save(self, *args, **kwargs):
+        super(KontraktAmount, self).save(*args, **kwargs)
+
+        if self.amount:
+            credits = Credit.objects.filter(student__group__direction=self.direction, status__in=[CreditStatuses.DEANERY_UPLOADED, CreditStatuses.FINANCE_SETTED])
+
+            credits_for_update = []
+            for credit in credits:
+                if credit.subject.credits and credit.subject.hours:
+                    credit.status = CreditStatuses.FINANCE_SETTED
+                    credit.amount = round((self.amount / self.direction.edu_hours) * credit.subject.credits, 2)
+                    credits_for_update.append(credit)
+            Credit.objects.bulk_update(credits_for_update, ['status', 'amount'])
+
 
 class Credit(models.Model):
 

@@ -475,16 +475,6 @@ def get_finances_direction_page(request: HttpRequest, course_id: int, direction_
         direction.kontraktamount.amount = float(request.POST.get('amount'))
         direction.kontraktamount.save()
 
-        credits = Credit.objects.filter(student__group__direction=direction, status__in=[CreditStatuses.DEANERY_UPLOADED, CreditStatuses.FINANCE_SETTED])
-
-        credits_for_update = []
-        for credit in credits:
-            if credit.subject.credits and credit.subject.hours:
-                credit.status = CreditStatuses.FINANCE_SETTED
-                credit.amount = round((direction.kontraktamount.amount / direction.edu_hours) * credit.subject.credits, 2)
-                credits_for_update.append(credit)
-        Credit.objects.bulk_update(credits_for_update, ['status', 'amount'])
-
     return redirect('credits:finances-course', faculty_id=direction.faculty.pk, course_id=course_id)
 
 
