@@ -12,7 +12,6 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>#</th>
                     <th>{% trans 'Курс' %}</th>
                     <th>{% trans 'Последний семестр' %}</th>
                 </tr>
@@ -21,7 +20,6 @@
                 <form method="post">
                     {% for course in courses %}
                         <tr>
-                            <td>{{ forloop.counter }}</td>
                             <td>{{ course.course }}</td>
                             <td>
                                 <select name="semestr-{{ course.pk }}" id="semestr-{{ course.pk }}" class="form-select">
