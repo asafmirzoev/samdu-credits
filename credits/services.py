@@ -701,7 +701,7 @@ def set_edupart_lastsemestr(request: HttpRequest) -> HttpResponse:
             if not key.startswith('semestr-'):
                 continue
 
-            course_id = key.replace('statement-', '')
+            course_id = key.replace('course-', '')
 
             if not (courses := Course.objects.filter(pk=course_id)).exists():
                 transaction.set_rollback(True)
