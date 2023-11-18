@@ -524,6 +524,9 @@ class PraseCreditorsAsync:
 
                 credits_count = float(credits_count)
                 hours = int(hours)
+
+                if not credits_count and hours:
+                    credits_count = int(hours / 30)
                 
                 subjects.extend(
                     await self.parse_subject_table(session, direction, subject_link, subject_name, hours, credits_count, current_semestr)
