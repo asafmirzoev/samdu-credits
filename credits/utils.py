@@ -79,7 +79,7 @@ def credits_to_excel(credits: QuerySet[Credit]):
             credit.subject.name,
             # credit.subject.semestr.course.course,
             # credit.student.group.language,
-            credit.student.group.education_form,
+            credit.student.group.direction.education_form,
             credit.edu_year.year,
             credit.subject.semestr.semestr,
             credit.subject.hours,
