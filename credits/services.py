@@ -715,7 +715,7 @@ def set_edupart_lastsemestr(request: HttpRequest) -> HttpResponse:
                 messages.error(request, _('Ошибка в данных'))
                 return redirect('credits:edu-part-lastsemestr')
             
-            course.last_semestr = semestr_id
+            course.last_semestr_id = semestr_id
             course.save()
     
     messages.success(request, _('Семестры курсов успешно сохранены'))
