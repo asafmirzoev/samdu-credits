@@ -87,10 +87,10 @@ class Direction(models.Model):
     def __str__(self):
         return self.name
 
-    async def asave(self, *args, **kwargs):
-        await super(Direction, self).asave(*args, **kwargs)
-        if not hasattr(self, 'kontraktamount'):
-            await KontraktAmount.objects.acreate(direction=self)
+    # async def asave(self, *args, **kwargs):
+    #     await super(Direction, self).asave(*args, **kwargs)
+    #     if not hasattr(self, 'kontraktamount'):
+    #         await KontraktAmount.objects.acreate(direction=self)
 
     class Meta:
         ordering = ['id']
