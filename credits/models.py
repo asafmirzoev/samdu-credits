@@ -43,8 +43,12 @@ class Course(models.Model):
         return str(self.course)
     
     def save(self, *args, **kwargs):
+        prev_course = Course.objects.get(pk=self.pk)
         super(Course, self).save(*args, **kwargs)
 
+        if prev_course.last_semestr == self.last_semestr:
+            return
+        
         credits = Credit.objects.filter(student__group__direction__course=self)
 
         if self.last_semestr:
