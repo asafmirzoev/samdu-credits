@@ -37,7 +37,7 @@ class EducationYear(models.Model):
 class Course(models.Model):
 
     course = models.PositiveSmallIntegerField('Курс')
-    last_semestr = models.ForeignKey('Semestr', related_name='courses_for_last', on_delete=models.PROTECT)
+    last_semestr = models.ForeignKey('Semestr', related_name='courses_for_last', on_delete=models.PROTECT, default=None, null=True)
 
     def __str__(self):
         return str(self.course)
@@ -46,8 +46,11 @@ class Course(models.Model):
         super(Course, self).save(*args, **kwargs)
 
         credits = Credit.objects.filter(student__group__direction__course=self)
-        credits.update(active=True)
-        credits.filter(subject__semestr=self.last_semestr).update(active=False)
+        if self.last_semestr:
+            credits.update(active=True)
+            credits.filter(subject__semestr=self.last_semestr).update(active=False)
+        else:
+            credits.update(active=False)
 
     class Meta:
         ordering = ['course']
