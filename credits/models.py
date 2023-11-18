@@ -175,7 +175,7 @@ class KontraktAmount(models.Model):
             for credit in credits:
                 if credit.subject.credits and credit.subject.hours:
                     credit.status = CreditStatuses.FINANCE_SETTED
-                    credit.amount = round((self.amount / self.direction.edu_hours) * credit.subject.credits, 2)
+                    credit.amount = round(float(self.amount / self.direction.edu_hours) * credit.subject.credits, 2)
                     credits_for_update.append(credit)
             Credit.objects.bulk_update(credits_for_update, ['status', 'amount'])
 
