@@ -4,26 +4,46 @@
 {% block title %}{% trans 'Активные семместры' %}{% endblock %}
 
 {% block content %}
-    <div class="card">
+<div class="card">
+    <h5 class="card-header">
+        {% trans 'Последние семестры' %}
+    </h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{% trans 'Курс' %}</th>
+                    <th>{% trans 'Последний семестр' %}</th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                <form method="post">
+                    {% for course in courses %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ course.course }}</td>
+                            <td>
+                                <select name="semestr-{{ course.pk }}" id="semestr-{{ course.pk }}" class="form-select">
+                                    {% for semestr in course.semestr_set.all %}
+                                        <option value="{{ semestr.pk }}" {% if coruse.last_semestr.pk == semestr.pk %}selected{% endif %}>{{ semestr.semestr }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                    {% endfor %}
 
-        {% for deadline in deadlines %}
-            <div class="row mb-4">
-                <h5 class="card-header">{% if deadline.faculty %}{{ deadline.faculty }}{% elif deadline.for_accountant %}{% trans 'Бухгалтер' %}{% else %}{% trans 'Финансы' %}{% endif %} <span class="badge bg-label-primary">{% trans 'Текущий Дедлайн' %}: {{ deadline.date }}</span></h5>
-                <form method="post" action="{% url 'credits:edu-part-deadline' deadline.pk %}">
-                    <div class="row">
+                    {% if courses %}
                         {% csrf_token %}
-                        <div class="col-6">
-                            <input type="datetime-local" class="form-control" name="date-{{ deadline.pk }}" value="{{ deadline.date|date:'Y-m-d\TH:i' }}">
-                        </div>
-
-                        <div class="col-3">
-                            <button type="submit" class="btn btn-primary w-100">{% trans 'Сохранить' %}</button>
-                        </div>
-                    </div>
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                <button class="btn btn-primary" type="submit">{% trans 'Сохранить' %}</button>
+                            </td>
+                        </tr>
+                    {% endif %}
                 </form>
-            </div>
-            <hr>
-        {% endfor %}
-
+            </tbody>
+        </table>
     </div>
+</div>
 {% endblock %}

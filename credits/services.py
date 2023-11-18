@@ -685,3 +685,36 @@ def get_edupart_deadline_page(request: HttpRequest) -> HttpResponse:
 def set_edupart_deadline_page(request: HttpRequest, deadline_id: int) -> HttpResponse:
     DeadLine.objects.filter(pk=deadline_id).update(date=request.POST.get(f'date-{deadline_id}'))
     return redirect('credits:edu-part-deadline')
+
+
+def get_edupart_lastsemestrs_page(request: HttpRequest) -> HttpResponse:
+    courses = Course.objects.all()
+    return render(request, 'credits/src/edupart/semestrs-management.html', {'courses': courses})
+
+
+def set_edupart_lastsemestr(request: HttpRequest) -> HttpResponse:
+    data = request.POST
+
+    with transaction.atomic():
+        for key, semestr_id in data.items():
+            
+            if not key.startswith('semestr-'):
+                continue
+
+            course_id = key.replace('statement-', '')
+
+            if not (courses := Course.objects.filter(pk=course_id)).exists():
+                transaction.set_rollback(True)
+                messages.error(request, _('Курс не найден'))
+                return redirect('credits:edu-part-lastsemestr')
+            
+            semestr_id = int(semestr_id)
+            if (semestrs := Semestr.objects.filter(course=courses.first(), pk=semestr_id)).exists():
+                transaction.set_rollback(True)
+                messages.error(request, _('Ошибка в данных'))
+                return redirect('credits:edu-part-lastsemestr')
+            
+            courses.update(last_semestr=semestrs.first())
+    
+    messages.success(request, _('Семестры курсов успешно сохранены'))
+    return redirect('credits:edu-part-lastsemestr')

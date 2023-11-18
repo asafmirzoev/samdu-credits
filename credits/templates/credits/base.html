@@ -148,6 +148,14 @@
 								<div>{% trans 'Дедлайн' %}</div>
 							</a>
 						</li>
+
+						{% url 'credits:edu-part-lastsemestrs' as lastsemestrs_url %}
+						<li class="menu-item {% if request.path == lastsemestrs_url %}active{% endif %}">
+							<a href="{{ lastsemestrs_url }}" class="menu-link">
+								<i class="menu-icon tf-icons bx bxs-timer"></i>
+								<div>{% trans 'Активные семестры' %}</div>
+							</a>
+						</li>
 					{% endif %}
 				</ul>
 			</aside>

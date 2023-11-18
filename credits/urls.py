@@ -9,7 +9,7 @@ from .views import (
     FinancesOverviewView, FinancesFacultyView, FinancesCourseView, FinancesDirectionView, FinancesCreditsView,
     EduPartOverviewView, EduPartSearchView, EduPartFacultyView, EduPartFacultyCreditsView, EduPartCourseView,
     EduPartCourseCreditsView, EduPartDirectionView, EduPartDirectionCreditsView, EduPartGroupView,
-    EduPartGroupCreditsView, EduPartSemestrView, EduPartDeadlineView, 
+    EduPartGroupCreditsView, EduPartSemestrView, EduPartDeadlineView, EduPartCourseLastSemestrView,
     InvoicesView
 )
 
@@ -97,5 +97,7 @@ urlpatterns = [
 
         path('deadline/', EduPartDeadlineView.as_view(), name='edu-part-deadline'),
         path('deadline/<int:deadline_id>/', EduPartDeadlineView.as_view(), name='edu-part-deadline'),
+
+        path('last-semestrs/', EduPartCourseLastSemestrView.as_view(), name='edu-part-lastsemestr'),
     ])),
 ]
