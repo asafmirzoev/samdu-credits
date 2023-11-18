@@ -65,7 +65,7 @@ def get_deanery_overview_page(request: HttpRequest) -> HttpResponse:
 
 def get_deanery_search_page(request: HttpRequest) -> HttpResponse:
     name = request.GET.get('name'); page: int = request.GET.get('page', 1)
-    students = Student.objects.filter(Q(name__icontains=name, group__direction__faculty=request.user.faculty) | Q(hemis_id=name, group__direction__faculty=request.user.faculty)) if name else Student.objects.none()
+    students = [student for student in Student.objects.filter(Q(name__icontains=name, group__direction__faculty=request.user.faculty) | Q(hemis_id=name, group__direction__faculty=request.user.faculty)) if student.credit_set.exists()] if name else Student.objects.none()
     paginator = paginated_queryset(students, page)
 
     redirect_url = quote(f"{reverse('credits:deanery-search')}?name={name}&page={page}")
@@ -94,7 +94,7 @@ def get_deanery_course_credits_page(request: HttpRequest, course_id: int) -> Htt
     page = request.GET.get('page', 1)
 
     course = Course.objects.get(pk=course_id)
-    students = Student.objects.filter(group__direction__course=course, group__direction__faculty=request.user.faculty)
+    students = [student for student in Student.objects.filter(group__direction__course=course, group__direction__faculty=request.user.faculty) if student.credit_set.exists()]
     paginator = paginated_queryset(students, page)
 
     redirect_url = reverse('credits:deanery-course-credits', kwargs={'course_id': course_id})
@@ -122,7 +122,7 @@ def get_deanery_direction_credits_page(request: HttpRequest, course_id: int, dir
 
     course = Course.objects.get(pk=course_id)
     direction = Direction.objects.get(pk=direction_id)
-    students = Student.objects.filter(group__direction=direction)
+    students = [student for student in Student.objects.filter(group__direction=direction) if student.credit_set.exists()]
     paginator = paginated_queryset(students, page)
 
     redirect_url = reverse('credits:deanery-direction-credits', kwargs={'course_id': course_id, 'direction_id': direction_id})
@@ -155,7 +155,7 @@ def get_deanery_group_credits_page(request: HttpRequest, course_id: int, group_i
 
     course = Course.objects.get(pk=course_id)
     group = Group.objects.get(pk=group_id)
-    students = Student.objects.filter(group=group)
+    students = [student for student in Student.objects.filter(group=group) if student.credit_set.exists()]
     paginator = paginated_queryset(students, page)
     
     context = {
