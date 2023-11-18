@@ -23,6 +23,7 @@
                             <td>{{ course.course }}</td>
                             <td>
                                 <select name="semestr-{{ course.pk }}" id="semestr-{{ course.pk }}" class="form-select">
+                                    <option>{% trans 'Нет активного' %}</option>
                                     {% for semestr in course.semestr_set.all %}
                                         <option value="{{ semestr.pk }}" {% if coruse.last_semestr.pk == semestr.pk %}selected{% endif %}>{{ semestr.semestr }}</option>
                                     {% endfor %}

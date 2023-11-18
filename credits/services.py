@@ -707,14 +707,13 @@ def set_edupart_lastsemestr(request: HttpRequest) -> HttpResponse:
                 transaction.set_rollback(True)
                 messages.error(request, _('Курс не найден'))
                 return redirect('credits:edu-part-lastsemestr')
-            
-            semestr_id = int(semestr_id)
-            if (semestrs := Semestr.objects.filter(course=courses.first(), pk=semestr_id)).exists():
+
+            if semestr_id and (semestrs := Semestr.objects.filter(course=courses.first(), pk=semestr_id)).exists():
                 transaction.set_rollback(True)
                 messages.error(request, _('Ошибка в данных'))
                 return redirect('credits:edu-part-lastsemestr')
             
-            courses.update(last_semestr=semestrs.first())
+            courses.update(last_semestr_id=semestr_id)
     
     messages.success(request, _('Семестры курсов успешно сохранены'))
     return redirect('credits:edu-part-lastsemestr')
