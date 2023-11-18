@@ -4,7 +4,7 @@ from .views import (
     HomeView, StudentCreditsView, DeaneryOverviewView, DeanerySearchView, DeaneryCourseView, DeaneryCourseCreditsView,
     DeaneryDirectionView, DeaneryDirectionCreditsView, DeaneryGroupView, DeaneryGroupCreditsView, DeanerySemestrView,
     DeaneryPaySubmitView, DeaneryUploadView, AccountantOverviewView, AccountantFacultyView,
-    AccountantFacultyCreditsView, AccountantSearchView, AccountantCourseView, AccountantCourseCreditsView,
+    AccountantFacultyCreditsView, AccountantSearchView, AccountantCourseView, AccountantCourseCreditsView, AccountantCourseCreditsFileView,
     AccountantDirectionView, AccountantGroupView, AccountantGroupCreditsView, AccountantSemestrView, AccountantPaySubmitView,
     FinancesOverviewView, FinancesFacultyView, FinancesCourseView, FinancesDirectionView, FinancesCreditsView,
     EduPartOverviewView, EduPartSearchView, EduPartFacultyView, EduPartFacultyCreditsView, EduPartCourseView,
@@ -50,6 +50,7 @@ urlpatterns = [
 
             path('<int:faculty_id>/<int:course_id>/', AccountantCourseView.as_view(), name='accountant-course'),
             path('<int:faculty_id>/<int:course_id>/credits/', AccountantCourseCreditsView.as_view(), name='accountant-course-credits'),
+            path('<int:faculty_id>/<int:course_id>/credits/file/', AccountantCourseCreditsFileView.as_view(), name='accountant-course-credits-file'),
 
             path('<int:course_id>/direction/<int:direction_id>/', AccountantDirectionView.as_view(), name='accountant-direction'),
 

@@ -19,7 +19,7 @@ from .models import (
 )
 from .choices import CreditStatuses
 from .paginator import paginated_queryset
-from .utils import parse_deanery_file, credits_to_excel, is_deadline, StudentLogin
+from .utils import parse_deanery_file, credits_to_excel, students_to_excel, is_deadline, StudentLogin
 
 
 def get_home_page(request: HttpRequest) -> HttpResponse:
@@ -336,6 +336,20 @@ def get_accountant_course_page(request: HttpRequest, faculty_id: int, course_id:
         'directions': directions
     }
     return render(request, 'credits/src/accountant/course.html', context)
+
+
+def get_accountant_course_credits_file(request: HttpRequest, faculty_id: int, course_id: int) -> HttpResponse:
+    faculty = Faculty.objects.get(pk=faculty_id)
+    course = Course.objects.get(pk=course_id)
+    students = Student.objects.filter(group__direction__course=course, group__direction__faculty=faculty)
+
+    filename = students_to_excel(students)
+
+    with open(filename, 'rb') as fh:
+        response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
+        response['Content-Disposition'] = 'inline; filename=' + os.path.basename(filename)
+    os.remove(filename)
+    return response
 
 
 def get_accountant_course_credits_page(request: HttpRequest, faculty_id: int, course_id: int) -> HttpResponse:

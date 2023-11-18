@@ -131,6 +131,12 @@ class AccountantCourseCreditsView(View):
         return svc.get_accountant_course_credits_page(request, faculty_id, course_id)
 
 
+class AccountantCourseCreditsFileView(View):
+
+    def get(self, request: HttpRequest, faculty_id: int, course_id: int) -> HttpResponse:
+        return svc.get_accountant_course_credits_file(request, faculty_id, course_id)
+
+
 class AccountantDirectionView(View):
 
     def get(self, request: HttpRequest, course_id: int, direction_id: int) -> HttpResponse:

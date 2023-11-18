@@ -100,6 +100,26 @@ def credits_to_excel(credits: QuerySet[Credit]):
     df.to_excel(filename, header=False, index=False)
     return filename
 
+
+def students_to_excel(students: QuerySet[Credit]):
+    import pandas as pd
+
+    data = [
+        [
+            i + 1,
+            student.hemis_id,
+            student.name,
+            student.group.direction.name,
+            sum([credit.amount for credit in student.credit_set.all()])
+        ] for i, student in enumerate(students)
+    ]
+    df = pd.DataFrame(data)
+
+    filename = settings.BASE_DIR / f'files/buxgalter/students-{uuid4()}.xlsx'
+    df.to_excel(filename, header=False, index=False)
+    return filename
+
+
 def is_deadline(faculty_id: int = None, for_accountant: bool = None, for_finances: bool = None):
     if not any([faculty_id, for_accountant, for_finances]): return False
     if faculty_id: deadline = DeadLine.objects.get(faculty_id=faculty_id)
