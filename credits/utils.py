@@ -197,12 +197,11 @@ class PraseCreditorsAsync:
             '_ym_uid': '1676192409603276595',
             'tmr_lvid': '9e71bf292cc968b9b024e320895f4425',
             'tmr_lvidTS': '1676192408763',
-            '_backendUser_8': '91fdd14232d4c573838cf919d9aead049e197c67f0a3de08f266c7fb51126e38a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_backendUser_8%22%3Bi%3A1%3Bs%3A50%3A%22%5B%221849%22%2C%22GEguCgGsfxJkAPYl1A7UXYOzd8IwRlT8%22%2C518400%5D%22%3B%7D',
             '_ym_d': '1698727557',
-            '_ym_isad': '2',
             '_ga_RF4T13JDG3': 'GS1.1.1699077988.12.1.1699078157.0.0.0',
-            'backend_8': 'kg96dsaatphcjf3kjf49u6389j',
-            '_csrf-backend': '28fa0cf599dc1c4d319babf2da90c6226ab830a0ba8a7428b6d97860d22979efa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22hlcjKJwUbtjWCDXeYsWDg5n9xDYAnF5O%22%3B%7D',
+            'backend_8': '03enuhm3tgbccg13bctklsrtv4',
+            '_backendUser_8': 'fd2b13aa8fdb1d78eb1c6e346a846b8c414ebd3aecce93925ce38fcb867da064a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_backendUser_8%22%3Bi%3A1%3Bs%3A48%3A%22%5B%221849%22%2C%22NZp7z9y29LphsVYAuI1Ccj25Fh2MAHS4%22%2C3600%5D%22%3B%7D',
+            '_csrf-backend': '6c5b75bff91256d5c734ca51b9d7e8cdbae2e8e4c71a5b3f77ef7e4e758fd049a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22u6ws4r6RMAHhZpzNSxTILx905_B3tmhb%22%3B%7D',
         }
 
         self.headers = {
@@ -210,10 +209,9 @@ class PraseCreditorsAsync:
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,uz;q=0.6',
             'cache-control': 'no-cache',
-            # 'cookie': '_ga=GA1.1.1478770975.1676192409; _ga_49VTPLNPW6=GS1.1.1677344812.2.1.1677344843.0.0.0; _ym_uid=1676192409603276595; tmr_lvid=9e71bf292cc968b9b024e320895f4425; tmr_lvidTS=1676192408763; _backendUser_8=91fdd14232d4c573838cf919d9aead049e197c67f0a3de08f266c7fb51126e38a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_backendUser_8%22%3Bi%3A1%3Bs%3A50%3A%22%5B%221849%22%2C%22GEguCgGsfxJkAPYl1A7UXYOzd8IwRlT8%22%2C518400%5D%22%3B%7D; _ym_d=1698727557; _ym_isad=2; _ga_RF4T13JDG3=GS1.1.1699077988.12.1.1699078157.0.0.0; backend_8=kg96dsaatphcjf3kjf49u6389j; _csrf-backend=28fa0cf599dc1c4d319babf2da90c6226ab830a0ba8a7428b6d97860d22979efa%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22hlcjKJwUbtjWCDXeYsWDg5n9xDYAnF5O%22%3B%7D',
             'pragma': 'no-cache',
-            'referer': 'https://hemis.samdu.uz/student/contingent-list',
-            'sec-ch-ua': '"Chromium";v="118", "Google Chrome";v="118", "Not=A?Brand";v="99"',
+            'referer': 'https://hemis.samdu.uz/dashboard/login',
+            'sec-ch-ua': '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
             'sec-ch-ua-mobile': '?0',
             'sec-ch-ua-platform': '"Windows"',
             'sec-fetch-dest': 'document',
@@ -221,12 +219,12 @@ class PraseCreditorsAsync:
             'sec-fetch-site': 'same-origin',
             'sec-fetch-user': '?1',
             'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
         }
 
         self.ajax_headers = {
             **self.headers,
-            'x-csrf-token': 'nH3aqKdr5LJlKI8TfMSf0yHfYkjBE88SoVlYA1JIHMP0EbnC7CGT5wdc5UQ_gMe2eKw1DKYmoSvZHQFCPA4pjA==',
+            'x-csrf-token': 'wcUVGQYnyejBZOnrj8_NZ8jbTsqeE2P80CWEiywTnVy082JqMlX_uowloYPVv7cpm6Mag9JrWszlesa4WH71Pg==',
             'x-pjax': 'true',
             'x-pjax-container': '#admin-grid',
             'x-requested-with': 'XMLHttpRequest',
