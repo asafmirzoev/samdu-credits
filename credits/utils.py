@@ -237,12 +237,12 @@ class PraseCreditorsAsync:
     async def parse(self):
         connector = aiohttp.TCPConnector(limit=2, verify_ssl=False)
         async with aiohttp.ClientSession(connector=connector, headers=self.headers, cookies=self.cookies) as session:
-            await self.parse_faculties(session)
-            await self.parse_directions(session)
-            await self.parse_direction_years(session)
-            await self.parse_groups(session)
-            await self.parse_cirriculum(session)
-            await self.parse_students(session)
+            # await self.parse_faculties(session)
+            # await self.parse_directions(session)
+            # await self.parse_direction_years(session)
+            # await self.parse_groups(session)
+            # await self.parse_cirriculum(session)
+            # await self.parse_students(session)
             await self.parse_credits(session)
 
             requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text=parse ended')
@@ -291,7 +291,7 @@ class PraseCreditorsAsync:
         results = await asyncio.wait_for(group_task, 1800)
 
         for directions in results:
-            await Direction.objects.abulk_create(directions) 
+            await Direction.objects.abulk_create(directions, ignore_conflicts=True) 
 
     async def parse_directions_handle(self, session: aiohttp.ClientSession, faculty: Faculty):
         await asyncio.sleep(0.5)
