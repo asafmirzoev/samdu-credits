@@ -16,6 +16,7 @@ from credits.models import (
     Faculty, Direction, Course, Group, EducationYear, Semestr, Subject, DeadLine, Credit,
     DirectionEduYear, Student
 )
+from credits.choices import CreditStatuses
 
 
 def init_deadline():
@@ -111,7 +112,7 @@ def students_to_excel(students: QuerySet[Credit]):
             student.name,
             student.group.direction.name,
             amount
-        ] for i, student in enumerate(students) if (amount := sum([credit.amount for credit in student.credit_set.all() if credit.amount]))
+        ] for i, student in enumerate(students) if (amount := sum([credit.amount for credit in student.credit_set.filter(status__in=[CreditStatuses.DEANERY_SETPAID, CreditStatuses.ACCOUNTANT_SUBMITED]) if credit.amount]))
     ]
     df = pd.DataFrame(data)
 
