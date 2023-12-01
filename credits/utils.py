@@ -127,13 +127,13 @@ def submited_students_to_excel(students: QuerySet[Credit]):
     data = [
         [
             i + 1,
-            payset.student.hemis_id,
-            payset.student.name,
-            payset.student.group.direction.name,
-            payset.student.group.name,
-            ', '.join([credit.subject.name for credit in payset.credits.all()]),
-            payset.student.group.direction.education_form,
-        ] for i, student in enumerate(students) for payset in student.payset_set.filter(submited=True)
+            student.hemis_id,
+            student.name,
+            student.group.direction.name,
+            student.group.name,
+            ', '.join([credit.subject.name for payset in student.payset_set.filter(submited=True) for credit in payset.credits.all()]),
+            student.group.direction.education_form,
+        ] for i, student in enumerate(students) if student.payset_set.filter(submited=True).exists()
     ]
     df = pd.DataFrame(data)
 
