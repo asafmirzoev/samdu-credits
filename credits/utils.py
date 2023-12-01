@@ -121,6 +121,27 @@ def students_to_excel(students: QuerySet[Credit]):
     return filename
 
 
+def submited_students_to_excel(students: QuerySet[Credit]):
+    import pandas as pd
+
+    data = [
+        [
+            i + 1,
+            payset.student.hemis_id,
+            payset.student.name,
+            payset.student.group.direction.name,
+            payset.student.group.name,
+            ', '.join([credit.subject.name for credit in payset.credits.all()]),
+            payset.student.group.direction.education_form,
+        ] for i, student in enumerate(students) for payset in student.payset_set.filter(submited=True)
+    ]
+    df = pd.DataFrame(data)
+
+    filename = settings.BASE_DIR / f'files/buxgalter/students-{uuid4()}.xlsx'
+    df.to_excel(filename, header=False, index=False)
+    return filename
+
+
 def is_deadline(faculty_id: int = None, for_accountant: bool = None, for_finances: bool = None):
     if not any([faculty_id, for_accountant, for_finances]): return False
     if faculty_id: deadline = DeadLine.objects.get(faculty_id=faculty_id)

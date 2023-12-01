@@ -19,7 +19,10 @@ from .models import (
 )
 from .choices import CreditStatuses
 from .paginator import paginated_queryset
-from .utils import parse_deanery_file, credits_to_excel, students_to_excel, is_deadline, StudentLogin
+from .utils import (
+    parse_deanery_file, credits_to_excel, students_to_excel, submited_students_to_excel, is_deadline, StudentLogin
+)
+
 
 
 def get_home_page(request: HttpRequest) -> HttpResponse:
@@ -339,11 +342,16 @@ def get_accountant_course_page(request: HttpRequest, faculty_id: int, course_id:
 
 
 def get_accountant_course_credits_file(request: HttpRequest, faculty_id: int, course_id: int) -> HttpResponse:
+    submits = request.GET.get('submits', None)
+
     faculty = Faculty.objects.get(pk=faculty_id)
     course = Course.objects.get(pk=course_id)
     students = Student.objects.filter(group__direction__course=course, group__direction__faculty=faculty)
 
-    filename = students_to_excel(students)
+    if submits:
+        filename = submited_students_to_excel(students)
+    else:
+        filename = students_to_excel(students)
 
     with open(filename, 'rb') as fh:
         response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")

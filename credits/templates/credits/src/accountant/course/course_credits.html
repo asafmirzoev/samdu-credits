@@ -10,6 +10,7 @@
         <h5 class="card-header">
             Таблица
             <button class="btn btn-info" onclick="location.href=`{% url 'credits:accountant-course-credits-file' faculty.pk course.pk %}`">{% trans 'Скачать файл' %}</button>
+            <button class="btn btn-info" onclick="location.href=`{% url 'credits:accountant-course-credits-file' faculty.pk course.pk %}?submits=true`">{% trans 'Скачать файл подтвержденных' %}</button>
         </h5>
         {% include 'credits/src/accountant/table.html' %}
 
