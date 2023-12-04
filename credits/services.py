@@ -20,7 +20,7 @@ from .models import (
 from .choices import CreditStatuses
 from .paginator import paginated_queryset
 from .utils import (
-    parse_deanery_file, credits_to_excel, students_to_excel, submited_students_to_excel, is_deadline, StudentLogin
+    parse_deanery_file, credits_to_excel, students_to_excel, submited_credits_to_excel, is_deadline, StudentLogin
 )
 
 
@@ -349,14 +349,14 @@ def get_accountant_course_credits_file(request: HttpRequest, faculty_id: int, co
     students = Student.objects.filter(group__direction__course=course, group__direction__faculty=faculty)
 
     if submits:
-        filename = submited_students_to_excel(students)
+        credits = Credit.objects.filter(student__in=students, status=CreditStatuses.ACCOUNTANT_SUBMITED)
+        file = submited_credits_to_excel(credits)
     else:
-        filename = students_to_excel(students)
+        file = students_to_excel(students)
 
-    with open(filename, 'rb') as fh:
-        response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
-        response['Content-Disposition'] = 'inline; filename=' + os.path.basename(filename)
-    os.remove(filename)
+    # with open(filename, 'rb') as fh:
+    response = HttpResponse(file, content_type="application/vnd.ms-excel")
+    response['Content-Disposition'] = 'inline; filename=credits.xlsx'
     return response
 
 

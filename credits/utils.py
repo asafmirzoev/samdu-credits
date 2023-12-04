@@ -1,4 +1,5 @@
 from uuid import uuid4
+import io
 import math
 import asyncio
 import aiohttp
@@ -102,7 +103,7 @@ def credits_to_excel(credits: QuerySet[Credit]):
     return filename
 
 
-def students_to_excel(students: QuerySet[Credit]):
+def students_to_excel(students: QuerySet[Student]):
     import pandas as pd
 
     data = [
@@ -114,32 +115,51 @@ def students_to_excel(students: QuerySet[Credit]):
             amount
         ] for i, student in enumerate(students) if (amount := sum([credit.amount for credit in student.credit_set.filter(status__in=[CreditStatuses.DEANERY_SETPAID, CreditStatuses.ACCOUNTANT_SUBMITED]) if credit.amount]))
     ]
+    buffer = io.BytesIO()
     df = pd.DataFrame(data)
 
-    filename = settings.BASE_DIR / f'files/buxgalter/students-{uuid4()}.xlsx'
-    df.to_excel(filename, header=False, index=False)
-    return filename
+    # filename = settings.BASE_DIR / f'files/buxgalter/students-{uuid4()}.xlsx'
+    df.to_excel(buffer, header=False, index=False)
+    buffer.seek(0)
+    return buffer
 
 
-def submited_students_to_excel(students: QuerySet[Credit]):
+def submited_credits_to_excel(credits: QuerySet[Credit]):
     import pandas as pd
 
     data = [
         [
-            i + 1,
-            student.hemis_id,
-            student.name,
-            student.group.direction.name,
-            student.group.name,
-            ', '.join([credit.subject.name for payset in student.payset_set.filter(submited=True) for credit in payset.credits.all()]),
-            student.group.direction.education_form,
-        ] for i, student in enumerate(students) if student.payset_set.filter(submited=True).exists()
+            i,
+            credit.student.hemis_id,
+            credit.student.name,
+            credit.student.group.direction.name,
+            credit.student.group.name,
+            credit.subject.name,
+            credit.subject.semestr.course.course,
+            '',
+            credit.student.group.direction.education_form,
+            credit.edu_year.year,
+            credit.subject.semestr.semestr,
+            '',
+            '',
+            credit.student.group.direction.edu_hours,
+            credit.subject.hours,
+            credit.subject.lecture_hours,
+            credit.subject.practice_hours,
+            credit.subject.seminar_hours,
+            credit.subject.laboratory_hours,
+            credit.subject.independent_hours,
+            credit.subject.credits,
+        ] for i, credit in enumerate(credits, 1)
     ]
+
+    buffer = io.BytesIO()
     df = pd.DataFrame(data)
 
-    filename = settings.BASE_DIR / f'files/buxgalter/students-{uuid4()}.xlsx'
-    df.to_excel(filename, header=False, index=False)
-    return filename
+    # filename = settings.BASE_DIR / f'files/buxgalter/credits-{uuid4()}.xlsx'
+    df.to_excel(buffer, header=False, index=False)
+    buffer.seek(0)
+    return buffer
 
 
 def is_deadline(faculty_id: int = None, for_accountant: bool = None, for_finances: bool = None):
