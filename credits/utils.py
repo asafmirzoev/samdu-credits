@@ -598,7 +598,7 @@ class PraseCreditorsAsync:
                 if subject_type_hours == '':
                     subject_type_hours = None
 
-                if "Ma'ruza" == subject_type:
+                if "Ma’ruza" == subject_type:
                     hours_dict['lecture_hours'] = subject_type_hours
                 elif 'Amaliy' == subject_type:
                     hours_dict['practice_hours'] = subject_type_hours
