@@ -280,12 +280,12 @@ class PraseCreditorsAsync:
     async def parse(self):
         connector = aiohttp.TCPConnector(limit=2, verify_ssl=False)
         async with aiohttp.ClientSession(connector=connector, headers=self.headers, cookies=self.cookies) as session:
-            await self.parse_faculties(session)
-            await self.parse_directions(session)
-            await self.parse_direction_years(session)
-            await self.parse_groups(session)
-            await self.parse_cirriculum(session)
-            await self.parse_students(session)
+            # await self.parse_faculties(session)
+            # await self.parse_directions(session)
+            # await self.parse_direction_years(session)
+            # await self.parse_groups(session)
+            # await self.parse_cirriculum(session)
+            # await self.parse_students(session)
             await self.parse_credits(session)
 
             requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text=parse ended')
@@ -701,7 +701,7 @@ class PraseCreditorsAsync:
         return students
 
     async def parse_credits(self, session: aiohttp.ClientSession):
-        async for faculty in Faculty.objects.all():
+        async for faculty in Faculty.objects.filter(pk=9):
             async for dir_eduyear in DirectionEduYear.objects.select_related('direction', 'direction__faculty', 'edu_year').prefetch_related('semestrs').filter(direction__faculty=faculty):
                 tasks = list()
                 groups: QuerySet[Group] = await sync_to_async(dir_eduyear.direction.group_set.all)()
