@@ -241,9 +241,9 @@ class PraseCreditorsAsync:
             'tmr_lvidTS': '1676192408763',
             '_ym_d': '1698727557',
             '_ga_RF4T13JDG3': 'GS1.1.1702295423.15.1.1702295454.0.0.0',
-            '_backendUser_8': 'fd2b13aa8fdb1d78eb1c6e346a846b8c414ebd3aecce93925ce38fcb867da064a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_backendUser_8%22%3Bi%3A1%3Bs%3A48%3A%22%5B%221849%22%2C%22NZp7z9y29LphsVYAuI1Ccj25Fh2MAHS4%22%2C3600%5D%22%3B%7D',
-            '_csrf-backend': 'b66a5a0304430009b5aab753d6d9475f69496aa9ceb6fd8774936e5380979403a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22zERTwqcMM-SHTM1H5sKsmlywpr_v2-47%22%3B%7D',
-            'backend_8': 'ae5k8o888s2c1jobaptmchc48s',
+            '_backendUser_8': '51968d3d57f328238c6ed05f32b123637c88d0cd5be846b1d8e2ce42ed0f6815a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_backendUser_8%22%3Bi%3A1%3Bs%3A50%3A%22%5B%221849%22%2C%22NZp7z9y29LphsVYAuI1Ccj25Fh2MAHS4%22%2C518400%5D%22%3B%7D',
+            '_csrf-backend': '0b64961feeb3723d0a20dd8ed6adc3db0ab130eccb833302e449aca4526b62f5a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%222oM4gvFs4gcDgGaKXbSYYKc157VlOJ3b%22%3B%7D',
+            'backend_8': 'mkjvob9k4q4cbpm6mr0bk51dpb',
         }
 
 
@@ -267,7 +267,7 @@ class PraseCreditorsAsync:
 
         self.ajax_headers = {
             **self.headers,
-            'x-csrf-token': 'TX4P-BzvhzgAh521tNpqp4PY-qV6aYc2Pw1y9N2msLQ3O12sa57kdU2qzv3gl1vvtqux1hcF_kFPfy2C74uEgw==',
+            'x-csrf-token': 'KIJZ7yZJKQ8OruXnd80-GO-SODwwQOCD478yeGc6VBoa7RTbQT9vfDrJhqMQil9Tt_BrZWkLg7LWiGQUKHBneA==',
             'x-pjax': 'true',
             'x-pjax-container': '#admin-grid',
             'x-requested-with': 'XMLHttpRequest',
