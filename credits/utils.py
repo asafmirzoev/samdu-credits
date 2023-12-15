@@ -241,11 +241,10 @@ class PraseCreditorsAsync:
             'tmr_lvidTS': '1676192408763',
             '_ym_d': '1698727557',
             '_ga_RF4T13JDG3': 'GS1.1.1702295423.15.1.1702295454.0.0.0',
-            '_backendUser_8': '51968d3d57f328238c6ed05f32b123637c88d0cd5be846b1d8e2ce42ed0f6815a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_backendUser_8%22%3Bi%3A1%3Bs%3A50%3A%22%5B%221849%22%2C%22NZp7z9y29LphsVYAuI1Ccj25Fh2MAHS4%22%2C518400%5D%22%3B%7D',
-            '_csrf-backend': '0b64961feeb3723d0a20dd8ed6adc3db0ab130eccb833302e449aca4526b62f5a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%222oM4gvFs4gcDgGaKXbSYYKc157VlOJ3b%22%3B%7D',
-            'backend_8': 'mkjvob9k4q4cbpm6mr0bk51dpb',
+            '_backendUser_8': '6626ee3472d12d8eeea7db49f066aa91b1bc1109b568991720a655d1d4c3bcafa%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_backendUser_8%22%3Bi%3A1%3Bs%3A48%3A%22%5B%221849%22%2C%22BFVvoE_5OX4Fff1DHcwVgRYJttDhO5j7%22%2C3600%5D%22%3B%7D',
+            '_csrf-backend': 'a7d1aeb9e329e8a5ff16b343021efb90c9abbf0d4dea09db81fc3c3ca07c0825a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22TD0Nvy4N85Ynrz7NmJAjzUUQZDvB0mj9%22%3B%7D',
+            'backend_8': 'dul084n7ga9ju9o62a5lkqn6ba',
         }
-
 
         self.headers = {
             'authority': 'hemis.samdu.uz',
@@ -267,7 +266,7 @@ class PraseCreditorsAsync:
 
         self.ajax_headers = {
             **self.headers,
-            'x-csrf-token': 'KIJZ7yZJKQ8OruXnd80-GO-SODwwQOCD478yeGc6VBoa7RTbQT9vfDrJhqMQil9Tt_BrZWkLg7LWiGQUKHBneA==',
+            'x-csrf-token': 'RWogTSOmn23xnO2IVKCbh8HBG8yhCdoxZcnQBT0aqNgRLhADVd-rI8mptOYm2qzJrItapttcj2A_jaZHDXfC4Q==',
             'x-pjax': 'true',
             'x-pjax-container': '#admin-grid',
             'x-requested-with': 'XMLHttpRequest',
