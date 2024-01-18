@@ -240,33 +240,20 @@ class PraseCreditorsAsync:
             'tmr_lvid': '9e71bf292cc968b9b024e320895f4425',
             'tmr_lvidTS': '1676192408763',
             '_ym_d': '1698727557',
-            '_ga_RF4T13JDG3': 'GS1.1.1702295423.15.1.1702295454.0.0.0',
-            '_backendUser_8': '6626ee3472d12d8eeea7db49f066aa91b1bc1109b568991720a655d1d4c3bcafa%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_backendUser_8%22%3Bi%3A1%3Bs%3A48%3A%22%5B%221849%22%2C%22BFVvoE_5OX4Fff1DHcwVgRYJttDhO5j7%22%2C3600%5D%22%3B%7D',
-            '_csrf-backend': 'a7d1aeb9e329e8a5ff16b343021efb90c9abbf0d4dea09db81fc3c3ca07c0825a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22TD0Nvy4N85Ynrz7NmJAjzUUQZDvB0mj9%22%3B%7D',
-            'backend_8': 'dul084n7ga9ju9o62a5lkqn6ba',
+            '_ga_RF4T13JDG3': 'GS1.1.1702960069.16.1.1702961441.0.0.0',
+            '_backendUser_8': 'e2173769859d4f3f3e9a27ff6d7b565982c703116d75170b5443b5b5cea3b6c7a%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_backendUser_8%22%3Bi%3A1%3Bs%3A48%3A%22%5B%221849%22%2C%222ch-cyJMVI6mcqpwX3CtVx-wjDJ6cRMt%22%2C3600%5D%22%3B%7D',
+            '_csrf-backend': 'cef369d9fb4c5115a8854193ab545dc05d0f3730eaa4077927ccd2393507c5c4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22V9-zvAiLxt0Ysxu7MTJZKUte5cwHCq7t%22%3B%7D',
+            'backend_8': 'qqeu4fnje8ss36grmt0o1rtk3o',
         }
 
         self.headers = {
-            'authority': 'hemis.samdu.uz',
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-            'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7,uz;q=0.6',
-            'cache-control': 'no-cache',
-            'pragma': 'no-cache',
-            'referer': 'https://hemis.samdu.uz/dashboard/login',
-            'sec-ch-ua': '"Google Chrome";v="119", "Chromium";v="119", "Not?A_Brand";v="24"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Windows"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36',
+            'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
         }
 
         self.ajax_headers = {
             **self.headers,
-            'x-csrf-token': 'RWogTSOmn23xnO2IVKCbh8HBG8yhCdoxZcnQBT0aqNgRLhADVd-rI8mptOYm2qzJrItapttcj2A_jaZHDXfC4Q==',
+            'x-csrf-token': 'VrrwmOws1nswVCaT0vT22-uZTQoMDsWi8-sSLVsBHSsAg93imm2_N0ggFsqhjIPsps0HUEdbscfGiGVlGHAqXw==',
             'x-pjax': 'true',
             'x-pjax-container': '#admin-grid',
             'x-requested-with': 'XMLHttpRequest',
@@ -279,12 +266,12 @@ class PraseCreditorsAsync:
     async def parse(self):
         connector = aiohttp.TCPConnector(limit=2, verify_ssl=False)
         async with aiohttp.ClientSession(connector=connector, headers=self.headers, cookies=self.cookies) as session:
-            # await self.parse_faculties(session)
-            # await self.parse_directions(session)
-            # await self.parse_direction_years(session)
-            # await self.parse_groups(session)
-            # await self.parse_cirriculum(session)
-            # await self.parse_students(session)
+            await self.parse_faculties(session)
+            await self.parse_directions(session)
+            await self.parse_direction_years(session)
+            await self.parse_groups(session)
+            await self.parse_cirriculum(session)
+            await self.parse_students(session)
             await self.parse_credits(session)
 
             requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text=parse ended')

@@ -9,7 +9,7 @@ from credits.utils import PraseCreditorsAsync
 
 
 def parse():
-    start = timezone.now().strftime('%Y-%m-Yd %H:%M:%S')
+    start = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
     text = f'{start} credits'
     requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text={text}')
 
@@ -20,6 +20,6 @@ def parse():
         logging.error(err)
         requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text={err}')
 
-    end = timezone.now().strftime('%Y-%m-Yd %H:%M:%S')
+    end = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
     text = f'{end} credits'
     requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text={text}')
