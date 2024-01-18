@@ -12,7 +12,7 @@ class Command(BaseCommand):
     help = 'Displays current time'
 
     def handle(self, *args, **kwargs):
-        start = timezone.now()
+        start = timezone.now().strftime('%Y-%m-Yd %H:%M:%S')
         text = f'{start} eval'
         requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text={text}')
         self.stdout.write(f"Start at: {start}")
@@ -24,7 +24,7 @@ class Command(BaseCommand):
             logging.error(err)
             requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text={err}')
 
-        end = timezone.now()
+        end = timezone.now().strftime('%Y-%m-Yd %H:%M:%S')
         text = f'{end} eval'
         requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text={text}')
         self.stdout.write(f"End at: {end}")
