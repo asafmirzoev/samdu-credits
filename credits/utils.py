@@ -700,7 +700,7 @@ class PraseCreditorsAsync:
         return students
 
     async def parse_credits(self, session: aiohttp.ClientSession):
-        async for faculty in Faculty.objects.filter(pk=9):
+        async for faculty in Faculty.objects.all():
             async for dir_eduyear in DirectionEduYear.objects.select_related('direction', 'direction__faculty', 'edu_year').prefetch_related('semestrs').filter(direction__faculty=faculty):
                 tasks = list()
                 groups: QuerySet[Group] = await sync_to_async(dir_eduyear.direction.group_set.all)()
