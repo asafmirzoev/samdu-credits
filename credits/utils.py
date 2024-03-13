@@ -241,10 +241,11 @@ class PraseCreditorsAsync:
             'tmr_lvidTS': '1676192408763',
             '_ym_d': '1698727557',
             '_ga_RF4T13JDG3': 'GS1.1.1702960069.16.1.1702961441.0.0.0',
-            '_backendUser_8': 'd75f942d8192878492438992aec40c5caf7be4d63c8b8793a264fc2b36b63b4ca%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_backendUser_8%22%3Bi%3A1%3Bs%3A50%3A%22%5B%221849%22%2C%222ch-cyJMVI6mcqpwX3CtVx-wjDJ6cRMt%22%2C518400%5D%22%3B%7D',
-            '_csrf-backend': '8e0e822963e8ee6b4073c096e8e3d08d27d339306da9ce222d45131d63551f27a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22RGd7G2w-nS0hEpEKbKA0Jlb-g_fRtWpw%22%3B%7D',
-            'backend_8': '5i5r3bp8b0lsjeddqo79jrt08p',
+            '_backendUser_8': 'cbaa03a4b48a1639bee2a1753a845aec36ac396398b36bb1c48d9008e4ac095ba%3A2%3A%7Bi%3A0%3Bs%3A14%3A%22_backendUser_8%22%3Bi%3A1%3Bs%3A48%3A%22%5B%221849%22%2C%22uhVX91JI_EIEJpX9EoaoFIcR-pJzqaOG%22%2C3600%5D%22%3B%7D',
+            '_csrf-backend': '7bbe2c97992d0b6334d4a849f02edda64fe8af82a54d8e4ae85ed90c9d0069b4a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%225LIEj0uivyP8gu2aD1Qt23qGaUZ-33kT%22%3B%7D',
+            'backend_8': 'n4uuarhqab25c433jkk729hurs',
         }
+
 
 
         self.headers = {
@@ -254,7 +255,7 @@ class PraseCreditorsAsync:
 
         self.ajax_headers = {
             **self.headers,
-            'x-csrf-token': 'nEDBWOwGRh90nanCM_a0dAW7s6BD700aeU-C8FdSKG7OB6VvqzQxMhrOmap2hvE_Z_DykAmDLzceEOSiIwVYGQ==',
+            'x-csrf-token': 'ayPSEn6v9FR2_oVKTV3wb1nP3FfteNZFIM7PAUVvB3leb5tXFJ-BPQCH1XIqKMIOHf6NI99LpwJBm5UsdlxsLQ==',
             'x-pjax': 'true',
             'x-pjax-container': '#admin-grid',
             'x-requested-with': 'XMLHttpRequest',
@@ -267,12 +268,12 @@ class PraseCreditorsAsync:
     async def parse(self):
         connector = aiohttp.TCPConnector(limit=2, verify_ssl=False)
         async with aiohttp.ClientSession(connector=connector, headers=self.headers, cookies=self.cookies) as session:
-            await self.parse_faculties(session)
-            await self.parse_directions(session)
-            await self.parse_direction_years(session)
-            await self.parse_groups(session)
-            await self.parse_cirriculum(session)
-            await self.parse_students(session)
+            # await self.parse_faculties(session)
+            # await self.parse_directions(session)
+            # await self.parse_direction_years(session)
+            # await self.parse_groups(session)
+            # await self.parse_cirriculum(session)
+            # await self.parse_students(session)
             await self.parse_credits(session)
 
             requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text=parse ended')
@@ -378,7 +379,11 @@ class PraseCreditorsAsync:
             if not output:
                 return
             
+            # for i in range(1160):
+            #     try:
             direction_eduyear, _ = await DirectionEduYear.objects.aget_or_create(direction=direction, edu_year=eduyear)
+                # except:
+                #     continue
 
             for semestr in output:
                 if await (semestrs_set := await sync_to_async(Semestr.objects.filter)(semestr_id=semestr.get('id'))).aexists():
@@ -688,6 +693,7 @@ class PraseCreditorsAsync:
         return students
 
     async def parse_credits(self, session: aiohttp.ClientSession):
+        await (await sync_to_async(Credit.objects.all)()).aupdate(active=False)
         async for faculty in Faculty.objects.filter(pk=9):
             async for dir_eduyear in DirectionEduYear.objects.select_related('direction', 'direction__faculty', 'edu_year').prefetch_related('semestrs').filter(direction__faculty=faculty):
                 tasks = list()
@@ -784,10 +790,12 @@ class PraseCreditorsAsync:
                     continue
                 subject = await subjects.afirst()
                 
-                if not await (await sync_to_async(Credit.objects.filter)(student=student, subject=subject)).aexists():
+                if not await (credits_ := await sync_to_async(Credit.objects.filter)(student=student, subject=subject)).aexists():
                     credits.append(Credit(
                         student=student,
                         subject=subject,
                         edu_year=dir_eduyear.edu_year
                     ))
+                else:
+                    credits_.update(active=True)
         return credits
