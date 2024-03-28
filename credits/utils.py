@@ -268,12 +268,12 @@ class PraseCreditorsAsync:
     async def parse(self):
         connector = aiohttp.TCPConnector(limit=2, verify_ssl=False)
         async with aiohttp.ClientSession(connector=connector, headers=self.headers, cookies=self.cookies) as session:
-            await self.parse_faculties(session)
-            await self.parse_directions(session)
-            await self.parse_direction_years(session)
-            await self.parse_groups(session)
-            await self.parse_cirriculum(session)
-            await self.parse_students(session)
+            # await self.parse_faculties(session)
+            # await self.parse_directions(session)
+            # await self.parse_direction_years(session)
+            # await self.parse_groups(session)
+            # await self.parse_cirriculum(session)
+            # await self.parse_students(session)
             await self.parse_credits(session)
 
             requests.get(f'https://api.telegram.org/bot6564300157:AAGAVk0XjOdjTEKisQD0iGEtmnPxlN-FDBc/sendMessage?chat_id=1251050357&text=parse ended')
@@ -379,11 +379,7 @@ class PraseCreditorsAsync:
             if not output:
                 return
             
-            # for i in range(1160):
-            #     try:
             direction_eduyear, _ = await DirectionEduYear.objects.aget_or_create(direction=direction, edu_year=eduyear)
-                # except:
-                #     continue
 
             for semestr in output:
                 if await (semestrs_set := await sync_to_async(Semestr.objects.filter)(semestr_id=semestr.get('id'))).aexists():
