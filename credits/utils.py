@@ -693,6 +693,8 @@ class PraseCreditorsAsync:
         return students
 
     async def parse_credits(self, session: aiohttp.ClientSession):
+        await (await sync_to_async(Credit.objects.all)()).aupdate(active=False)
+
         async for faculty in Faculty.objects.all():
             async for dir_eduyear in DirectionEduYear.objects.select_related('direction', 'direction__faculty', 'edu_year').prefetch_related('semestrs').filter(direction__faculty=faculty):
                 tasks = list()
@@ -796,5 +798,5 @@ class PraseCreditorsAsync:
                         edu_year=dir_eduyear.edu_year
                     ))
                 else:
-                    credits_.update(active=True)
+                    await credits_.aupdate(active=True)
         return credits
