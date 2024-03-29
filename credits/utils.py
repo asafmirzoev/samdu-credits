@@ -688,9 +688,7 @@ class PraseCreditorsAsync:
         return students
 
     async def parse_credits(self, session: aiohttp.ClientSession):
-        await (await sync_to_async(Credit.objects.all)()).aupdate(active=False)
-
-        async for faculty in Faculty.objects.all():
+        async for faculty in Faculty.objects.filter(pk__gt=3):
             async for dir_eduyear in DirectionEduYear.objects.select_related('direction', 'direction__faculty', 'edu_year').prefetch_related('semestrs').filter(direction__faculty=faculty):
                 tasks = list()
                 groups: QuerySet[Group] = await sync_to_async(dir_eduyear.direction.group_set.all)()
@@ -754,7 +752,7 @@ class PraseCreditorsAsync:
         params.update({'page': page})
         async with session.get(f'{self.base_url}/performance/debtors', params=params, headers=self.ajax_headers) as response:
             soup = BeautifulSoup(await response.text(), 'html.parser')
-            if not soup.find('tbody'): return
+            if not soup.find('tbody'): return credits
             for tr in soup.find('tbody').find_all('tr'):
                 tds = tr.find_all('td')
 
